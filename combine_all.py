@@ -10,14 +10,14 @@ def main():
     combined_bas.touch()
     combined_bas.write_text('')
 
-    # with open(combined_bas.name, mode='r') as f:
-    #     pass
-
     target_pattern = f'^(?!{combined_bas.name}$)\w+\.bas'
     script_files = sorted([f for f in cd.iterdir() if re.match(target_pattern, f.name)])
 
 
+    head_text = 'Option Explicit\n\n' 
+
     with open(combined_bas.name, 'a') as f:
+        f.write(head_text)
         for file in script_files:
             print(file.name)
             f.write(file.read_text(encoding='utf-8'))
