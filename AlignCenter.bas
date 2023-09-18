@@ -1,8 +1,8 @@
 ' Align Center >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub AlignCenterVertical()
-    ' 1つめに選択した図形の中央に合わせる　上下中央
+    ' vertically align the centers of selected shapes with the first shape.
 
-    ' 図形を選択してなければ終わり
+    ' no selecting
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If

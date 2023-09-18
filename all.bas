@@ -2,9 +2,9 @@ Option Explicit
 
 ' Align Center >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub AlignCenterVertical()
-    ' 1つめに選択した図形の中央に合わせる　上下中央
+    ' vertically align the centers of selected shapes with the first shape.
 
-    ' exit if not selecting shape
+    ' no selecting
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
@@ -60,11 +60,11 @@ End sub
 
 
 
-' Stick shpaes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' 図形をくっつけて並べる >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub AlignShapesHorizontalStick()
-    ' Stick shapes horizontally
+    ' 図形をくっつけて並べる　横
 
-    ' Judgement selecting 2 or more
+    ' 2個以上のShape選択中判定
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         Dim numShapes%
 
@@ -728,12 +728,12 @@ Sub FrequentlyUse()
 End Sub
 
 
-' テキストボックス挿入 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-Sub InsertNoWrapTextBox()
-    ' 図形内で改行しないにチェックしたテキストボックスを挿入する
-    ' あるいは、選択した図形の図形内で改行をしないにチェックをいれる
 
-    ' 何も選択してない場合挿入する。余白0。折り返ししないチェックは以降の処理で行う。
+' insert textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Sub InsertNoWrapTextBox()
+    ' insert no wrap textbox or make textbox to no wrap textbox
+
+    ' no selecting
     If ActiveWindow.Selection.Type = ppSelectionNone Or ActiveWindow.Selection.Type = ppSelectionSlides Then
         Dim textbox As Shape
 
@@ -744,6 +744,7 @@ Sub InsertNoWrapTextBox()
 
         textbox.TextFrame.DeleteText
         textbox.TextFrame.TextRange.Select
+        textbox.TextRange.Font.Size = 16
     End If
 
     ' テキスト選択中の場合、折り返ししないにチェックする

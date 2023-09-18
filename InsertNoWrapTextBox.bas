@@ -1,10 +1,9 @@
 
-' テキストボックス挿入 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' insert textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub InsertNoWrapTextBox()
-    ' 図形内で改行しないにチェックしたテキストボックスを挿入する
-    ' あるいは、選択した図形の図形内で改行をしないにチェックをいれる
+    ' insert no wrap textbox or make textbox to no wrap textbox
 
-    ' 何も選択してない場合挿入する。余白0。折り返ししないチェックは以降の処理で行う。
+    ' no selecting
     If ActiveWindow.Selection.Type = ppSelectionNone Or ActiveWindow.Selection.Type = ppSelectionSlides Then
         Dim textbox As Shape
 
@@ -15,6 +14,7 @@ Sub InsertNoWrapTextBox()
 
         textbox.TextFrame.DeleteText
         textbox.TextFrame.TextRange.Select
+        textbox.TextRange.Font.Size = 16
     End If
 
     ' テキスト選択中の場合、折り返ししないにチェックする
