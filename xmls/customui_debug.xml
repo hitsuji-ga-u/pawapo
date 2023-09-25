@@ -65,13 +65,16 @@
           <button id="PasteShpaeDistancesX" label="paste x distance" showLabel="false" imageMso="SlidesPerPage4Slides" onAction="PasteShpaeDistancesX" keytip="Der"/>
           <button id="PasteShpaeDistancesY" label="paste y distance" showLabel="false" imageMso="CreateDiagram" onAction="PasteShpaeDistancesY" keytip="Ded"/>
 
-          <button id="FrequentlyUse" label="fill none" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyUse" keytip="Dcc"/>
+          <button id="FrequentlyArrow" label="frequently allow style" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyUse" keytip="Dcc"/>
+          <button id="FrequentlyShade" label="frequently shade style none" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyUse" />
           <button id="PaintGradation" label="paint gradation" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Dcz"/>
-          <toggleButton idMso="ObjectEditPoints" showLabel="false" keytip="Dcx"/>
           
+          <toggleButton idMso="ObjectEditPoints" showLabel="false" keytip="Dcx"/>
+          <button id="AddShapeNodes" label="add nodes" showLabel="false" imageMso="HappyFace" onAction="AddNodes" />
+
           <toggleButton idMso="PictureCrop" showLabel="false" keytip="Dda"/>
           <button id="MoveToAnchor" label="move to anchor" showLabel="false" imageMso="ControlMarginsGallery" onAction="MoveToAnchor" keytip="Dds"/>
-          <button id="DrowExpension" label="draw" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Ddf"/>
+          <button id="DrowExpension" label="draw expansion" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Ddf"/>
           
           <button id="TableWidthAutoFit" label="auto fit table width" showLabel="false" imageMso="SpeakByRows" onAction="TableWidthAutoFit" keytip="Dde"/>
           <button id="clip_path" label="clip path" showLabel="false" imageMso="HeaderFooterFilePathInsert" onAction="ClipPath" keytip="Ddr"/>
