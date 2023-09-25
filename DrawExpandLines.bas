@@ -1,17 +1,5 @@
 
-
-
-
-
-
-
-
-
-
 Dim DrawExpandLines()
-
-
-    
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
     If Not ActiveWindow.Selection.ShapeRange.Count = 2 Then Exit Sub
 
@@ -47,13 +35,13 @@ Dim DrawExpandLines()
         shp1a(1) = vertices(i, 1)
         shp1b(0) = vertices(j, 0)
         shp1b(1) = vertices(j, 1)
-        
+
         If is_crossed(shp1a(0), shp1a(1), shp1b(0), shp1b(1), c1x, c1y, c2x, c2y) Then
             bl_is_crossed = True
             Exit For
         End If
     Next i
-    
+
     If Not bl_is_crossed Then Exit Sub
     Debug.Print "1"
     

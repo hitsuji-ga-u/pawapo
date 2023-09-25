@@ -3,7 +3,7 @@
 Sub InsertNoWrapTextBox()
     ' insert no wrap textbox or make textbox to no wrap textbox
 
-    ' no selecting
+    ' no selecting. Insert a txt box.
     If ActiveWindow.Selection.Type = ppSelectionNone Or ActiveWindow.Selection.Type = ppSelectionSlides Then
         Dim textbox As Shape
 
@@ -17,7 +17,7 @@ Sub InsertNoWrapTextBox()
         textbox.TextRange.Font.Size = 16
     End If
 
-    ' テキスト選択中の場合、折り返ししないにチェックする
+    ' when selecting txt
     If ActiveWindow.Selection.Type = ppSelectionText Then
         If ActiveWindow.Selection.TextRange.Parent.Parent.HasTextFrame Then
             With ActiveWindow.Selection.TextRange.Parent.Parent.TextFrame
@@ -29,7 +29,7 @@ Sub InsertNoWrapTextBox()
             End With
         End If
 
-    ' 1つ以上の図形を選択中の場合、すべての図形で折り返ししないにチェックする
+    ' when selecting shapes
     ElseIf ActiveWindow.Selection.Type = ppSelectionShapes Then
         Dim selectedTextBox As Shape
 

@@ -1,0 +1,149 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" onLoad="InitCustomTab">
+  <ribbon startFromScratch="false">
+    <tabs>
+      <tab id="customTab" label="tools" insertBeforeMso="TabHome" keytip="x">
+        <group id="align">
+          <button idMso="ObjectsAlignLeftSmart" showLabel="false" keytip="Zaa"/>
+          <button idMso="ObjectsAlignTopSmart" showLabel="false" keytip="Zas"/>
+          <button id="ObjectsAlignTLSmart" imageMso="SmartArtSmallerShape" showLabel="false" onAction="ObjectsAlignTopLeft" keytip="Daw"/>
+
+          <button idMso="ObjectsAlignRightSmart" showLabel="false" keytip="Zad"/>
+          <button idMso="ObjectsAlignBottomSmart" showLabel="false" keytip="Zaf"/>
+          <button id="ObjectsAlignTRSmart" image="SmartArtSmallerShapeTopLeft" showLabel="false" onAction="ObjectsAlignTopRight" keytip="Dae"/>
+
+          <button id="AlignCenterVertical" imageMso="ObjectsAlignMiddleVerticalSmart" showLabel="false" onAction="AlignCenterVertical" keytip="Dzx"/>
+          <button id="AlignCenterHorizontal" imageMso="ObjectsAlignCenterHorizontalSmart" showLabel="false" onAction="AlignCenterHorizontal" keytip="Dzs"/>
+          <button id="AlignCenter" image="ObjectsAlignCenter" showLabel="false" onAction="AlignCenter" keytip="Dzz"/>
+
+          <button idMso="AlignDistributeHorizontally" showLabel="false" keytip="ZDd"/>
+          <button idMso="AlignDistributeVertically" showLabel="false" keytip="ZDs"/>
+          <button idMso="ObjectBringToFront" showLabel="false" keytip="ZXx"/>
+
+          <button idMso="ObjectFlipHorizontal" showLabel="false" keytip="ZVv"/>
+          <button idMso="ObjectFlipVertical" showLabel="false" keytip="ZVc"/>
+          <button idMso="ObjectSendToBack" showLabel="false" keytip="ZXz"/>
+
+          <button id="AlignShapesVerticalStick" showLabel="false" image="ShapesAlignStickVertical" onAction="AlignShapesVerticalStick" keytip="Das"/>
+          <button id="AlignShapesHorizontalStick" showLabel="false" image="ShapesAlignStickHorizontal" onAction="AlignShapesHorizontalStick" keytip="Daa"/>
+        </group>
+
+        <group id="insert_shapes">
+          <toggleButton idMso="ShapeRectangle" showLabel="false" keytip="CXx"/>
+          <toggleButton idMso="ShapeRoundedRectangle" showLabel="false" keytip="CXz"/>
+          <toggleButton idMso="ShapeOval" showLabel="false" keytip="CAa"/>
+
+          <toggleButton idMso="ShapeIsoscelesTriangle" showLabel="false" keytip="CAs"/>
+          <toggleButton idMso="ShapeLeftBrace" showLabel="false" keytip="CDd"/>
+          <toggleButton idMso="ShapeRightBrace" showLabel="false" keytip="CDf"/>
+
+          <toggleButton idMso="ShapeRightArrow" showLabel="false" keytip="CSd"/>
+          <toggleButton idMso="ShapeDownArrow" showLabel="false" keytip="CSs"/>
+          <button id="wrap_off" label="insert nowrap textbox" showLabel="false" imageMso="TextBoxInsert" onAction="InsertNoWrapTextBox" keytip="Cv"/>
+
+          <toggleButton idMso="ShapeStraightConnectorArrow" showLabel="false" keytip="CCc"/>
+          <toggleButton idMso="ShapeStraightConnector" showLabel="false" keytip="CCx"/>
+          <button idMso="SymbolInsert" showLabel="false" keytip="Xcc"/>
+        </group>
+
+        <group id="window">
+          <button idMso="ObjectFormatDialog" showLabel="false" keytip="XDd"/>
+          <button idMso="TextFillMoreTextures" showLabel="false" keytip="XDc"/>
+          <toggleButton idMso="SelectionPane" showLabel="false" keytip="XDs"/>
+
+        </group>
+
+        <group id="tools">
+          <button id="AdjustShapesSize" label="adjust sizes" showLabel="false" image="AdjustShapesSize" onAction="AdjustShapesSize" keytip="Dss"/>
+          <button id="AdjustShapesHeight" label="adjust heights" showLabel="false" imageMso="SizeToTallest" onAction="AdjustShapesHeight" keytip="Dsa"/>
+          <button id="AdjustShapesWidth" label="adjust widths" showLabel="false" imageMso="SizeToWidest" onAction="AdjustShapesWidth" keytip="Dsd"/>
+
+          <button id="CopyShapesPos" label="copy pos of shapes" showLabel="false" imageMso="PasteAlternative" onAction="CopyShapesPos" keytip="Dff"/>
+          <button id="PasteShapesAbsolutely" label="paste pos absolutely" showLabel="false" imageMso="SlidesPerPage4Slides" onAction="PasteShapesAbsolutely" keytip="Dfd"/>
+          <button id="PasteShapesRelatively" label="paste pos relatively" showLabel="false" imageMso="CreateDiagram" onAction="PasteShapesRelatively" keytip="Dfs"/>
+
+          <button id="CopyShapeDistances" label="copy distance of shapes" showLabel="false" imageMso="PasteAlternative" onAction="CopyShapeDistances" keytip="Dee"/>
+          <button id="PasteShpaeDistancesX" label="paste x distance" showLabel="false" imageMso="SlidesPerPage4Slides" onAction="PasteShpaeDistancesX" keytip="Der"/>
+          <button id="PasteShpaeDistancesY" label="paste y distance" showLabel="false" imageMso="CreateDiagram" onAction="PasteShpaeDistancesY" keytip="Ded"/>
+
+          <button id="FrequentlyUse" label="fill none" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyUse" keytip="Dcc"/>
+          <button id="PaintGradation" label="paint gradation" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Dcz"/>
+          <toggleButton idMso="ObjectEditPoints" showLabel="false" keytip="Dcx"/>
+          
+          <toggleButton idMso="PictureCrop" showLabel="false" keytip="Dda"/>
+          <button id="MoveToAnchor" label="move to anchor" showLabel="false" imageMso="ControlMarginsGallery" onAction="MoveToAnchor" keytip="Dds"/>
+          <button id="DrowExpension" label="draw" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Ddf"/>
+          
+          <button id="TableWidthAutoFit" label="auto fit table width" showLabel="false" imageMso="SpeakByRows" onAction="TableWidthAutoFit" keytip="Dde"/>
+          <button id="clip_path" label="clip path" showLabel="false" imageMso="HeaderFooterFilePathInsert" onAction="ClipPath" keytip="Ddr"/>
+          <button id="DeleteAndPasteShape" label="delete and paste" showLabel="false" imageMso="Paste" onAction="DeleteAndPasteShape" keytip="V"/>
+        </group>
+
+        <group id="font">
+          <button id="ChangeShapeColorDark1" label="change shape color to Dark1" showLabel="false" image="ShapeColorDark1" onAction="ChangeShapeColorDark1" keytip="Fsa"/>
+          <button id="ChangeLineColorDark1" label="change line color to Dark1" showLabel="false" image="ShapeLineColorDark1" onAction="ChangeLineColorDark1" keytip="Fda"/>
+          <button id="ChangeTextColorDark1" label="change font color to Dark1" showLabel="false" image="FontColorDark1" onAction="ChangeTextColorDark1" keytip="Ffa"/>
+
+          <button id="ChangeShapeColorLight1" label="change shape color to Light1" showLabel="false" image="ShapeColorLight1" onAction="ChangeShapeColorLight1" keytip="Fss"/>
+          <button id="ChangeLineColorLight1" label="change line color to Light1" showLabel="false" image="ShapeLineColorLight1" onAction="ChangeLineColorLight1" keytip="Fds"/>
+          <button id="ChangeTextColorLight1" label="change font color to Light1" showLabel="false" image="FontColorLight1" onAction="ChangeTextColorLight1" keytip="Ffs"/>
+
+          <button id="ChangeShapeColorDark2" label="change shape color to Dark2" showLabel="false" image="ShapeColorDark2" onAction="ChangeShapeColorDark2" keytip="Fsd"/>
+          <button id="ChangeLineColorDark2" label="change line color to Dark2" showLabel="false" image="ShapeLineColorDark2" onAction="ChangeLineColorDark2" keytip="Fdd"/>
+          <button id="ChangeTextColorDark2" label="change font color to Dark2" showLabel="false" image="FontColorDark2" onAction="ChangeTextColorDark2" keytip="Ffd"/>
+
+          <button id="ChangeShapeColorAccent2" label="change shape color to Accent2" showLabel="false" image="ShapeColorAccent2" onAction="ChangeShapeColorAccent2" keytip="Fsf"/>
+          <button id="ChangeLineColorAccent2" label="change line color to Accent2" showLabel="false" image="ShapeLineColorAccent2" onAction="ChangeLineColorAccent2" keytip="Fdf"/>
+          <button id="ChangeTextColorAccent2" label="change font color to Accent2" showLabel="false" image="FontColorAccent2" onAction="ChangeTextColorAccent2" keytip="Fff"/>
+
+          <button id="ChangeShapeColorAccent3" label="change shape color to Accent3" showLabel="false" image="ShapeColorAccent3" onAction="ChangeShapeColorAccent3" keytip="Fsz"/>
+          <button id="ChangeLineColorAccent3" label="change line color to Accent3" showLabel="false" image="ShapeLineColorAccent3" onAction="ChangeLineColorAccent3" keytip="Fdz"/>
+          <button id="ChangeTextColorAccent3" label="change font color to Accent3" showLabel="false" image="FontColorAccent3" onAction="ChangeTextColorAccent3" keytip="Ffz"/>
+
+          <button id="ChangeShapeColorAccent4" label="change shape color to Accent4" showLabel="false" image="ShapeColorAccent4" onAction="ChangeShapeColorAccent4" keytip="Fsx"/>
+          <button id="ChangeLineColorAccent4" label="change line color to Accent4" showLabel="false" image="ShapeLineColorAccent4" onAction="ChangeLineColorAccent4" keytip="Fdx"/>
+          <button id="ChangeTextColorAccent4" label="change font color to Accent4" showLabel="false" image="FontColorAccent4" onAction="ChangeTextColorAccent4" keytip="Ffx"/>
+
+          <button id="ChangeShapeColorAccent5" label="change shape color to Accent5" showLabel="false" image="ShapeColorAccent5" onAction="ChangeShapeColorAccent5" keytip="Fsc"/>
+          <button id="ChangeLineColorAccent5" label="change line color to Accent5" showLabel="false" image="ShapeLineColorAccent5" onAction="ChangeLineColorAccent5" keytip="Fdc"/>
+          <button id="ChangeTextColorAccent5" label="change font color to Accent5" showLabel="false" image="FontColorAccent5" onAction="ChangeTextColorAccent5" keytip="Ffc"/>
+
+          <button id="ChangeShapeColorAccent6" label="change shape color to Accent6" showLabel="false" image="ShapeColorAccent6" onAction="ChangeShapeColorAccent6" keytip="Fsv"/>
+          <button id="ChangeLineColorAccent6" label="change line color to Accent6" showLabel="false" image="ShapeLineColorAccent6" onAction="ChangeLineColorAccent6" keytip="Fdv"/>
+          <button id="ChangeTextColorAccent6" label="change font color to Accent6" showLabel="false" image="FontColorAccent6" onAction="ChangeTextColorAccent6" keytip="Ffv"/>
+
+          <button id="ChangeShapeColorRed" label="change shape color to Red" showLabel="false" image="ShapeColorRed" onAction="ChangeShapeColorRed" keytip="Fsr"/>
+          <button id="ChangeLineColorRed" label="change line color to Red" showLabel="false" image="ShapeLineColorRed" onAction="ChangeLineColorRed" keytip="Fdr"/>
+          <button id="ChangeTextColorRed" label="change font color to Red" showLabel="false" image="FontColorRed" onAction="ChangeTextColorRed" keytip="Ffr"/>
+
+          <button id="ChangeShapeColorNone" label="change shape color to None" showLabel="false" image="ShapeColorNone" onAction="ChangeShapeColorNone" keytip="Fsg"/>
+          <button id="ChangeLineColorNone" label="change line color to None" showLabel="false" image="ShapeLineColorNone" onAction="ChangeLineColorNone" keytip="Fdg"/>
+
+        </group>
+
+        <group id="format">
+          <gallery idMso="ShapesInsertGallery" showLabel="false"/>
+          <gallery idMso="ShapeFillColorPicker" showLabel="false"/>
+          <gallery idMso="OutlineColorPicker" showLabel="false"/>
+          <gallery idMso="ShapeQuickStylesHome" showLabel="false"/>
+
+          <gallery idMso="OutlineWeightGallery" showLabel="false"/>
+          <button idMso="WordArtVerticalText"/>
+
+        </group>
+
+        <group id="align_setting">
+          <toggleButton idMso="ObjectsAlignRelativeToContainerSmart" showImage="false" label="slide" keytip="Zff"/>
+          <toggleButton idMso="ObjectsAlignSelectedSmart" showImage="false" label="shapes" keytip="Zfd"/>
+        </group>
+
+        <group idMso="GroupSize"/>
+        <group idMso="GroupViewShowHide"/>
+
+        <group id="other">
+          <button id="test" label="test" showLabel="false" imageMso="HeaderFooterFilePathInsert" size="large" onAction="test"/>
+          <button id="test1" label="test1" showLabel="false" imageMso="HeaderFooterFilePathInsert" size="large" onAction="test1"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
