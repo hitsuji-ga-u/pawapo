@@ -1,5 +1,7 @@
 
 Dim DrawExpandLines()
+
+    ' execute only when selecting 2 shapes
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
     If Not ActiveWindow.Selection.ShapeRange.Count = 2 Then Exit Sub
 
@@ -12,19 +14,25 @@ Dim DrawExpandLines()
     Dim vertices() As Double
     Dim shp1a(1) As Double, shp1b(1) As Double, shp2a(1) As Double, shp2b(1) As Double
     Dim c1x#, c1y#, c2x#, c2y#
-    
+
     Set shp1 = ActiveWindow.Selection.ShapeRange(1)
     Set shp2 = ActiveWindow.Selection.ShapeRange(2)
-    
-    
+
+    ' when any shape type is micture, adding the shape on the picture which is the same size with the picture
+    if shp1.type = msoPicture then
+        Set shp1 = Activewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp1.left, shp1.Top, shp1.Width, shp1.Height)
+    end if
+    if shp2.type = msoPicture then
+        Set shp2 = activewindow.slide.Shapes.AddShape(msoShapeRectangle, shp2.left, shp2.Top, shp2.Width, shp2.Height)
+    end if
+
     c1x = CDbl(shp1.left) + CDbl(shp1.Width) / 2
     c1y = CDbl(shp1.Top) + CDbl(shp1.Height) / 2
     c2x = CDbl(shp2.left) + CDbl(shp2.Width) / 2
     c2y = CDbl(shp2.Top) + CDbl(shp2.Height) / 2
 
     vertices = ShapeVertices(shp1)
-    
-    
+
     Dim i&, j&
     Dim bl_is_crossed As Boolean
     bl_is_crossed = False
@@ -42,9 +50,6 @@ Dim DrawExpandLines()
         End If
     Next i
 
-    If Not bl_is_crossed Then Exit Sub
-    Debug.Print "1"
-    
     vertices = ShapeVertices(shp2)
     bl_is_crossed = False
     For i = 0 To 3
@@ -53,20 +58,26 @@ Dim DrawExpandLines()
         shp2a(1) = vertices(i, 1)
         shp2b(0) = vertices(j, 0)
         shp2b(1) = vertices(j, 1)
-        
+
         If is_crossed(shp2a(0), shp2a(1), shp2b(0), shp2b(1), c1x, c1y, c2x, c2y) Then
             bl_is_crossed = True
             Exit For
         End If
-        
+
     Next i
-    
-    If Not bl_is_crossed Then Exit Sub
-        Debug.Print "2"
-       
+
+    ' set format
+    shp1.Fill.Visible = msoFalse
+    shp1.line.ForeColor.ObjectThemeColor = msoThemeColorAccent5
+    shp1.line.Weight = 3
+    shp2.Fill.Visible = msoFalse
+    shp2.line.ForeColor.ObjectThemeColor = msoThemeColorAccent5
+    shp2.line.Weight = 3
+
+    ' drawing expansion line
     Dim ln1 As Shape
     Dim ln2 As Shape
-    
+
     If is_crossed(shp1a(0), shp1a(1), shp2a(0), shp2a(1), shp1b(0), shp1b(1), shp2b(0), shp2b(1)) Then
         Set ln1 = ActivePresentation.Slides(ActiveWindow.Selection.SlideRange.SlideIndex).Shapes.AddLine( _
                 shp1a(0), shp1a(1), shp2b(0), shp2b(1))
@@ -78,7 +89,12 @@ Dim DrawExpandLines()
         Set ln2 = ActivePresentation.Slides(ActiveWindow.Selection.SlideRange.SlideIndex).Shapes.AddLine( _
                 shp1b(0), shp1b(1), shp2b(0), shp2b(1))
     End If
-
+    ln1.Line.Weight = 3
+    ln1.Line.ForeCOlor.ObjectThemeColor = msoThemeColorAccent5
+    ln1.Line.DashStyle = msoLineSysDot 
+    ln2.Line.Weight = 3
+    ln2.Line.ForeCOlor.ObjectThemeColor = msoThemeColorAccent5
+    ln2.Line.DashStyle = msoLineSysDot 
 
 End Sub
 
@@ -91,12 +107,6 @@ Function ShapeVertices(shp As Shape) As Variant
     Dim vertices(3, 1) As Double
     Dim cx#, cy#, s#, c#
     Dim i%
-    
-    Debug.Print "shp left, width = "; shp.Left, shp.Width
-    Debug.Print TypeName(CDbl(shp.Width))
-    
-    Debug.Print "/2", CDbl(shp.Width) / 2
-    Debug.Print "+", shp.Left + shp.Width / 2
     
     
     cx = CDbl(shp.Left) + CDbl(shp.Width) / 2
@@ -121,8 +131,10 @@ Function ShapeVertices(shp As Shape) As Variant
     ShapeVertices = vertices
 End Function
 
+
 Function is_crossed(Ax#, Ay#, Bx#, By#, Cx#, Cy#, Dx#, Dy#) As Boolean
-    ' 点B, Dは境界線を含むとする。
+    ' judgement that AB is clossing CD.
+    ' return true when the other line is on the point B or D.
 
     Dim s#, t#
 
@@ -143,3 +155,4 @@ Function is_crossed(Ax#, Ay#, Bx#, By#, Cx#, Cy#, Dx#, Dy#) As Boolean
 
     is_crossed = True
 End Function
+
