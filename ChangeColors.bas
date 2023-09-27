@@ -139,7 +139,7 @@ Sub ChangeTextColor(color_idx As Long, Optional r As Long = 0, Optional g As Lon
                 shp.TextFrame.TextRange.Font.Color.ObjectThemeColor = color_idx
             End If
         Next shp
-    Else If ActiveWindow.selection.type = ppselectiontext then
+    ElseIf ActiveWindow.selection.type = ppselectiontext then
         Dim txtrange As TextRange
         set txtrange = ActiveWindow.selection.Textrange
 
@@ -166,7 +166,7 @@ Sub ChangeLineColor(color_idx As Long, Optional r As Long = 0, Optional g As Lon
                 shp.Line.ForeColor.ObjectThemeColor = color_idx
             end if
         Next shp
-    Else If ActiveWindow.selection.type = ppselectiontext then
+    ElseIf ActiveWindow.selection.type = ppselectiontext then
         Set shp = ActiveWindow.selection.Textrange.parent.parent
 
         if color_idx = 0 Then

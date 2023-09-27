@@ -14,7 +14,7 @@ Sub InsertNoWrapTextBox()
 
         textbox.TextFrame.DeleteText
         textbox.TextFrame.TextRange.Select
-        textbox.TextRange.Font.Size = 16
+        textbox.textframe.TextRange.Font.Size = 16
     End If
 
     ' when selecting txt
