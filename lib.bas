@@ -84,3 +84,23 @@ Function is_crossed(Ax#, Ay#, Bx#, By#, Cx#, Cy#, Dx#, Dy#) As Boolean
     is_crossed = True
 End Function
 
+
+
+Function nearest_node_index(shp As shape, x#, y#) As Long
+    ' return the index of the nearest node from the argument point.
+    Dim nearest_index&
+    Dim shortest_distance#, distance#
+    Dim i%
+
+    nearest_index = 1
+    shortest_distance = 999999
+    For i = 1 To shp.Nodes.Count
+        Debug.Print i, shp.Nodes(i).Points(1, 1), shp.Nodes(i).Points(1, 2)
+        distance = (shp.Nodes(i).Points(1,1)-x) ^2 + (shp.Nodes(i).Points(1, 2) - y)^2
+        if distance < shortest_distance then
+            nearest_index = i
+            shortest_distance = distance
+        end if
+    Next i
+    nearest_node_index = nearest_index
+End Function
