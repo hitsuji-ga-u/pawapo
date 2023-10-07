@@ -44,6 +44,15 @@ End Function
 
 Function ShapeVertices(shp As Shape) As Variant
     '  時計回りで4角の頂点座標を 返却
+    ' Dim vertices() as Long
+    '     vertices = ShapeVertices(shp1)
+    ' For i = 0 To 3
+    '     j = (i + 1) Mod 4
+    '     shp1a(0) = vertices(i, 0)
+    '     shp1a(1) = vertices(i, 1)
+    '     shp1b(0) = vertices(j, 0)
+    '     shp1b(1) = vertices(j, 1)
+
     Dim vertices_0(3, 1) As Double
     Dim vertices(3, 1) As Double
     Dim cx#, cy#, s#, c#
@@ -66,7 +75,7 @@ Function ShapeVertices(shp As Shape) As Variant
 
     For i = 0 To 3
         vertices(i, 0) = vertices_0(i, 0) * c - vertices_0(i, 1) * s + cx
-        vertices(i, 1) = vertices_0(i, 0) * s + vertices_0(i, 1) * c + cy
+        vertices(i, 1) = (vertices_0(i, 0) * s + vertices_0(i, 1)) * (-1) * c + cy
     Next
 
     ShapeVertices = vertices

@@ -16,6 +16,7 @@ Sub AddNodes()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
     Dim shp As shape
+    dim rot#
 
     For Each shp In ActiveWindow.Selection.ShapeRange
         If Not shp.Type = msoAutoShape Then GoTo continue
@@ -33,10 +34,12 @@ Sub AddNodes()
         end with
 
         Dim shpVerticsCoordinate(1 To 8) As Double
-        ' 図形の4つの角の座標を取得
+        dim vertices() as double
+
+        vertices = ShapeVertices(shp)
         For i = 1 To 4
-            shpVerticsCoordinate(i * 2 - 1) = shp.Nodes(i).Points(1,1)
-            shpVerticsCoordinate(i * 2) = shp.Nodes(i).Points(1,2)
+            shpVerticsCoordinate(i * 2 - 1) = vertices(i-1, 0)
+            shpVerticsCoordinate(i * 2) = vertices(i-1, 1)
         Next i
 
         ' 中央の頂点を計算し、新しい頂点として追加
@@ -877,6 +880,15 @@ End Function
 
 Function ShapeVertices(shp As Shape) As Variant
     '  時計回りで4角の頂点座標を 返却
+    ' Dim vertices() as Long
+    '     vertices = ShapeVertices(shp1)
+    ' For i = 0 To 3
+    '     j = (i + 1) Mod 4
+    '     shp1a(0) = vertices(i, 0)
+    '     shp1a(1) = vertices(i, 1)
+    '     shp1b(0) = vertices(j, 0)
+    '     shp1b(1) = vertices(j, 1)
+
     Dim vertices_0(3, 1) As Double
     Dim vertices(3, 1) As Double
     Dim cx#, cy#, s#, c#
@@ -1041,15 +1053,10 @@ Sub test()
 End Sub
 
 sub test1()
-
-
-
     Dim shp1 As shape
-    Dim shp2 As shape
-    
     Set shp1 = ActiveWindow.Selection.ShapeRange(1)
-    Set shp2 = ActiveWindow.Selection.ShapeRange(2)
-    shp1.connectformat.BeginConnect shp2, 1
+    debug.print shp1.rotation
+
 end sub
 
 

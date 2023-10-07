@@ -75,7 +75,7 @@
           <button id="PasteShpaeDistancesY" label="paste y distance" showLabel="false" imageMso="CreateDiagram" onAction="PasteShpaeDistancesY" keytip="Ded"/>
 
           <button id="MoveToAnchor" label="move to anchor" showLabel="false" imageMso="ControlMarginsGallery" onAction="MoveToAnchor" keytip="Dds"/>
-          <button id="DrowExpension" label="draw expansion" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Ddf"/>
+          <button id="DrowExpension" label="draw expansion" showLabel="false" image="Gradient" onAction="DrawExpandLines" keytip="Ddf"/>
 
           <button id="TableWidthAutoFit" label="auto fit table width" showLabel="false" imageMso="SpeakByRows" onAction="TableWidthAutoFit" keytip="Dde"/>
           <button id="clip_path" label="clip path" showLabel="false" imageMso="HeaderFooterFilePathInsert" onAction="ClipPath" keytip="Ddr"/>

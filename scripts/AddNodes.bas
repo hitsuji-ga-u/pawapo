@@ -6,14 +6,14 @@ Sub AddNodes()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
     Dim shp As shape
+    dim rot#
 
     For Each shp In ActiveWindow.Selection.ShapeRange
         If Not shp.Type = msoAutoShape Then GoTo continue
 
         If Not shp.AutoShapeType = msoShapeRectangle Then GoTo continue
 
-        Dim x#, y#
-        Dim i%, j%
+        Dim i%
         dim shpnd as ShapeNodes
 
         ' change to freeform
@@ -23,10 +23,13 @@ Sub AddNodes()
         end with
 
         Dim shpVerticsCoordinate(1 To 8) As Double
-        ' 図形の4つの角の座標を取得
+        dim vertices() as double
+
+        vertices = ShapeVertices(shp)
+
         For i = 1 To 4
-            shpVerticsCoordinate(i * 2 - 1) = shp.Nodes(i).Points(1,1)
-            shpVerticsCoordinate(i * 2) = shp.Nodes(i).Points(1,2)
+            shpVerticsCoordinate(i * 2 - 1) = vertices(i-1, 0)
+            shpVerticsCoordinate(i * 2) = vertices(i-1, 1)
         Next i
 
         ' 中央の頂点を計算し、新しい頂点として追加
