@@ -33,13 +33,13 @@ Sub AddNodes()
         end with
 
         Dim shpVerticsCoordinate(1 To 8) As Double
-        ' ï¿½}ï¿½`ï¿½ï¿½4ï¿½Â‚ÌŠpï¿½Ìï¿½ï¿½Wï¿½ï¿½ï¿½æ“¾
+        ' }Œ`‚Ì4‚Â‚ÌŠp‚ÌÀ•W‚ğæ“¾
         For i = 1 To 4
             shpVerticsCoordinate(i * 2 - 1) = shp.Nodes(i).Points(1,1)
             shpVerticsCoordinate(i * 2) = shp.Nodes(i).Points(1,2)
         Next i
 
-        ' ï¿½ï¿½ï¿½ï¿½ï¿½Ì’ï¿½ï¿½_ï¿½ï¿½ï¿½vï¿½Zï¿½ï¿½ï¿½Aï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Æ‚ï¿½ï¿½Ä’Ç‰ï¿½
+        ' ’†‰›‚Ì’¸“_‚ğŒvZ‚µAV‚µ‚¢’¸“_‚Æ‚µ‚Ä’Ç‰Á
         For i = 1 To 4
             shp.Nodes.Insert i * 2 - 1 , msoSegmentLine, _
                 msoEditingAuto, _
@@ -114,11 +114,11 @@ Sub AlignCenterVertical()
 
     set shps = ActiveWindow.Selection.ShapeRange
 
-    ' 1ï¿½Ì‚İ‘Iï¿½ï¿½ï¿½Ìê‡
+    ' 1‚Ì‚İ‘I‘ğ‚Ìê‡
     If shps.Count = 1 Then
         shps.Align msoAlignMiddles, msoTrue
 
-    ' 2ï¿½ÂˆÈï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡
+    ' 2‚ÂˆÈã‘I‘ğ‚µ‚Ä‚¢‚éê‡
     Elseif shps.Count >= 2 Then
         Dim i&
 
@@ -129,9 +129,9 @@ Sub AlignCenterVertical()
 End sub
 
 Sub AlignCenterHorizontal()
-    ' 1ï¿½Â‚ß‚É‘Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½`ï¿½Ì’ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½í‚¹ï¿½ï¿½@ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½
+    ' 1‚Â‚ß‚É‘I‘ğ‚µ‚½}Œ`‚Ì’†‰›‚É‡‚í‚¹‚é@¶‰E’†‰›
 
-    ' ï¿½}ï¿½`ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½ï¿½
+    ' }Œ`‚ğ‘I‘ğ‚µ‚Ä‚È‚¯‚ê‚ÎI‚í‚è
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
@@ -140,11 +140,11 @@ Sub AlignCenterHorizontal()
 
     set shps = ActiveWindow.Selection.ShapeRange
 
-    ' 1ï¿½Ì‚İ‘Iï¿½ï¿½ï¿½Ìê‡
+    ' 1‚Ì‚İ‘I‘ğ‚Ìê‡
     If shps.Count = 1 Then
         shps.Align msoAlignCenters, msoTrue
 
-    ' 2ï¿½ÂˆÈï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡
+    ' 2‚ÂˆÈã‘I‘ğ‚µ‚Ä‚¢‚éê‡
     Elseif shps.Count >= 2 Then
         Dim i&
 
@@ -161,11 +161,11 @@ End sub
 
 
 
-' ï¿½}ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½Ä•ï¿½ï¿½×‚ï¿½ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' align shapes with no gaps between each other  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub AlignShapesHorizontalStick()
-    ' ï¿½}ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½Ä•ï¿½ï¿½×‚ï¿½@ï¿½ï¿½
+    '  horizontaly align shapes with no gaps between each other
 
-    ' 2ï¿½ÂˆÈï¿½ï¿½Shapeï¿½Iï¿½ğ’†”ï¿½ï¿½ï¿½
+    ' only when selecting more than 1 shape
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         Dim numShapes%
 
@@ -191,7 +191,6 @@ Sub AlignShapesHorizontalStick()
                 Set shp1 = ActiveWindow.Selection.ShapeRange(indexes(i))
                 Set shp2 = ActiveWindow.Selection.ShapeRange(indexes(i + 1))
 
-                ' ï¿½}ï¿½`1ï¿½Ì‰Eï¿½[ï¿½Æ}ï¿½`2ï¿½Ìï¿½ï¿½[ï¿½ğ‘µ‚ï¿½ï¿½ï¿½
                 shp2.left = shp1.left + shp1.Width
             Next i
 
@@ -200,9 +199,9 @@ Sub AlignShapesHorizontalStick()
 End Sub
 
 Sub AlignShapesVerticalStick()
-    ' ï¿½}ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½Ä•ï¿½ï¿½×‚ï¿½@ï¿½c
+    ' verticaly align shapes with no gaps between each other
  
-    ' 2ï¿½ÂˆÈï¿½ï¿½Shapeï¿½Iï¿½ğ’†”ï¿½ï¿½ï¿½
+    ' only when selecting more than 1 shape
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         Dim numShapes%
 
@@ -227,7 +226,6 @@ Sub AlignShapesVerticalStick()
                 Set shp1 = ActiveWindow.Selection.ShapeRange(indexes(i))
                 Set shp2 = ActiveWindow.Selection.ShapeRange(indexes(i + 1))
 
-                                        ' ï¿½}ï¿½`1ï¿½Ì‰Eï¿½[ï¿½Æ}ï¿½`2ï¿½Ìï¿½ï¿½[ï¿½ğ‘µ‚ï¿½ï¿½ï¿½
                 shp2.Top = shp1.Top + shp1.Height
             Next i
         End If
@@ -237,7 +235,7 @@ End Sub
 
 
 
-' ï¿½}ï¿½`ï¿½Ì“hï¿½ï¿½Â‚Ô‚ï¿½ï¿½Fï¿½Aï¿½gï¿½ï¿½ï¿½ÌFï¿½Aï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÌFï¿½ï¿½Ï‚ï¿½ï¿½ï¿½ > > > >> > > > >> > > > >> > > >
+' }Œ`‚Ì“h‚è‚Â‚Ô‚µFA˜gü‚ÌFAƒtƒHƒ“ƒg‚ÌF‚ğ•Ï‚¦‚é > > > >> > > > >> > > > >> > > >
 
 Sub ChangeTextColorLight1()
     ChangeTextColor msoThemeColorLight1
@@ -409,7 +407,7 @@ Sub ClipPath()
 End Sub
 
 
-' ï¿½}ï¿½`ï¿½Ô‚Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½Aï¿½yï¿½[ï¿½Xï¿½g > > > > >> > > > >> > > >> > > >> > > >> > > >> > >> 
+' }Œ`ŠÔ‚Ì‹——£‚ğƒRƒs[Aƒy[ƒXƒg > > > > >> > > > >> > > >> > > >> > > >> > > >> > >> 
 Sub CopyShapeDistances()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
@@ -445,7 +443,7 @@ End Sub
 
 
 
-' ï¿½}ï¿½`ï¿½Ô‚Ì‹ï¿½ï¿½ï¿½ï¿½yï¿½[ï¿½Xï¿½g Yï¿½ï¿½ï¿½ï¿½ > > > > >> > > > >> > 
+' }Œ`ŠÔ‚Ì‹——£ƒy[ƒXƒg Y•ûŒü > > > > >> > > > >> > 
 
 Sub PasteShpaeDistancesX()
 
@@ -478,9 +476,9 @@ Sub PasteShpaeDistancesY()
     Next i
 
 End Sub
-' ï¿½}ï¿½`ï¿½ÌˆÊ’uï¿½Rï¿½sï¿½[ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' }Œ`‚ÌˆÊ’uƒRƒs[ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub CopyShapesPos()
-    ' ï¿½}ï¿½`ï¿½ÌˆÊ’uï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½
+    ' }Œ`‚ÌˆÊ’u‚ğŠi”[‚·‚é
 
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
@@ -490,7 +488,7 @@ Sub CopyShapesPos()
     Dim i As Long
 
     Set selectedShapes = ActiveWindow.Selection.ShapeRange
-    ReDim shapePositions(1 To selectedShapes.Count, 1 To 2) ' 2ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ (x, y)
+    ReDim shapePositions(1 To selectedShapes.Count, 1 To 2) ' 2ŸŒ³”z—ñ (x, y)
 
     For i = 1 To selectedShapes.Count
         shapePositions(i, 1) = selectedShapes(i).left
@@ -499,14 +497,14 @@ Sub CopyShapesPos()
 End Sub
 
 Sub PasteShapesAbsolutely()
-    ' ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½`ï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ê’uï¿½Éï¿½Î“Iï¿½Éï¿½ï¿½í‚¹ï¿½ï¿½
+    ' ‘I‘ğ‚µ‚½}Œ`‚ğƒRƒs[‚µ‚Ä‚ ‚éˆÊ’u‚Éâ‘Î“I‚É‡‚í‚¹‚é
 
-    ' ï¿½Ê’uï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+    ' ˆÊ’uƒRƒs[‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
     If isArrayEmpty(shapePositions) Then
         Exit Sub
     End If
 
-    ' ï¿½}ï¿½`ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+    ' }Œ`‘I‘ğ‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
@@ -514,10 +512,10 @@ Sub PasteShapesAbsolutely()
     Dim i&
     Dim selectedShpsNum As Integer
 
-    ' ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½}ï¿½`ï¿½Ìï¿½ï¿½ï¿½ï¿½æ“¾
+    ' ‘I‘ğ‚³‚ê‚½}Œ`‚Ì”‚ğæ“¾
     selectedShpsNum = ActiveWindow.Selection.ShapeRange.Count
 
-    ' min(ï¿½}ï¿½`ï¿½Ì‘Iï¿½ï¿½, ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½}ï¿½`ï¿½ÌˆÊ’uï¿½ï¿½)ï¿½Â‚Ì}ï¿½`ï¿½ğ’²ï¿½ï¿½ï¿½ï¿½ï¿½B
+    ' min(}Œ`‚Ì‘I‘ğ”, ƒRƒs[‚µ‚Ä‚ ‚é}Œ`‚ÌˆÊ’u”)ŒÂ‚Ì}Œ`‚ğ’²®‚·‚éB
     For i = 1 To IIf(UBound(shapePositions) < selectedShpsNum, UBound(shapePositions), selectedShpsNum)
         With ActiveWindow.Selection.ShapeRange(i)
             .left = shapePositions(i, 1)
@@ -527,24 +525,24 @@ Sub PasteShapesAbsolutely()
 End Sub
 
 Sub PasteShapesRelatively()
-    ' ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½`ï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ê’uï¿½É‘ï¿½ï¿½Î“Iï¿½Éï¿½ï¿½í‚¹ï¿½ï¿½
+    ' ‘I‘ğ‚µ‚½}Œ`‚ğƒRƒs[‚µ‚Ä‚ ‚éˆÊ’u‚É‘Š‘Î“I‚É‡‚í‚¹‚é
 
-    ' ï¿½Ê’uï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+    ' ˆÊ’uƒRƒs[‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
     If isArrayEmpty(shapePositions) Then
         Exit Sub
     End If
 
-    ' ï¿½}ï¿½`ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+    ' }Œ`‘I‘ğ‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
 
-    ' ï¿½Ê’uï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½2ï¿½Èï¿½È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+    ' ˆÊ’uƒRƒs[”‚ª2ˆÈã‚È‚¯‚ê‚ÎI—¹
     If UBound(shapePositions) - LBound(shapePositions) + 1 < 2 Then
         Exit Sub
     End If
 
-    ' ï¿½}ï¿½`ï¿½ï¿½ÂˆÈï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+    ' }Œ`“ñ‚ÂˆÈã‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎI—¹
     If ActiveWindow.Selection.ShapeRange.Count < 2 Then
         Exit Sub
     End If
@@ -552,10 +550,10 @@ Sub PasteShapesRelatively()
 
     Dim selectedShpsNum As Integer
 
-    ' ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½}ï¿½`ï¿½Ìï¿½ï¿½ï¿½ï¿½æ“¾
+    ' ‘I‘ğ‚³‚ê‚½}Œ`‚Ì”‚ğæ“¾
     selectedShpsNum = ActiveWindow.Selection.ShapeRange.Count
 
-    ' min(ï¿½}ï¿½`ï¿½Ì‘Iï¿½ï¿½, ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½}ï¿½`ï¿½ÌˆÊ’uï¿½ï¿½)ï¿½Â‚Ì}ï¿½`ï¿½ğ’²ï¿½ï¿½ï¿½ï¿½ï¿½B
+    ' min(}Œ`‚Ì‘I‘ğ”, ƒRƒs[‚µ‚Ä‚ ‚é}Œ`‚ÌˆÊ’u”)ŒÂ‚Ì}Œ`‚ğ’²®‚·‚éB
     For i = 2 To IIf(UBound(shapePositions) < selectedShpsNum, UBound(shapePositions), selectedShpsNum)
         With ActiveWindow.Selection
             .ShapeRange(i).left = .ShapeRange(1).left + shapePositions(i, 1) - shapePositions(1, 1)
@@ -580,12 +578,12 @@ Sub DeleteAndPasteShape()
 
 End Sub
 Sub DisableTextWrap()
-    ' ï¿½}ï¿½`ï¿½ï¿½ï¿½Å‰ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½ï¿½Éƒ`ï¿½Fï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½{ï¿½bï¿½Nï¿½Xï¿½ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    ' ï¿½ï¿½ï¿½é‚¢ï¿½ÍAï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½`ï¿½Ì}ï¿½`ï¿½ï¿½ï¿½Å‰ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Éƒ`ï¿½Fï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    ' }Œ`“à‚Å‰üs‚µ‚È‚¢‚Éƒ`ƒFƒbƒN‚µ‚½ƒeƒLƒXƒgƒ{ƒbƒNƒX‚ğ‘}“ü‚·‚é
+    ' ‚ ‚é‚¢‚ÍA‘I‘ğ‚µ‚½}Œ`‚Ì}Œ`“à‚Å‰üs‚ğ‚µ‚È‚¢‚Éƒ`ƒFƒbƒN‚ğ‚¢‚ê‚é
 
     On Error GoTo ErrorHandler
 
-    ' ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ê‡
+    ' ‰½‚à‘I‘ğ‚µ‚Ä‚È‚¢ê‡
     If ActiveWindow.Selection.Type = ppSelectionNone Or ActiveWindow.Selection.Type = ppSelectionSlides Then
         Dim textbox As Shape
 
@@ -745,7 +743,7 @@ End Sub
 
 
 
-Sub FrequentlyUse()
+Sub FrequentlyArrowStyle()
 
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
@@ -763,6 +761,22 @@ Sub FrequentlyUse()
 End Sub
 
 
+Sub FrequentlyShadeStyle()
+
+    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
+
+    Dim shp As Shape
+
+    For Each shp In ActiveWindow.Selection.ShapeRange
+        If shp.Type = msoLine Or shp.AutoShapeType = msoShapeMixed Then
+            shp.Line.EndArrowheadLength = msoArrowheadLong
+            shp.Line.EndArrowheadWidth = msoArrowheadWide
+            shp.Line.EndArrowheadStyle = msoArrowheadOpen
+            shp.Line.Weight = 3
+        End If
+    Next
+
+End Sub
 
 
 ' insert textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -817,10 +831,10 @@ ErrorHandler:
     Resume Next
 End Sub
 
-
-' ï¿½}ï¿½ï¿½ï¿½\ï¿½[ï¿½g > > > > >> > > > > > > > > > > > > > > > >> > > >> >> > > > >
+' libs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' insertion sort 
 Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
-    ' Doubleï¿½Ì”zï¿½ï¿½varsï¿½Ìï¿½ï¿½ï¿½ï¿½ÅAindexesï¿½ï¿½ï¿½ï¿½×‘Ö‚ï¿½ï¿½ï¿½B
+    ' Double‚Ì”z—ñvars‚Ì¸‡‚ÅAindexes‚ğ•À‚×‘Ö‚¦‚éB
     Dim i&
     Dim j&
     Dim currentValue#
@@ -830,7 +844,7 @@ Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
         currentValue = vals(i)
         j = i - 1
         tmpIndex = indexes(i)
-        ' ï¿½Kï¿½Ø‚ÈˆÊ’uï¿½É—vï¿½fï¿½ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        ' “KØ‚ÈˆÊ’u‚É—v‘f‚ğ‘}“ü‚·‚é
         Do While j >= LBound(vals)
             If vals(j) > currentValue Then
                 vals(j + 1) = vals(j)
@@ -847,9 +861,22 @@ Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
 End Sub
 
 
+Function isArrayEmpty(arr_var As Variant)
+    Dim p As Integer
+
+    On Error Resume Next
+        p = UBound(arr_var, 1)
+    If Err.Number = 0 Then
+        isArrayEmpty = False
+    Else
+        isArrayEmpty = True
+    End If
+End Function
+
+
 
 Function ShapeVertices(shp As Shape) As Variant
-    '  ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½4ï¿½pï¿½Ì’ï¿½ï¿½_ï¿½ï¿½ï¿½Wï¿½ï¿½ ï¿½Ô‹p
+    '  Œv‰ñ‚è‚Å4Šp‚Ì’¸“_À•W‚ğ •Ô‹p
     Dim vertices_0(3, 1) As Double
     Dim vertices(3, 1) As Double
     Dim cx#, cy#, s#, c#
@@ -926,9 +953,9 @@ End Function
 
 
 
-' ï¿½ï¿½ï¿½ï¿½ÌˆÊ’uï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' ¶ã‚ÌˆÊ’u‚ÉˆÚ“®‚·‚é >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub MoveToAnchor()
-     ' ï¿½ï¿½ï¿½ï¿½ÌˆÊ’uï¿½ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+     ' ¶ã‚ÌˆÊ’u‚ÉˆÚ“®‚·‚é
 
     Debug.Print ActiveWindow.Selection.Type; ppSelectionText
     
@@ -961,15 +988,15 @@ Sub PaintGradation()
 End Sub
 
 
-' ï¿½\ï¿½Ì•ï¿½ï¿½ğ•¶ï¿½ï¿½Éï¿½ï¿½í‚¹ï¿½ï¿½       >>>> > > > > >> > > > > > > >> > > > >> > > >> > > >> >
+' •\‚Ì•‚ğ•¶š‚É‡‚í‚¹‚é       >>>> > > > > >> > > > > > > >> > > > >> > > >> > > >> >
 Sub TableWidthAutoFit()
 
     If ActiveWindow.Selection.Type = ppSelectionNone Then Exit Sub
     If ActiveWindow.Selection.Type = ppSelectionSlides Then Exit Sub
     If not ActiveWindow.Selection.ShapeRange(1).Type = msoTable Then Exit Sub
     
-    ' ï¿½eï¿½Lï¿½Xï¿½gï¿½{ï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä•ï¿½ï¿½ï¿½ï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½B
-    ' ï¿½eï¿½Lï¿½Xï¿½gï¿½Aï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½Cï¿½Yï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½í‚¹ï¿½ï¿½B
+    ' ƒeƒLƒXƒgƒ{ƒbƒNƒX‚ğg‚Á‚Ä•¶šƒTƒCƒY‚ğ‚Í‚©‚éB
+    ' ƒeƒLƒXƒgAƒtƒHƒ“ƒgA•¶šƒTƒCƒYA‚ğ‡‚í‚¹‚éB
     Dim i_col&, i_row&
 
     Dim table As table
@@ -1026,7 +1053,7 @@ sub test1()
 end sub
 
 
-' ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½fï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½  > > > > > > > > > > > > >> > > > > > > > > > > > > > > >
+' “§–¾ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ğ‚Â‚¯‚é  > > > > > > > > > > > > >> > > > > > > > > > > > > > > >
 Sub TransGradation()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
     With ActiveWindow.Selection.ShapeRange(1)

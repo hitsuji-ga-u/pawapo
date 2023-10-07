@@ -1,5 +1,5 @@
-
-' 挿入ソート > > > > >> > > > > > > > > > > > > > > > >> > > >> >> > > > >
+' libs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' insertion sort 
 Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
     ' Doubleの配列varsの昇順で、indexesを並べ替える。
     Dim i&
@@ -26,6 +26,19 @@ Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
         indexes(j + 1) = tmpIndex
     Next i
 End Sub
+
+
+Function isArrayEmpty(arr_var As Variant)
+    Dim p As Integer
+
+    On Error Resume Next
+        p = UBound(arr_var, 1)
+    If Err.Number = 0 Then
+        isArrayEmpty = False
+    Else
+        isArrayEmpty = True
+    End If
+End Function
 
 
 

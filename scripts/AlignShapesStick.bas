@@ -1,9 +1,9 @@
 
-' 図形をくっつけて並べる >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' align shapes with no gaps between each other  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub AlignShapesHorizontalStick()
-    ' 図形をくっつけて並べる　横
+    '  horizontaly align shapes with no gaps between each other
 
-    ' 2個以上のShape選択中判定
+    ' only when selecting more than 1 shape
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         Dim numShapes%
 
@@ -29,7 +29,6 @@ Sub AlignShapesHorizontalStick()
                 Set shp1 = ActiveWindow.Selection.ShapeRange(indexes(i))
                 Set shp2 = ActiveWindow.Selection.ShapeRange(indexes(i + 1))
 
-                ' 図形1の右端と図形2の左端を揃える
                 shp2.left = shp1.left + shp1.Width
             Next i
 
@@ -38,9 +37,9 @@ Sub AlignShapesHorizontalStick()
 End Sub
 
 Sub AlignShapesVerticalStick()
-    ' 図形をくっつけて並べる　縦
+    ' verticaly align shapes with no gaps between each other
  
-    ' 2個以上のShape選択中判定
+    ' only when selecting more than 1 shape
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         Dim numShapes%
 
@@ -65,7 +64,6 @@ Sub AlignShapesVerticalStick()
                 Set shp1 = ActiveWindow.Selection.ShapeRange(indexes(i))
                 Set shp2 = ActiveWindow.Selection.ShapeRange(indexes(i + 1))
 
-                                        ' 図形1の右端と図形2の左端を揃える
                 shp2.Top = shp1.Top + shp1.Height
             Next i
         End If

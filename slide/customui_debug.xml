@@ -52,8 +52,8 @@
         </group>
 
         <group id="styles">
-          <button id="FrequentlyArrow" label="frequently allow style" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyUse" keytip="Dcc"/>
-          <button id="FrequentlyShade" label="frequently shade style none" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyUse" />
+          <button id="FrequentlyArrow" label="frequently allow style" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyArrowStyle" keytip="Dcc"/>
+          <button id="FrequentlyShade" label="frequently shade style none" showLabel="false" imageMso="ForwardMenu" onAction="FrequentlyShadeStyle" />
           <button id="PaintGradation" label="paint gradation" showLabel="false" image="Gradient" onAction="PaintGradation" keytip="Dcz"/>
 
           <toggleButton idMso="ObjectEditPoints" showLabel="false" keytip="Dcx"/>
