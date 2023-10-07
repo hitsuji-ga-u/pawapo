@@ -6,7 +6,6 @@ Sub AddNodes()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
     Dim shp As shape
-    dim rot#
 
     For Each shp In ActiveWindow.Selection.ShapeRange
         If Not shp.Type = msoAutoShape Then GoTo continue
@@ -27,10 +26,14 @@ Sub AddNodes()
 
         vertices = ShapeVertices(shp)
 
-        For i = 1 To 4
-            shpVerticsCoordinate(i * 2 - 1) = vertices(i-1, 0)
-            shpVerticsCoordinate(i * 2) = vertices(i-1, 1)
-        Next i
+        shpVerticsCoordinate(1) = shp.Left
+        shpVerticsCoordinate(2) = shp.Top
+        shpVerticsCoordinate(3) = shp.Left + shp.Width
+        shpVerticsCoordinate(4) = shp.Top
+        shpVerticsCoordinate(5) = shp.Left + shp.Width
+        shpVerticsCoordinate(6) = shp.Top + shp.Height
+        shpVerticsCoordinate(7) = shp.Left
+        shpVerticsCoordinate(8) = shp.Top + shp.Height
 
         ' 中央の頂点を計算し、新しい頂点として追加
         For i = 1 To 4

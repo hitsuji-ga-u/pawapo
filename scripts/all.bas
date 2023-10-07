@@ -16,15 +16,13 @@ Sub AddNodes()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
     Dim shp As shape
-    dim rot#
 
     For Each shp In ActiveWindow.Selection.ShapeRange
         If Not shp.Type = msoAutoShape Then GoTo continue
 
         If Not shp.AutoShapeType = msoShapeRectangle Then GoTo continue
 
-        Dim x#, y#
-        Dim i%, j%
+        Dim i%
         dim shpnd as ShapeNodes
 
         ' change to freeform
@@ -37,10 +35,15 @@ Sub AddNodes()
         dim vertices() as double
 
         vertices = ShapeVertices(shp)
-        For i = 1 To 4
-            shpVerticsCoordinate(i * 2 - 1) = vertices(i-1, 0)
-            shpVerticsCoordinate(i * 2) = vertices(i-1, 1)
-        Next i
+
+        shpVerticsCoordinate(1) = shp.Left
+        shpVerticsCoordinate(2) = shp.Top
+        shpVerticsCoordinate(3) = shp.Left + shp.Width
+        shpVerticsCoordinate(4) = shp.Top
+        shpVerticsCoordinate(5) = shp.Left + shp.Width
+        shpVerticsCoordinate(6) = shp.Top + shp.Height
+        shpVerticsCoordinate(7) = shp.Left
+        shpVerticsCoordinate(8) = shp.Top + shp.Height
 
         ' 中央の頂点を計算し、新しい頂点として追加
         For i = 1 To 4
@@ -878,10 +881,11 @@ End Function
 
 
 
-Function ShapeVertices(shp As Shape) As Variant
-    '  時計回りで4角の頂点座標を 返却
+
+Function ShapeVertices(shp As shape) As Variant
+    ' example:
     ' Dim vertices() as Long
-    '     vertices = ShapeVertices(shp1)
+    ' vertices = ShapeVertices(shp)
     ' For i = 0 To 3
     '     j = (i + 1) Mod 4
     '     shp1a(0) = vertices(i, 0)
@@ -891,31 +895,32 @@ Function ShapeVertices(shp As Shape) As Variant
 
     Dim vertices_0(3, 1) As Double
     Dim vertices(3, 1) As Double
-    Dim cx#, cy#, s#, c#
+    Dim Cx#, Cy#, s#, c#
     Dim i%
-    
-    
-    cx = CDbl(shp.Left) + CDbl(shp.Width) / 2
-    cy = shp.Top + shp.Height / 2
-    s = Sin(shp.Rotation * 3.14159265358979 / 180)
-    c = Cos(shp.Rotation * 3.14159265358979 / 180)
-        
-    vertices_0(0, 0) = shp.Left - cx
-    vertices_0(0, 1) = shp.Top - cy
-    vertices_0(1, 0) = shp.Left + shp.Width - cx
-    vertices_0(1, 1) = shp.Top - cy
-    vertices_0(2, 0) = shp.Left + shp.Width - cx
-    vertices_0(2, 1) = shp.Top + shp.Height - cy
-    vertices_0(3, 0) = shp.Left - cx
-    vertices_0(3, 1) = shp.Top + shp.Height - cy
+
+    Cx = CDbl(shp.left) + CDbl(shp.Width) / 2
+    Cy = CDbl(shp.Top) + CDbl(shp.Height) / 2
+    s = Sin(CDbl(shp.Rotation) * 3.14159265358979 / 180)
+    c = Cos(CDbl(shp.Rotation) * 3.14159265358979 / 180)
+
+    vertices_0(0, 0) = shp.left - Cx
+    vertices_0(0, 1) = shp.Top - Cy
+    vertices_0(1, 0) = shp.left + shp.Width - Cx
+    vertices_0(1, 1) = shp.Top - Cy
+    vertices_0(2, 0) = shp.left + shp.Width - Cx
+    vertices_0(2, 1) = shp.Top + shp.Height - Cy
+    vertices_0(3, 0) = shp.left - Cx
+    vertices_0(3, 1) = shp.Top + shp.Height - Cy
 
     For i = 0 To 3
-        vertices(i, 0) = vertices_0(i, 0) * c - vertices_0(i, 1) * s + cx
-        vertices(i, 1) = vertices_0(i, 0) * s + vertices_0(i, 1) * c + cy
+        vertices(i, 0) = vertices_0(i, 0) * c - vertices_0(i, 1) * s + Cx
+        vertices(i, 1) = (vertices_0(i, 0) * s + vertices_0(i, 1) * c) + Cy
     Next
 
     ShapeVertices = vertices
 End Function
+
+
 
 
 Function is_crossed(Ax#, Ay#, Bx#, By#, Cx#, Cy#, Dx#, Dy#) As Boolean
