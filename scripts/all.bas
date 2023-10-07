@@ -87,7 +87,7 @@ Sub AdjustShapesHeight()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
-    If Not ActiveWindow.Selection.ShapeRange.Count >= 2 Then
+    If Not ActiveWindow.eeSelection.ShapeRange.Count >= 2 Then
         Exit Sub
     End If
 
@@ -301,30 +301,6 @@ end sub
 Sub ChangeShapeColorLight1()
     ChangeShapeColor msoThemeColorLight1
 end sub
-Sub ChangeShapeColorDark1()
-    ChangeShapeColor msoThemeColorDark1
-end sub
-Sub ChangeShapeColorDark2()
-    ChangeShapeColor msoThemeColorDark2
-end sub
-Sub ChangeShapeColorAccent2()
-    ChangeShapeColor msoThemeColorAccent2
-end sub
-Sub ChangeShapeColorAccent3()
-    ChangeShapeColor msoThemeColorAccent3
-end sub
-Sub ChangeShapeColorAccent4()
-    ChangeShapeColor msoThemeColorAccent4
-end sub
-Sub ChangeShapeColorAccent5()
-    ChangeShapeColor msoThemeColorAccent5
-end sub
-Sub ChangeShapeColorAccent6()
-    ChangeShapeColor msoThemeColorAccent6
-end sub
-Sub ChangeShapeColorRed()
-    ChangeShapeColor 0, 255, 0, 0
-end sub
 Sub ChangeShapeColorNone()
     ChangeShapeColor -1 
 end sub
@@ -332,9 +308,11 @@ end sub
 
 
 Sub ChangeShapeColor(color_idx As Long, Optional r As Long = 0, Optional g As Long = 0, Optional b As Long = 0)
-    ' �h��Ԃ��̐F��ς���
-    ' color_idx: msoThemeColor RGB�Ŏw�肷��Ȃ�color_idx=0�ɂ���B
-    ' -1�œh��Ԃ������B
+    ' change fill color of shapes
+    ' color_idx: 
+    '     specify msoThemeColor
+    '     specify 0 to specify RGB
+    '     specify -1 for no fill
     If ActiveWindow.Selection.Type = ppSelectionShapes Then 
         Dim i&
         Dim shp As Shape
@@ -350,7 +328,7 @@ Sub ChangeShapeColor(color_idx As Long, Optional r As Long = 0, Optional g As Lo
             End If
         Next shp
 
-    Else If ActiveWindow.selection.type = ppSelectionText then
+    ElseIf ActiveWindow.selection.type = ppSelectionText then
         Set shp = ActiveWindow.selection.Textrange.parent.parent
 
         If color_idx = 0 Then
@@ -588,22 +566,18 @@ End Sub
 
 
 
-' �}�`�폜 & �y�[�X�g >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' delete selected shape and paste  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub DeleteAndPasteShape()
     On Error Resume Next
 
-    ' �}�`�I�����Ă�����폜
+    ' delete selected shapes
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         ActiveWindow.Selection.ShapeRange.Delete
     End If
 
-    ' �R�s�[���Ă���}�`���y�[�X�g
+    ' paste from clipboard
     ActiveWindow.View.Paste
 
-    Exit Sub
-ErrorHandler:
-    HandleError Err.Number, Err.Description
-    Resume Next
 End Sub
 Sub DisableTextWrap()
     ' �}�`���ŉ��s���Ȃ��Ƀ`�F�b�N�����e�L�X�g�{�b�N�X��}������

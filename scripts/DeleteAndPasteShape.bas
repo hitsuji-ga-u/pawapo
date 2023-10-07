@@ -1,19 +1,15 @@
 
 
-' 図形削除 & ペースト >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' delete selected shape and paste  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub DeleteAndPasteShape()
     On Error Resume Next
 
-    ' 図形選択していたら削除
+    ' delete selected shapes
     If ActiveWindow.Selection.Type = ppSelectionShapes Then
         ActiveWindow.Selection.ShapeRange.Delete
     End If
 
-    ' コピーしている図形をペースト
+    ' paste from clipboard
     ActiveWindow.View.Paste
 
-    Exit Sub
-ErrorHandler:
-    HandleError Err.Number, Err.Description
-    Resume Next
 End Sub

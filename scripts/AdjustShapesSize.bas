@@ -33,7 +33,7 @@ Sub AdjustShapesHeight()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
-    If Not ActiveWindow.Selection.ShapeRange.Count >= 2 Then
+    If Not ActiveWindow.eeSelection.ShapeRange.Count >= 2 Then
         Exit Sub
     End If
 
