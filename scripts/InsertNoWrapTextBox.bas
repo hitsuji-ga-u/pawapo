@@ -48,6 +48,5 @@ Sub InsertNoWrapTextBox()
 
     Exit Sub
 ErrorHandler:
-    HandleError Err.Number, Err.Description
     Resume Next
 End Sub
