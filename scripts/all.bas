@@ -93,7 +93,7 @@ Sub AdjustShapesHeight()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
-    If Not ActiveWindow.eeSelection.ShapeRange.Count >= 2 Then
+    If Not ActiveWindow.Selection.ShapeRange.Count >= 2 Then
         Exit Sub
     End If
 
@@ -165,6 +165,35 @@ Sub AlignCenter()
     AlignCenterVertical
 End sub
 
+
+
+Sub ObjectsAlignTopLeft()
+    ' align shapes
+    If not activewindow.selection.type = ppSelectionShapes then exit sub
+    CommandBars.ExecuteMso "ObjectsAlignLeftSmart"
+    CommandBars.ExecuteMso "ObjectsAlignTopSmart"
+End Sub
+
+Sub ObjectsAlignTopRight()
+    ' align shapes
+    If not activewindow.selection.type = ppSelectionShapes then exit sub
+    CommandBars.ExecuteMso "ObjectsAlignRightSmart"
+    CommandBars.ExecuteMso "ObjectsAlignTopSmart"
+End Sub
+
+Sub ObjectsAlignBottomLeft()
+    ' align shapes
+    If not activewindow.selection.type = ppSelectionShapes then exit sub
+    CommandBars.ExecuteMso "ObjectsAlignLeftSmart"
+    CommandBars.ExecuteMso "ObjectsAlignBottomSmart"
+End Sub
+
+Sub ObjectsAlignBottomRight()
+    ' align shapes
+    If not activewindow.selection.type = ppSelectionShapes then exit sub
+    CommandBars.ExecuteMso "ObjectsAlignRightSmart"
+    CommandBars.ExecuteMso "ObjectsAlignBottomSmart"
+End Sub
 
 
 ' align shapes with no gaps between each other  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -784,7 +813,6 @@ Sub FrequentlyShadeStyle()
         shp.Shadow.Transparency = 0.6
         shp.Shadow.OffsetX = 10 ' X�����̃I�t�Z�b�g
         shp.Shadow.OffsetY = 10 ' Y�����̃I�t�Z�b�g
-        shp.Shadow.ForeColor.RGB = RGB(0, 0, 0) ' �e�̐F�����ɐݒ�
     next shp
 
 End Sub
@@ -1059,6 +1087,18 @@ End Sub
 
 Sub test()
 
+    Dim shp As shape
+
+    for each shp in ActiveWindow.selection.ShapeRange
+        shp.Shadow.Visible = True
+        shp.Shadow.Style = msoShadowStyleOuterShadow
+        shp.Shadow.Blur = 5 ' �ڂ������a
+        shp.Shadow.Transparency = 0.6
+        shp.Shadow.OffsetX = 10 ' X�����̃I�t�Z�b�g
+        shp.Shadow.OffsetY = 10 ' Y�����̃I�t�Z�b�g
+        shp.Shadow.Obscured = msoFalse
+    next shp
+
 End Sub
 
 sub test1()
@@ -1066,6 +1106,14 @@ sub test1()
     Set shp1 = ActiveWindow.Selection.ShapeRange(1)
     debug.print shp1.rotation
 
+    shp1.Shadow.Visible = True
+    shp1.Shadow.Style = msoShadowStyleOuterShadow
+    shp1.Shadow.Blur = 5 ' �ڂ������a
+    shp1.Shadow.Transparency = 0.6
+    shp1.Shadow.OffsetX = 10 ' X�����̃I�t�Z�b�g
+    shp1.Shadow.OffsetY = 10 ' Y�����̃I�t�Z�b�g
+    shp1.Shadow.Obscured = msoFalse
+        
 end sub
 
 

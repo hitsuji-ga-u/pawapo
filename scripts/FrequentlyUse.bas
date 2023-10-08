@@ -34,7 +34,6 @@ Sub FrequentlyShadeStyle()
         shp.Shadow.Transparency = 0.6
         shp.Shadow.OffsetX = 10 ' X方向のオフセット
         shp.Shadow.OffsetY = 10 ' Y方向のオフセット
-        shp.Shadow.ForeColor.RGB = RGB(0, 0, 0) ' 影の色を黒に設定
     next shp
 
 End Sub
