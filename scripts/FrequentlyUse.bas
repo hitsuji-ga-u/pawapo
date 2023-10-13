@@ -32,8 +32,8 @@ Sub FrequentlyShadeStyle()
         shp.Shadow.Style = msoShadowStyleOuterShadow
         shp.Shadow.Blur = 5 ' ぼかし半径
         shp.Shadow.Transparency = 0.6
-        shp.Shadow.OffsetX = 2.628301970702826 ' X方向のオフセット
-        shp.Shadow.OffsetY = 2.628301970702826 ' Y方向のオフセット
+        shp.Shadow.OffsetX = 2.121319152764454 ' X方向のオフセット
+        shp.Shadow.OffsetY = 2.121319152764454 ' Y方向のオフセット
     next shp
 
 End Sub
