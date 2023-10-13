@@ -63,6 +63,30 @@ end sub
 Sub ChangeShapeColorLight1()
     ChangeShapeColor msoThemeColorLight1
 end sub
+Sub ChangeShapeColorDark1()
+    ChangeShapeColor msoThemeColorDark1
+end sub
+Sub ChangeShapeColorDark2()
+    ChangeShapeColor msoThemeColorDark2
+end sub
+Sub ChangeShapeColorAccent2()
+    ChangeShapeColor msoThemeColorAccent2
+end sub
+Sub ChangeShapeColorAccent3()
+    ChangeShapeColor msoThemeColorAccent3
+end sub
+Sub ChangeShapeColorAccent4()
+    ChangeShapeColor msoThemeColorAccent4
+end sub
+Sub ChangeShapeColorAccent5()
+    ChangeShapeColor msoThemeColorAccent5
+end sub
+Sub ChangeShapeColorAccent6()
+    ChangeShapeColor msoThemeColorAccent6
+end sub
+Sub ChangeShapeColorRed()
+    ChangeShapeColor 0, 255, 0, 0
+end sub
 Sub ChangeShapeColorNone()
     ChangeShapeColor -1 
 end sub

@@ -120,11 +120,13 @@
           <button id="ChangeLineColorDark2" keytip="FDD" label="change line color to Dark2" image="ShapeLineColorDark2" onAction="ChangeLineColorDark2"  showLabel="false" />
 
           <button id="ChangeLineColorAccent2" keytip="FDF" label="change line color to Accent2" image="ShapeLineColorAccent2" onAction="ChangeLineColorAccent2"  showLabel="false" />
+          <button id="ChangeLineColorAccent3" keytip="FDZ" label="change line color to Accent3" image="ShapeLineColorAccent3" onAction="ChangeLineColorAccent3"  showLabel="false" />
           <button id="ChangeLineColorAccent4" keytip="FDX" label="change line color to Accent4" image="ShapeLineColorAccent4" onAction="ChangeLineColorAccent4"  showLabel="false" />
-          <button id="ChangeLineColorAccent5" keytip="FDC" label="change line color to Accent5" image="ShapeLineColorAccent5" onAction="ChangeLineColorAccent5"  showLabel="false" />
 
+          <button id="ChangeLineColorAccent5" keytip="FDC" label="change line color to Accent5" image="ShapeLineColorAccent5" onAction="ChangeLineColorAccent5"  showLabel="false" />
           <button id="ChangeLineColorAccent6" keytip="FDV" label="change line color to Accent6" image="ShapeLineColorAccent6" onAction="ChangeLineColorAccent6"  showLabel="false" />
           <button id="ChangeLineColorRed" keytip="FDR" label="change line color to Red" image="ShapeLineColorRed" onAction="ChangeLineColorRed"  showLabel="false" />
+
           <button id="ChangeLineColorNone" keytip="FDG" label="change line color to None" image="ShapeLineColorNone" onAction="ChangeLineColorNone"  showLabel="false" />
 
           <!-- <button id="aaw"/> -->
@@ -135,8 +137,9 @@
           <button id="ChangeShapeColorLight1" keytip="FSS" label="change shape color to Light1" image="ShapeColorLight1" onAction="ChangeShapeColorLight1"  showLabel="false" />
           <button id="ChangeShapeColorAccent2" keytip="FSF" label="change shape color to Accent2" image="ShapeColorAccent2" onAction="ChangeShapeColorAccent2"  showLabel="false" />
           <button id="ChangeShapeColorAccent3" keytip="FSZ" label="change shape color to Accent3" image="ShapeColorAccent3" onAction="ChangeShapeColorAccent3"  showLabel="false" />
-
+ 
           <button id="ChangeShapeColorAccent4" keytip="FSX" label="change shape color to Accent4" image="ShapeColorAccent4" onAction="ChangeShapeColorAccent4"  showLabel="false" />
+          <button id="ChangeShapeColorAccent5" keytip="FSC" label="change shape color to Accent5" image="ShapeColorAccent5" onAction="ChangeShapeColorAccent5"  showLabel="false" />
           <button id="ChangeShapeColorAccent6" keytip="FSV" label="change shape color to Accent6" image="ShapeColorAccent6" onAction="ChangeShapeColorAccent6"  showLabel="false" />
           <button id="ChangeShapeColorNone" keytip="FSG" label="change shape color to None" image="ShapeColorNone" onAction="ChangeShapeColorNone"  showLabel="false" />
 
@@ -144,20 +147,20 @@
           <!-- <button id="aba"/> -->
           <!-- <button id="abb"/> -->
 
-          <!-- <group id="fontcolor" label="ff"> -->
-          <button id="ChangeTextColorDark1" keytip="Ffa" label="change font color to Dark1" image="FontColorDark1" onAction="ChangeTextColorDark1"  showLabel="false" />
-          <button id="ChangeTextColorLight1" keytip="Ffs" label="change font color to Light1" image="FontColorLight1" onAction="ChangeTextColorLight1"  showLabel="false" />
-          <button id="ChangeTextColorDark2" keytip="Ffd" label="change font color to Dark2" image="FontColorDark2" onAction="ChangeTextColorDark2"  showLabel="false" />
+          <!-- font color -->
+          <button id="ChangeTextColorDark1" keytip="FFA" label="change font color to Dark1" image="FontColorDark1" onAction="ChangeTextColorDark1"  showLabel="false" />
+          <button id="ChangeTextColorLight1" keytip="FFS" label="change font color to Light1" image="FontColorLight1" onAction="ChangeTextColorLight1"  showLabel="false" />
+          <button id="ChangeTextColorDark2" keytip="FFD" label="change font color to Dark2" image="FontColorDark2" onAction="ChangeTextColorDark2"  showLabel="false" />
 
-          <button id="ChangeTextColorAccent2" keytip="Fff" label="change font color to Accent2" image="FontColorAccent2" onAction="ChangeTextColorAccent2"  showLabel="false" />
-          <button id="ChangeTextColorAccent3" keytip="Ffz" label="change font color to Accent3" image="FontColorAccent3" onAction="ChangeTextColorAccent3"  showLabel="false" />
-          <button id="ChangeTextColorAccent4" keytip="Ffx" label="change font color to Accent4" image="FontColorAccent4" onAction="ChangeTextColorAccent4"  showLabel="false" />
+          <button id="ChangeTextColorAccent2" keytip="FFF" label="change font color to Accent2" image="FontColorAccent2" onAction="ChangeTextColorAccent2"  showLabel="false" />
+          <button id="ChangeTextColorAccent3" keytip="FFZ" label="change font color to Accent3" image="FontColorAccent3" onAction="ChangeTextColorAccent3"  showLabel="false" />
+          <button id="ChangeTextColorAccent4" keytip="FFX" label="change font color to Accent4" image="FontColorAccent4" onAction="ChangeTextColorAccent4"  showLabel="false" />
 
-          <button id="ChangeTextColorAccent5" keytip="Ffc" label="change font color to Accent5" image="FontColorAccent5" onAction="ChangeTextColorAccent5"  showLabel="false" />
-          <button id="ChangeTextColorAccent6" keytip="Ffv" label="change font color to Accent6" image="FontColorAccent6" onAction="ChangeTextColorAccent6"  showLabel="false" />
-          <button id="ChangeTextColorRed" keytip="Ffr" label="change font color to Red" image="FontColorRed" onAction="ChangeTextColorRed"  showLabel="false" />
+          <button id="ChangeTextColorAccent5" keytip="FFC" label="change font color to Accent5" image="FontColorAccent5" onAction="ChangeTextColorAccent5"  showLabel="false" />
+          <button id="ChangeTextColorAccent6" keytip="FFV" label="change font color to Accent6" image="FontColorAccent6" onAction="ChangeTextColorAccent6"  showLabel="false" />
+          <button id="ChangeTextColorRed" keytip="FFR" label="change font color to Red" image="FontColorRed" onAction="ChangeTextColorRed"  showLabel="false" />
 
-          <!-- <button id="abc"/> -->
+          <button id="abc"/>
           <!-- <button id="abd"/> -->
           <!-- <button id="abe"/> -->
 
