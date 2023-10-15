@@ -71,7 +71,8 @@
           <!-- <button id="aag"/> -->
           
           <!-- styles -->
-          <button id="FrequentlyArrow" keytip="CVV" label="frequently allow style" imageMso="ForwardMenu" onAction="FrequentlyArrowStyle"  showLabel="false" />
+          <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style" imageMso="ForwardMenu" onAction="FrequentlyArrowStyle15"  showLabel="false" />
+          <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style" imageMso="ForwardMenu" onAction="FrequentlyArrowStyle30"  showLabel="false" />
           <button id="FrequentlyShade" keytip="CVF" label="frequently shade style none" imageMso="ForwardMenu" onAction="FrequentlyShadeStyle" showLabel="false" />
           <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
           
@@ -114,7 +115,7 @@
           <!-- <button id="aau"/> -->
           <!-- <button id="aav"/> -->
 
-          <!-- <group id="LineColors" label="fd"> -->
+          <!-- LineColors -->
           <button id="ChangeLineColorDark1" keytip="FDA" label="change line color to Dark1" image="ShapeLineColorDark1" onAction="ChangeLineColorDark1"  showLabel="false" />
           <button id="ChangeLineColorLight1" keytip="FDS" label="change line color to Light1" image="ShapeLineColorLight1" onAction="ChangeLineColorLight1"  showLabel="false" />
           <button id="ChangeLineColorDark2" keytip="FDD" label="change line color to Dark2" image="ShapeLineColorDark2" onAction="ChangeLineColorDark2"  showLabel="false" />

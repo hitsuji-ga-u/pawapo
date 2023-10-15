@@ -1,6 +1,14 @@
 
-Sub FrequentlyArrowStyle()
 
+Sub FrequentlyArrowStyle15()
+    FrequentlyArrowStyle(1.5)
+End Sub
+Sub FrequentlyArrowStyle30()
+    FrequentlyArrowStyle(3)
+End Sub
+
+
+Sub FrequentlyArrowStyle(width As Double)
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
     Dim shp As Shape
@@ -10,7 +18,7 @@ Sub FrequentlyArrowStyle()
             shp.Line.EndArrowheadLength = msoArrowheadLong
             shp.Line.EndArrowheadWidth = msoArrowheadWide
             shp.Line.EndArrowheadStyle = msoArrowheadOpen
-            shp.Line.Weight = 3
+            shp.Line.Weight = width
         End If
     Next
 
