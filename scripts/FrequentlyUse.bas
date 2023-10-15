@@ -24,12 +24,19 @@ Sub FrequentlyArrowStyle(width As Double)
 
 End Sub
 
+Sub FrequentlyShadowStyleOn()
+    ' when only selecting shps
+    if not activewindow.selection.type = ppSelectionShapes then exit sub
 
-Sub FrequentlyShadeStyle()
-    ' set shadow format
-    Dim slide As slide
-    Set slide = ActivePresentation.slides(1) ' スライド番号を指定
+    Dim shp As shape
 
+    for each shp in ActiveWindow.selection.ShapeRange
+        shp.Shadow.Visible = False
+    next shp
+
+End Sub
+
+Sub FrequentlyShadowStyleOff()
     ' when only selecting shps
     if not activewindow.selection.type = ppSelectionShapes then exit sub
 
