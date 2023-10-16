@@ -1,18 +1,19 @@
 Sub test()
 
+    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
+
     Dim shp As shape
 
-    for each shp in ActiveWindow.selection.ShapeRange
-        shp.Shadow.Visible = True
-        shp.Shadow.Style = msoShadowStyleOuterShadow
-        shp.Shadow.Blur = 5 ' ぼかし半径
-        shp.Shadow.Transparency = 0.6
-        shp.Shadow.OffsetX = 10 ' X方向のオフセット
-        shp.Shadow.OffsetY = 10 ' Y方向のオフセット
-        shp.Shadow.Obscured = msoFalse
-    next shp
-
+    For Each shp In ActiveWindow.Selection.ShapeRange
+        If shp.Type = msoLine Or shp.Type = msoFreeform Or shp.AutoShapeType = msoShapeMixed Then
+            shp.line.EndArrowheadLength = msoArrowheadLong
+            shp.line.EndArrowheadWidth = msoArrowheadWide
+            shp.line.EndArrowheadStyle = msoArrowheadOpen
+            shp.line.Weight = 1.5
+        End If
+    Next
 End Sub
+
 
 sub test1()
     Dim shp1 As shape

@@ -14,17 +14,17 @@ Sub FrequentlyArrowStyle(width As Double)
     Dim shp As Shape
 
     For Each shp In ActiveWindow.Selection.ShapeRange
-        If shp.Type = msoLine Or shp.AutoShapeType = msoShapeMixed Then
-            shp.Line.EndArrowheadLength = msoArrowheadLong
-            shp.Line.EndArrowheadWidth = msoArrowheadWide
-            shp.Line.EndArrowheadStyle = msoArrowheadOpen
-            shp.Line.Weight = width
+        If shp.Type = msoLine Or shp.Type = msoFreeform Or shp.AutoShapeType = msoShapeMixed Then
+            shp.line.EndArrowheadLength = msoArrowheadLong
+            shp.line.EndArrowheadWidth = msoArrowheadWide
+            shp.line.EndArrowheadStyle = msoArrowheadOpen
+            shp.line.Weight = width
         End If
     Next
-
 End Sub
 
-Sub FrequentlyShadowStyleOn()
+
+Sub FrequentlyShadowStyleOff()
     ' when only selecting shps
     if not activewindow.selection.type = ppSelectionShapes then exit sub
 
@@ -36,7 +36,8 @@ Sub FrequentlyShadowStyleOn()
 
 End Sub
 
-Sub FrequentlyShadowStyleOff()
+
+Sub FrequentlyShadowStyleOn()
     ' when only selecting shps
     if not activewindow.selection.type = ppSelectionShapes then exit sub
 
@@ -45,10 +46,10 @@ Sub FrequentlyShadowStyleOff()
     for each shp in ActiveWindow.selection.ShapeRange
         shp.Shadow.Visible = True
         shp.Shadow.Style = msoShadowStyleOuterShadow
-        shp.Shadow.Blur = 5 ' ぼかし半径
+        shp.Shadow.Blur = 5 ' Blur radius
         shp.Shadow.Transparency = 0.6
-        shp.Shadow.OffsetX = 2.121319152764454 ' X方向のオフセット
-        shp.Shadow.OffsetY = 2.121319152764454 ' Y方向のオフセット
+        shp.Shadow.OffsetX = 2.121319152764454 ' x-offset
+        shp.Shadow.OffsetY = 2.121319152764454 ' y-offset
     next shp
 
 End Sub

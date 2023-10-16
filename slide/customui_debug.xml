@@ -59,11 +59,11 @@
           <!-- styles -->
           <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style" image="RightArrow15" onAction="FrequentlyArrowStyle15"  showLabel="false" />
           <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style" image="RightArrow30" onAction="FrequentlyArrowStyle30"  showLabel="false" />
-          <button id="FrequentlyShadeOn" keytip="CVF" label="frequently shade style none" imageMso="GroupShadowEffects" onAction="FrequentlyShadeStyle" showLabel="false" />
-          <button id="FrequentlyShadeOff" keytip="CVD" label="frequently shade style none" image="GroupShadowEffectsOff" onAction="FrequentlyShadeStyle" showLabel="false" />
+          <button id="FrequentlyShadeOn" keytip="CVD" label="frequently shade style none" imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
+          <button id="FrequentlyShadeOff" keytip="CVF" label="frequently shade style 3 pt." image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
           <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
 
-          <button id="DrowExpension" keytip="CVZ" label="draw expansion" image="Gradient" onAction="DrawExpandLines"  showLabel="false" />
+          <button id="DrowExpension" keytip="CVZ" label="draw expansion" image="DrawExpansionLines" onAction="DrawExpandLines"  showLabel="false" />
           <button id="AddShapeNodes" keytip="CVS" label="add nodes" image="AddNodesPoints" onAction="AddNodes"   showLabel="false" />
 
           <!-- adjust shape -->
@@ -122,7 +122,7 @@
           <button id="ChangeTextColorAccent6" keytip="FFV" label="change font color to Accent6" image="FontColorAccent6" onAction="ChangeTextColorAccent6"  showLabel="false" />
           <button id="ChangeTextColorRed" keytip="FFR" label="change font color to Red" image="FontColorRed" onAction="ChangeTextColorRed"  showLabel="false" />
 
-          <!-- <group id="format"> -->
+          <!-- format -->
           <gallery idMso="ShapesInsertGallery" showLabel="false"/>
           <gallery idMso="ShapeFillColorPicker" showLabel="false"/>
           <gallery idMso="OutlineColorPicker" showLabel="false"/>
@@ -131,7 +131,7 @@
           <gallery idMso="OutlineWeightGallery" showLabel="false"/>
 
 
-          <!-- <group id="align_setting"> -->
+          <!-- align_setting -->
             <toggleButton idMso="ObjectsAlignRelativeToContainerSmart" showImage="false" label="slide"/>
             <toggleButton idMso="ObjectsAlignSelectedSmart"  showImage="false" label="shapes"/>
 
