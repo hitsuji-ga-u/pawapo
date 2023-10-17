@@ -3,18 +3,16 @@
 Sub InsertNoWrapTextBox()
     ' insert no wrap textbox or make textbox to no wrap textbox
 
-    ' no selecting. Insert a txt box.
+    ' when selecting nothing, selecting a table, selecting a img,  Insert a txt box.
+    If activewindow.selection.type = ppSelectionShapes then
+        dim shp as shape
+        set shp = activewindow.selection.ShapeRange(1)
+            if shp.type = msoTable Or shp.type = msoPicture then
+                AddTextbox
+            End If
+    End If
     If ActiveWindow.Selection.Type = ppSelectionNone Or ActiveWindow.Selection.Type = ppSelectionSlides Then
-        Dim textbox As Shape
-
-        Set textbox = ActiveWindow.Selection.SlideRange(1).Shapes.AddTextbox( _
-                        msoTextOrientationHorizontal, _
-                        ActiveWindow.Presentation.PageSetup.SlideWidth / 2, _
-                        ActiveWindow.Presentation.PageSetup.SlideHeight / 2, 0, 0)
-
-        textbox.TextFrame.DeleteText
-        textbox.TextFrame.TextRange.Select
-        textbox.textframe.TextRange.Font.Size = 16
+        AddTextbox
     End If
 
     ' when selecting txt
@@ -45,8 +43,17 @@ Sub InsertNoWrapTextBox()
             End If
         Next selectedTextBox
     End If
+End Sub
 
-    Exit Sub
-ErrorHandler:
-    Resume Next
+Sub AddTextbox()
+    Dim textbox As Shape
+
+    Set textbox = ActiveWindow.Selection.SlideRange(1).Shapes.AddTextbox( _
+                    msoTextOrientationHorizontal, _
+                    ActiveWindow.Presentation.PageSetup.SlideWidth / 2, _
+                    ActiveWindow.Presentation.PageSetup.SlideHeight / 2, 0, 0)
+
+    textbox.TextFrame.DeleteText
+    textbox.TextFrame.TextRange.Select
+    textbox.textframe.TextRange.Font.Size = 16
 End Sub

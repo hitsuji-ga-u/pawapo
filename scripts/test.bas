@@ -22,7 +22,7 @@ Sub test()
 
     ' when any shape type is picture, adding the shape on the picture which is the same size with the picture
     if shp1.type = msoPicture then
-        Set shp1 = Activ ewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp1.left, shp1.Top, shp1.Width, shp1.Height)
+        Set shp1 = Activewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp1.left, shp1.Top, shp1.Width, shp1.Height)
     end if
     if shp2.type = msoPicture then
         Set shp2 = activewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp2.left, shp2.Top, shp2.Width, shp2.Height)
