@@ -24,7 +24,7 @@ Sub AddNodes()
         Dim shpVerticsCoordinate(1 To 8) As Double
         dim vertices() as double
 
-        vertices = ShapeVertices(shp)
+        vertices = GetShapeConers(shp)
 
         shpVerticsCoordinate(1) = shp.Left
         shpVerticsCoordinate(2) = shp.Top

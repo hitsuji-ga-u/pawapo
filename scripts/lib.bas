@@ -43,10 +43,10 @@ End Function
 
 
 
-Function ShapeVertices(shp As shape) As Variant
+Function GetShapeConers(shp As shape) As Variant
     ' example:
     ' Dim vertices() as Long
-    ' vertices = ShapeVertices(shp)
+    ' vertices = GetShapeConers(shp)
     ' For i = 0 To 3
     '     j = (i + 1) Mod 4
     '     shp1a(0) = vertices(i, 0)
@@ -78,7 +78,7 @@ Function ShapeVertices(shp As shape) As Variant
         vertices(i, 1) = (vertices_0(i, 0) * s + vertices_0(i, 1) * c) + Cy
     Next
 
-    ShapeVertices = vertices
+    GetShapeConers = vertices
 End Function
 
 

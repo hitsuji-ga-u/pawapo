@@ -6,9 +6,11 @@ SUb DrawExpandLines()
     If Not ActiveWindow.Selection.ShapeRange.Count = 2 Then Exit Sub
 
     If Not ActiveWindow.Selection.ShapeRange(1).Type = msoAutoShape And _
-        Not ActiveWindow.Selection.ShapeRange(1).Type = msoPicture Then Exit Sub
+        Not ActiveWindow.Selection.ShapeRange(1).Type = msoPicture And _
+         Not Activewindow.selection.ShapeRange(1).Type = msoFreeform Then Exit Sub
     If Not ActiveWindow.Selection.ShapeRange(2).Type = msoAutoShape And _
-        Not ActiveWindow.Selection.ShapeRange(2).Type = msoPicture Then Exit Sub
+        Not ActiveWindow.Selection.ShapeRange(2).Type = msoPicture And _
+         Not Activewindow.selection.ShapeRange(2).Type = msoFreeform Then Exit Sub
 
     Dim shp1 As Shape, shp2 As Shape
     Dim vertices() As Double
@@ -25,7 +27,10 @@ SUb DrawExpandLines()
     if shp2.type = msoPicture then
         Set shp2 = activewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp2.left, shp2.Top, shp2.Width, shp2.Height)
     end if
+    shp1.select
+    shp2.select msoFalse
 
+    ' calc each center of shapes
     c1x = CDbl(shp1.left) + CDbl(shp1.Width) / 2
     c1y = CDbl(shp1.Top) + CDbl(shp1.Height) / 2
     c2x = CDbl(shp2.left) + CDbl(shp2.Width) / 2
@@ -34,7 +39,7 @@ SUb DrawExpandLines()
 
     Dim i&, j&
 
-    vertices = ShapeVertices(shp1)
+    vertices = GetShapeConers(shp1)
     For i = 0 To 3
         j = (i + 1) Mod 4
         shp1a(0) = vertices(i, 0)
@@ -47,7 +52,7 @@ SUb DrawExpandLines()
         End If
     Next i
 
-    vertices = ShapeVertices(shp2)
+    vertices = GetShapeConers(shp2)
     For i = 0 To 3
         j = (i + 1) Mod 4
         shp2a(0) = vertices(i, 0)

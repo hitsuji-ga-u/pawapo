@@ -1,32 +1,42 @@
+' test >>>>> test >>>>> test >>>>> test >>>>> test >>>>> test >>>>> test >>>>> test >>>>>
 Sub test()
 
+    ' execute only when selecting 2 shapes
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
+    If Not ActiveWindow.Selection.ShapeRange.Count = 2 Then Exit Sub
 
-    Dim shp As shape
+    If Not ActiveWindow.Selection.ShapeRange(1).Type = msoAutoShape And _
+        Not ActiveWindow.Selection.ShapeRange(1).Type = msoPicture And _
+         Not Activewindow.selection.ShapeRange(1).Type = msoFreeform Then Exit Sub
+    If Not ActiveWindow.Selection.ShapeRange(2).Type = msoAutoShape And _
+        Not ActiveWindow.Selection.ShapeRange(2).Type = msoPicture And _
+         Not Activewindow.selection.ShapeRange(2).Type = msoFreeform Then Exit Sub
 
-    For Each shp In ActiveWindow.Selection.ShapeRange
-        If shp.Type = msoLine Or shp.Type = msoFreeform Or shp.AutoShapeType = msoShapeMixed Then
-            shp.line.EndArrowheadLength = msoArrowheadLong
-            shp.line.EndArrowheadWidth = msoArrowheadWide
-            shp.line.EndArrowheadStyle = msoArrowheadOpen
-            shp.line.Weight = 1.5
-        End If
-    Next
+    Dim shp1 As Shape, shp2 As Shape
+    Dim vertices() As Double
+    Dim shp1a(1) As Double, shp1b(1) As Double, shp2a(1) As Double, shp2b(1) As Double
+    Dim c1x#, c1y#, c2x#, c2y#
+
+    Set shp1 = ActiveWindow.Selection.ShapeRange(1)
+    Set shp2 = ActiveWindow.Selection.ShapeRange(2)
+
+    ' when any shape type is picture, adding the shape on the picture which is the same size with the picture
+    if shp1.type = msoPicture then
+        Set shp1 = Activ ewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp1.left, shp1.Top, shp1.Width, shp1.Height)
+    end if
+    if shp2.type = msoPicture then
+        Set shp2 = activewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp2.left, shp2.Top, shp2.Width, shp2.Height)
+    end if
+    shp1.select
+    shp2.select msoFalse
+
+
 End Sub
 
 
 sub test1()
     Dim shp1 As shape
     Set shp1 = ActiveWindow.Selection.ShapeRange(1)
-    debug.print shp1.rotation
-
-    shp1.Shadow.Visible = True
-    shp1.Shadow.Style = msoShadowStyleOuterShadow
-    shp1.Shadow.Blur = 5 ' ぼかし半径
-    shp1.Shadow.Transparency = 0.6
-    shp1.Shadow.OffsetX = 10 ' X方向のオフセット
-    shp1.Shadow.OffsetY = 10 ' Y方向のオフセット
-    shp1.Shadow.Obscured = msoFalse
         
 end sub
 
