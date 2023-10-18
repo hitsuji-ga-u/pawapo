@@ -59,8 +59,8 @@
           <!-- styles -->
           <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style" image="RightArrow15" onAction="FrequentlyArrowStyle15"  showLabel="false" />
           <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style" image="RightArrow30" onAction="FrequentlyArrowStyle30"  showLabel="false" />
-          <button id="FrequentlyShadeOn" keytip="CVD" label="frequently shade style none" imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
-          <button id="FrequentlyShadeOff" keytip="CVF" label="frequently shade style 3 pt." image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
+          <button id="FrequentlyShadeOn" keytip="CVF" label="frequently shade style 3 pt." imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
+          <button id="FrequentlyShadeOff" keytip="CVD" label="frequently shade style none" image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
           <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
 
           <button id="DrowExpension" keytip="CVZ" label="draw expansion" image="DrawExpansionLines" onAction="DrawExpandLines"  showLabel="false" />
