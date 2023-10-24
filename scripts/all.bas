@@ -815,8 +815,8 @@ Sub FrequentlyArrowStyle30()
     FrequentlyArrowStyle(3)
 End Sub
 
-
-Sub FrequentlyArrowStyle(width As Double)
+Sub FrequentlyArrowStyleBoth()
+    On Error Resume Next
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
     Dim shp As Shape
@@ -826,11 +826,45 @@ Sub FrequentlyArrowStyle(width As Double)
             shp.line.EndArrowheadLength = msoArrowheadLong
             shp.line.EndArrowheadWidth = msoArrowheadWide
             shp.line.EndArrowheadStyle = msoArrowheadOpen
-            shp.line.Weight = width
+            shp.line.BeginArrowheadLength = msoArrowheadLong
+            shp.line.BeginArrowheadWidth = msoArrowheadWide
+            shp.line.BeginArrowheadStyle = msoArrowheadOpen
+        End If
+
+    Next
+End Sub
+
+
+Sub FrequentlyArrowStyle(width As Double)
+    On Error Resume Next
+    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
+
+    Dim shp As Shape
+
+    For Each shp In ActiveWindow.Selection.ShapeRange
+        shp.line.Weight = width
+        If shp.Type = msoLine Or shp.Type = msoFreeform Or shp.AutoShapeType = msoShapeMixed Then
+            shp.line.EndArrowheadLength = msoArrowheadLong
+            shp.line.EndArrowheadWidth = msoArrowheadWide
+            shp.line.EndArrowheadStyle = msoArrowheadOpen
         End If
     Next
 End Sub
 
+Sub FrequentlyLineStyleON()
+    ' when only selecting shps
+    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
+
+    Dim shp As shape
+
+    FrequentlyShadowStyleOn
+
+    For Each shp In ActiveWindow.Selection.ShapeRange
+        shp.Fill.Visible = msoFalse
+        shp.line.Weight = 3#
+    Next shp
+
+End Sub
 
 Sub FrequentlyShadowStyleOff()
     ' when only selecting shps
@@ -839,7 +873,7 @@ Sub FrequentlyShadowStyleOff()
     Dim shp As shape
 
     for each shp in ActiveWindow.selection.ShapeRange
-        shp.Shadow.Visible = False
+        shp.Shadow.Visible = msoFalse
     next shp
 
 End Sub
@@ -852,7 +886,7 @@ Sub FrequentlyShadowStyleOn()
     Dim shp As shape
 
     for each shp in ActiveWindow.selection.ShapeRange
-        shp.Shadow.Visible = True
+        shp.Shadow.Visible = msoTrue
         shp.Shadow.Style = msoShadowStyleOuterShadow
         shp.Shadow.Blur = 5 ' Blur radius
         shp.Shadow.Transparency = 0.6

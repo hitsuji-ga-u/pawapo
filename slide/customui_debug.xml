@@ -57,12 +57,15 @@
           <button id="wrap_off" keytip="CC" label="insert nowrap textbox" imageMso="TextBoxInsert" onAction="InsertNoWrapTextBox"  showLabel="false" />
 
           <!-- styles -->
-          <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style" image="RightArrow15" onAction="FrequentlyArrowStyle15"  showLabel="false" />
-          <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style" image="RightArrow30" onAction="FrequentlyArrowStyle30"  showLabel="false" />
-          <button id="FrequentlyShadeOn" keytip="CVD" label="frequently shade style none" imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
-          <button id="FrequentlyShadeOff" keytip="CVF" label="frequently shade style 3 pt." image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
-          <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
+          <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style 1.5 pt." image="RightArrow15" onAction="FrequentlyArrowStyle15"  showLabel="false" />
+          <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style 3 pt." image="RightArrow30" onAction="FrequentlyArrowStyle30"  showLabel="false" />
+          <button id="FrequentlyArrowStyleBoth" keytip="CVX" label="frequently allow style both" image="RightArrow30" onAction="FrequentlyArrowStyleBoth"  showLabel="false" />
 
+          <button id="FrequentlyShadeOn" keytip="CVF" label="frequently shade style 3 pt." imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
+          <button id="FrequentlyShadeOff" keytip="CVD" label="frequently shade style none" image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
+          <button id="FrequentlyLineStyleON" keytip="CVG" label="frequently line style" image="GroupShadowEffectsOff" onAction="FrequentlyLineStyleON" showLabel="false" />
+
+          <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
           <button id="DrowExpension" keytip="CVZ" label="draw expansion" image="DrawExpansionLines" onAction="DrawExpandLines"  showLabel="false" />
           <button id="AddShapeNodes" keytip="CVS" label="add nodes" image="AddNodesPoints" onAction="AddNodes"   showLabel="false" />
 
