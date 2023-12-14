@@ -78,12 +78,21 @@ Sub FrequentlyShadowStyleOn()
     Dim shp As shape
 
     for each shp in ActiveWindow.selection.ShapeRange
-        shp.Shadow.Visible = msoTrue
-        shp.Shadow.Style = msoShadowStyleOuterShadow
-        shp.Shadow.Blur = 5 ' Blur radius
-        shp.Shadow.Transparency = 0.6
-        shp.Shadow.OffsetX = 2.121319152764454 ' x-offset
-        shp.Shadow.OffsetY = 2.121319152764454 ' y-offset
+        if shp.Type = msoTextBox Then
+            shp.TextFrame.TextRange.Font.Shadow = msoTrue
+            shp.TextFrame.TextRange2.Font.Shadow.Type = msoShadow21 
+            shp.TextFrame.TextRange.Font.Shadow.Blur = 3 ' Blur radius
+            shp.TextFrame.TextRange.Font.Shadow.Transparency = 0.6
+            shp.TextFrame.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
+            shp.TextFrame.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
+        else
+            shp.Shadow.Visible = msoTrue
+            shp.Shadow.Style = msoShadowStyleOuterShadow
+            shp.Shadow.Blur = 4 ' Blur radius
+            shp.Shadow.Transparency = 0.6
+            shp.Shadow.OffsetX = 2.121319152764454 ' x-offset
+            shp.Shadow.OffsetY = 2.121319152764454 ' y-offset
+        End if
     next shp
 
 End Sub

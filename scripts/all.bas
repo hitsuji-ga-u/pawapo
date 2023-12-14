@@ -746,11 +746,9 @@ SUb DrawExpandLines()
 
     ' set format
     shp1.Fill.Visible = msoFalse
-    shp1.line.ForeColor.ObjectThemeColor = msoThemeColorAccent5
-    shp1.line.Weight = 3
+    shp1.line.Weight = 2.25
     shp2.Fill.Visible = msoFalse
-    shp2.line.ForeColor.ObjectThemeColor = msoThemeColorAccent5
-    shp2.line.Weight = 3
+    shp2.line.Weight = 2.25
 
     ' add nodes
     AddNodes
@@ -791,11 +789,9 @@ SUb DrawExpandLines()
         ln2.connectorformat.EndConnect shp2, connection_index
     End If
 
-    ln1.Line.Weight = 3
-    ln1.Line.ForeCOlor.ObjectThemeColor = msoThemeColorAccent5
+    ln1.Line.Weight = 2.25
     ln1.Line.DashStyle = msoLineSysDot 
-    ln2.Line.Weight = 3
-    ln2.Line.ForeCOlor.ObjectThemeColor = msoThemeColorAccent5
+    ln2.Line.Weight = 2.25
     ln2.Line.DashStyle = msoLineSysDot 
 
     ln1.select msoFalse
@@ -886,12 +882,21 @@ Sub FrequentlyShadowStyleOn()
     Dim shp As shape
 
     for each shp in ActiveWindow.selection.ShapeRange
-        shp.Shadow.Visible = msoTrue
-        shp.Shadow.Style = msoShadowStyleOuterShadow
-        shp.Shadow.Blur = 5 ' Blur radius
-        shp.Shadow.Transparency = 0.6
-        shp.Shadow.OffsetX = 2.121319152764454 ' x-offset
-        shp.Shadow.OffsetY = 2.121319152764454 ' y-offset
+        if shp.Type = msoTextBox Then
+            shp.TextFrame.TextRange.Font.Shadow = msoTrue
+            shp.TextFrame.TextRange2.Font.Shadow.Type = msoShadow21 
+            shp.TextFrame.TextRange.Font.Shadow.Blur = 4 ' Blur radius
+            shp.TextFrame.TextRange.Font.Shadow.Transparency = 0.6
+            shp.TextFrame.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
+            shp.TextFrame.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
+        else
+            shp.Shadow.Visible = msoTrue
+            shp.Shadow.Style = msoShadowStyleOuterShadow
+            shp.Shadow.Blur = 4 ' Blur radius
+            shp.Shadow.Transparency = 0.6
+            shp.Shadow.OffsetX = 2.121319152764454 ' x-offset
+            shp.Shadow.OffsetY = 2.121319152764454 ' y-offset
+        End if
     next shp
 
 End Sub

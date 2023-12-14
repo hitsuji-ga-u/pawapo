@@ -67,11 +67,9 @@ SUb DrawExpandLines()
 
     ' set format
     shp1.Fill.Visible = msoFalse
-    shp1.line.ForeColor.ObjectThemeColor = msoThemeColorAccent5
-    shp1.line.Weight = 3
+    shp1.line.Weight = 2.25
     shp2.Fill.Visible = msoFalse
-    shp2.line.ForeColor.ObjectThemeColor = msoThemeColorAccent5
-    shp2.line.Weight = 3
+    shp2.line.Weight = 2.25
 
     ' add nodes
     AddNodes
@@ -112,11 +110,9 @@ SUb DrawExpandLines()
         ln2.connectorformat.EndConnect shp2, connection_index
     End If
 
-    ln1.Line.Weight = 3
-    ln1.Line.ForeCOlor.ObjectThemeColor = msoThemeColorAccent5
+    ln1.Line.Weight = 2.25
     ln1.Line.DashStyle = msoLineSysDot 
-    ln2.Line.Weight = 3
-    ln2.Line.ForeCOlor.ObjectThemeColor = msoThemeColorAccent5
+    ln2.Line.Weight = 2.25
     ln2.Line.DashStyle = msoLineSysDot 
 
     ln1.select msoFalse
