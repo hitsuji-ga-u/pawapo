@@ -119,7 +119,6 @@ Function nearest_node_index(shp As shape, x#, y#) As Long
     nearest_index = 1
     shortest_distance = 999999
     For i = 1 To shp.Nodes.Count
-        Debug.Print i, shp.Nodes(i).Points(1, 1), shp.Nodes(i).Points(1, 2)
         distance = (shp.Nodes(i).Points(1,1)-x) ^2 + (shp.Nodes(i).Points(1, 2) - y)^2
         if distance < shortest_distance then
             nearest_index = i
@@ -127,4 +126,13 @@ Function nearest_node_index(shp As shape, x#, y#) As Long
         end if
     Next i
     nearest_node_index = nearest_index
+End Function
+
+' cast >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Function cm2pt(cm As double)
+    cm2pt = cm / 0.0352777777777778
+End Function
+
+Function pt2cm(pt As Double)
+    pt2cm = pt * 0.0352777777777778
 End Function

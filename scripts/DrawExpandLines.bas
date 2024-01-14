@@ -67,9 +67,17 @@ SUb DrawExpandLines()
 
     ' set format
     shp1.Fill.Visible = msoFalse
-    shp1.line.Weight = 2.25
     shp2.Fill.Visible = msoFalse
+    shp1.line.Weight = 2.25
     shp2.line.Weight = 2.25
+    with shp1.Shadow
+        .Visible = msoTrue
+        .Style = msoShadowStyleOuterShadow
+        .Blur = 4
+        .Transparency = 0.6
+        .OffsetX = 2.121319152764454 ' x-offset
+        .OffsetY = 2.121319152764454 ' y-offset
+    end with
 
     ' add nodes
     AddNodes
@@ -93,7 +101,6 @@ SUb DrawExpandLines()
         ln2.connectorformat.BeginConnect shp1, connection_index
         connection_index = nearest_node_index(shp2, shp2a(0), shp2a(1))
         ln2.connectorformat.EndConnect shp2, connection_index
-
     Else
         Set ln1 = ActivePresentation.Slides(ActiveWindow.Selection.SlideRange.SlideIndex).Shapes.AddLine( _
                 shp1a(0), shp1a(1), shp2a(0), shp2a(1))
@@ -110,15 +117,45 @@ SUb DrawExpandLines()
         ln2.connectorformat.EndConnect shp2, connection_index
     End If
 
-    ln1.Line.Weight = 2.25
-    ln1.Line.DashStyle = msoLineSysDot 
-    ln2.Line.Weight = 2.25
-    ln2.Line.DashStyle = msoLineSysDot 
+    with ln1.Line
+        .Weight = 2.25
+        .DashStyle = msoLineSysDot
+        .ForeColor.RGB = shp1.Line.ForeColor.RGB
+    end with
+    With ln2.Line
+        .Weight = 2.25
+        .DashStyle = msoLineSysDot
+        .ForeColor.RGB = shp1.Line.ForeColor.RGB
+    end with
+
+    with ln1.Shadow
+        .Visible = msoTrue
+        .Style = msoShadowStyleOuterShadow
+        .Blur = 4
+        .Transparency = 0.6
+        .OffsetX = 2.121319152764454 ' x-offset
+        .OffsetY = 2.121319152764454 ' y-offset
+    end with
+    with ln2.Shadow
+        .Visible = msoTrue
+        .Style = msoShadowStyleOuterShadow
+        .Blur = 4
+        .Transparency = 0.6
+        .OffsetX = 2.121319152764454 ' x-offset
+        .OffsetY = 2.121319152764454 ' y-offset
+    end with
+
+    While ln1.ZOrderPosition > shp1.ZOrderPosition
+        ln1.ZOrder msoSendToBack
+        ln2.ZOrder msoSendToBack
+    Wend
+    While ln1.ZOrderPosition > shp2.ZOrderPosition
+        ln1.ZOrder msoSendToBack
+        ln2.ZOrder msoSendToBack
+    Wend
 
     ln1.select msoFalse
     ln2.select msoFalse
 
 End Sub
-
-
-
+ 

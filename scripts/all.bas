@@ -1,12 +1,15 @@
 Option Explicit
-
 Dim shapePositions() As Variant
 Dim ShapeDistanceX As Double
 Dim ShapeDistanceY As Double
+' Dim margin_horizontal As Double
+' Dim margin_vertical As Double
 
 Sub InitCustomTab()
     ShapeDistanceX = ActivePresentation.PageSetup.SlideWidth * 0.05
     ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01
+    ' margin_horizontal = 0
+    ' margin_vertical = 0
 End Sub
 
 ' Add Nodes to square shape
@@ -266,6 +269,7 @@ Sub AlignShapesVerticalStick()
         End If
     End If
 End Sub
+
 
 
 
@@ -746,9 +750,17 @@ SUb DrawExpandLines()
 
     ' set format
     shp1.Fill.Visible = msoFalse
-    shp1.line.Weight = 2.25
     shp2.Fill.Visible = msoFalse
+    shp1.line.Weight = 2.25
     shp2.line.Weight = 2.25
+    with shp1.Shadow
+        .Visible = msoTrue
+        .Style = msoShadowStyleOuterShadow
+        .Blur = 4
+        .Transparency = 0.6
+        .OffsetX = 2.121319152764454 ' x-offset
+        .OffsetY = 2.121319152764454 ' y-offset
+    end with
 
     ' add nodes
     AddNodes
@@ -772,7 +784,6 @@ SUb DrawExpandLines()
         ln2.connectorformat.BeginConnect shp1, connection_index
         connection_index = nearest_node_index(shp2, shp2a(0), shp2a(1))
         ln2.connectorformat.EndConnect shp2, connection_index
-
     Else
         Set ln1 = ActivePresentation.Slides(ActiveWindow.Selection.SlideRange.SlideIndex).Shapes.AddLine( _
                 shp1a(0), shp1a(1), shp2a(0), shp2a(1))
@@ -789,19 +800,48 @@ SUb DrawExpandLines()
         ln2.connectorformat.EndConnect shp2, connection_index
     End If
 
-    ln1.Line.Weight = 2.25
-    ln1.Line.DashStyle = msoLineSysDot 
-    ln2.Line.Weight = 2.25
-    ln2.Line.DashStyle = msoLineSysDot 
+    with ln1.Line
+        .Weight = 2.25
+        .DashStyle = msoLineSysDot
+        .ForeColor.RGB = shp1.Line.ForeColor.RGB
+    end with
+    With ln2.Line
+        .Weight = 2.25
+        .DashStyle = msoLineSysDot
+        .ForeColor.RGB = shp1.Line.ForeColor.RGB
+    end with
+
+    with ln1.Shadow
+        .Visible = msoTrue
+        .Style = msoShadowStyleOuterShadow
+        .Blur = 4
+        .Transparency = 0.6
+        .OffsetX = 2.121319152764454 ' x-offset
+        .OffsetY = 2.121319152764454 ' y-offset
+    end with
+    with ln2.Shadow
+        .Visible = msoTrue
+        .Style = msoShadowStyleOuterShadow
+        .Blur = 4
+        .Transparency = 0.6
+        .OffsetX = 2.121319152764454 ' x-offset
+        .OffsetY = 2.121319152764454 ' y-offset
+    end with
+
+    While ln1.ZOrderPosition > shp1.ZOrderPosition
+        ln1.ZOrder msoSendToBack
+        ln2.ZOrder msoSendToBack
+    Wend
+    While ln1.ZOrderPosition > shp2.ZOrderPosition
+        ln1.ZOrder msoSendToBack
+        ln2.ZOrder msoSendToBack
+    Wend
 
     ln1.select msoFalse
     ln2.select msoFalse
 
 End Sub
-
-
-
-
+ 
 
 
 Sub FrequentlyArrowStyle15()
@@ -884,8 +924,8 @@ Sub FrequentlyShadowStyleOn()
     for each shp in ActiveWindow.selection.ShapeRange
         if shp.Type = msoTextBox Then
             shp.TextFrame.TextRange.Font.Shadow = msoTrue
-            shp.TextFrame.TextRange2.Font.Shadow.Type = msoShadow21 
-            shp.TextFrame.TextRange.Font.Shadow.Blur = 4 ' Blur radius
+            shp.TextFrame.TextRange.Font.Shadow.Type = msoShadow21 
+            shp.TextFrame.TextRange.Font.Shadow.Blur = 3 ' Blur radius
             shp.TextFrame.TextRange.Font.Shadow.Transparency = 0.6
             shp.TextFrame.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
             shp.TextFrame.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
@@ -900,6 +940,7 @@ Sub FrequentlyShadowStyleOn()
     next shp
 
 End Sub
+
 
 
 ' insert textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1081,7 +1122,6 @@ Function nearest_node_index(shp As shape, x#, y#) As Long
     nearest_index = 1
     shortest_distance = 999999
     For i = 1 To shp.Nodes.Count
-        Debug.Print i, shp.Nodes(i).Points(1, 1), shp.Nodes(i).Points(1, 2)
         distance = (shp.Nodes(i).Points(1,1)-x) ^2 + (shp.Nodes(i).Points(1, 2) - y)^2
         if distance < shortest_distance then
             nearest_index = i
@@ -1091,20 +1131,63 @@ Function nearest_node_index(shp As shape, x#, y#) As Long
     nearest_node_index = nearest_index
 End Function
 
+' cast >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Function cm2pt(cm As double)
+    cm2pt = cm / 0.0352777777777778
+End Function
+
+Function pt2cm(pt As Double)
+    pt2cm = pt * 0.0352777777777778
+End Function
 
 
-' ç∂è„ÇÃà íuÇ…à⁄ìÆÇ∑ÇÈ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+'margin_horizontal, margin_vertical are loaded at initialization
+
+
+Sub GetMarginHorizontal(control As IRibbonControl, ByRef text As String)
+   text = CStr(margin_horizontal)
+end Sub
+
+Sub GetMarginVertical(control As IRibbonControl, ByRef text As String)
+    text = CStr(margin_vertical)
+End Sub
+
+Sub SetMarginHorizontal(control As IRibbonControl, ByRef text As String)
+    MsgBox text
+End Sub
+
+Sub SetMarginVertical(control As IRibbonControl, ByRef text As String)
+    MsgBox text
+End Sub
+
+
+
+
+
+' move selected shape to anchor position >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub MoveToAnchor()
-     ' ç∂è„ÇÃà íuÇ…à⁄ìÆÇ∑ÇÈ
 
     Debug.Print ActiveWindow.Selection.Type; ppSelectionText
-    
+
     If Not (ActiveWindow.Selection.Type = ppSelectionShapes Or ActiveWindow.Selection.Type = ppSelectionText) Then
         Exit Sub
     End If
 
-    ActiveWindow.Selection.ShapeRange(1).left = 15.87402
-    ActiveWindow.Selection.ShapeRange(1).Top = 60.52118
+    ' get slide size
+    dim w#, h#
+    w = ActivePresentation.PageSetup.SlideWidth
+    h = ActivePresentation.PageSetup.SlideHeight
+
+    ' get anchor pos
+    Dim x#, y#
+    ' x = w * 0.02
+    x = h * 0.02
+    y = h * 0.02 + cm2pt(1.59)
+
+    ' set shape to anchor
+    ActiveWindow.Selection.ShapeRange(1).left = x
+    ActiveWindow.Selection.ShapeRange(1).Top = y
 
 End Sub
 
