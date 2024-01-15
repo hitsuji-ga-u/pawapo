@@ -79,12 +79,12 @@ Sub FrequentlyShadowStyleOn()
 
     for each shp in ActiveWindow.selection.ShapeRange
         if shp.Type = msoTextBox Then
-            shp.TextFrame.TextRange.Font.Shadow = msoTrue
-            shp.TextFrame.TextRange.Font.Shadow.Type = msoShadow21 
-            shp.TextFrame.TextRange.Font.Shadow.Blur = 3 ' Blur radius
-            shp.TextFrame.TextRange.Font.Shadow.Transparency = 0.6
-            shp.TextFrame.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
-            shp.TextFrame.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
+            shp.TextFrame2.TextRange.Font.Shadow.Visible = msoTrue
+            shp.TextFrame2.TextRange.Font.Shadow.Type = msoShadow21 
+            shp.TextFrame2.TextRange.Font.Shadow.Blur = 3 ' Blur radius
+            shp.TextFrame2.TextRange.Font.Shadow.Transparency = 0.6
+            shp.TextFrame2.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
+            shp.TextFrame2.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
         else
             shp.Shadow.Visible = msoTrue
             shp.Shadow.Style = msoShadowStyleOuterShadow

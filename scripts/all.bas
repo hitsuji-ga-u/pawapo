@@ -2,14 +2,14 @@ Option Explicit
 Dim shapePositions() As Variant
 Dim ShapeDistanceX As Double
 Dim ShapeDistanceY As Double
-' Dim margin_horizontal As Double
-' Dim margin_vertical As Double
+Dim margin_horizontal As Double
+Dim margin_vertical As Double
 
 Sub InitCustomTab()
     ShapeDistanceX = ActivePresentation.PageSetup.SlideWidth * 0.05
     ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01
-    ' margin_horizontal = 0
-    ' margin_vertical = 0
+    margin_horizontal = 0
+    margin_vertical = 0
 End Sub
 
 ' Add Nodes to square shape
@@ -923,12 +923,12 @@ Sub FrequentlyShadowStyleOn()
 
     for each shp in ActiveWindow.selection.ShapeRange
         if shp.Type = msoTextBox Then
-            shp.TextFrame.TextRange.Font.Shadow = msoTrue
-            shp.TextFrame.TextRange.Font.Shadow.Type = msoShadow21 
-            shp.TextFrame.TextRange.Font.Shadow.Blur = 3 ' Blur radius
-            shp.TextFrame.TextRange.Font.Shadow.Transparency = 0.6
-            shp.TextFrame.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
-            shp.TextFrame.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
+            shp.TextFrame2.TextRange.Font.Shadow.Visible = msoTrue
+            shp.TextFrame2.TextRange.Font.Shadow.Type = msoShadow21 
+            shp.TextFrame2.TextRange.Font.Shadow.Blur = 3 ' Blur radius
+            shp.TextFrame2.TextRange.Font.Shadow.Transparency = 0.6
+            shp.TextFrame2.TextRange.Font.Shadow.OffsetX = 2.121319152764454 ' x-offset
+            shp.TextFrame2.TextRange.Font.Shadow.OffsetY = 2.121319152764454 ' y-offset
         else
             shp.Shadow.Visible = msoTrue
             shp.Shadow.Style = msoShadowStyleOuterShadow
@@ -1145,11 +1145,11 @@ End Function
 'margin_horizontal, margin_vertical are loaded at initialization
 
 
-Sub GetMarginHorizontal(control As IRibbonControl, ByRef text As String)
+Sub GetMarginHorizontal(control As IRibbonControl, ByRef text)
    text = CStr(margin_horizontal)
 end Sub
 
-Sub GetMarginVertical(control As IRibbonControl, ByRef text As String)
+Sub GetMarginVertical(control As IRibbonControl, ByRef text)
     text = CStr(margin_vertical)
 End Sub
 
@@ -1161,8 +1161,10 @@ Sub SetMarginVertical(control As IRibbonControl, ByRef text As String)
     MsgBox text
 End Sub
 
+Sub ApplyMargin()
+    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
-
+End Sub
 
 
 ' move selected shape to anchor position >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1202,12 +1204,14 @@ Sub PaintGradation()
 
     dim tgt_shp as Shape
 
-    For each tgt_shp in Activewindow.selection.ShapeRange
-        tgt_shp.Line.Visible = msoFalse
+    For Each tgt_shp In ActiveWindow.Selection.ShapeRange
+        tgt_shp.line.Visible = msoFalse
         tgt_shp.Fill.ForeColor.ObjectThemeColor = msoThemeColorAccent1
-        tgt_shp.Fill.OneColorGradient msoGradientHorizontal, 2, 1
-    next tgt_shp
-
+        tgt_shp.Fill.OneColorGradient msoGradientHorizontal, 1, 1
+        tgt_shp.Fill.GradientStops(1).Color.ObjectThemeColor = msoThemeLight1
+        tgt_shp.Fill.GradientStops(1).Transparency = 1
+        tgt_shp.Fill.GradientStops(2).Position = 0.9
+    Next tgt_shp
 End Sub
 
 
@@ -1300,21 +1304,5 @@ sub test1()
     Set shp1 = ActiveWindow.Selection.ShapeRange(1)
         
 end sub
-
-
-' 透明グラデーションをつける  > > > > > > > > > > > > >> > > > > > > > > > > > > > > >
-Sub TransGradation()
-    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
-    With ActiveWindow.Selection.ShapeRange(1)
-        .Line.Visible = msoFalse
-        With .Fill
-            .ForeColor.ObjectThemeColor = msoThemeLight1
-            .OneColorGradient msoGradientHorizontal, 3, 1
-            .GradientStops(1).Transparency = 1
-            .GradientStops(2).Position = 0.6
-            .GradientStops(2).Transparency = 0.3
-        End With
-    End With
-End Sub
 
 

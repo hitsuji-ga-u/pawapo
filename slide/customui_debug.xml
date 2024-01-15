@@ -142,6 +142,7 @@
         <group id="margin" label="余白">
           <editBox id="margin_horizontal" label="左右" sizeString="8.888" getText="GetMarginHorizontal" onChange="SetMarginHorizontal"/>
           <editBox id="margin_vertical" label="上下" sizeString="8.888" getText="GetMarginVertical" onChange="SetMarginVertical"/>
+          <button id="apply_apply" label="apply margins" imageMso="HappyFace" onAction="ApplyMargin" showLabel="false" />
         </group>
 
         <group idMso="GroupSize"/>

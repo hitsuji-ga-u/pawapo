@@ -9,10 +9,12 @@ Sub PaintGradation()
 
     dim tgt_shp as Shape
 
-    For each tgt_shp in Activewindow.selection.ShapeRange
-        tgt_shp.Line.Visible = msoFalse
+    For Each tgt_shp In ActiveWindow.Selection.ShapeRange
+        tgt_shp.line.Visible = msoFalse
         tgt_shp.Fill.ForeColor.ObjectThemeColor = msoThemeColorAccent1
-        tgt_shp.Fill.OneColorGradient msoGradientHorizontal, 2, 1
-    next tgt_shp
-
+        tgt_shp.Fill.OneColorGradient msoGradientHorizontal, 1, 1
+        tgt_shp.Fill.GradientStops(1).Color.ObjectThemeColor = msoThemeLight1
+        tgt_shp.Fill.GradientStops(1).Transparency = 1
+        tgt_shp.Fill.GradientStops(2).Position = 0.9
+    Next tgt_shp
 End Sub
