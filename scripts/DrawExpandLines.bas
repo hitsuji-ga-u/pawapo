@@ -70,7 +70,7 @@ SUb DrawExpandLines()
     shp2.Fill.Visible = msoFalse
     shp1.line.Weight = 2.25
     shp2.line.Weight = 2.25
-    with shp1.Shadow
+    with shp2.Shadow
         .Visible = msoTrue
         .Style = msoShadowStyleOuterShadow
         .Blur = 4
@@ -146,12 +146,12 @@ SUb DrawExpandLines()
     end with
 
     While ln1.ZOrderPosition > shp1.ZOrderPosition
-        ln1.ZOrder msoSendToBack
-        ln2.ZOrder msoSendToBack
+        ln1.ZOrder msoSendBackward
+        ln2.ZOrder msoSendBackward
     Wend
     While ln1.ZOrderPosition > shp2.ZOrderPosition
-        ln1.ZOrder msoSendToBack
-        ln2.ZOrder msoSendToBack
+        ln1.ZOrder msoSendBackward
+        ln2.ZOrder msoSendBackward
     Wend
 
     ln1.select msoFalse

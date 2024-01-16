@@ -96,3 +96,56 @@ Sub FrequentlyShadowStyleOn()
     next shp
 
 End Sub
+
+
+Sub CrossSymbol()
+
+    Dim symbol_size#, start_x#, start_y#, end_x#, end_y#
+    symbol_size = cm2pt(1)
+    start_x = ActiveWindow.Presentation.PageSetup.SlideWidth / 2 - symbol_size / 2
+    start_y = ActiveWindow.Presentation.PageSetup.SlideHeight / 2 - symbol_size / 2
+    end_x = ActiveWindow.Presentation.PageSetup.SlideWidth / 2 + symbol_size / 2
+    end_y = ActiveWindow.Presentation.PageSetup.SlideHeight / 2 + symbol_size / 2
+
+    Dim line1 As shape, line2 As shape
+
+    Set line1 = ActiveWindow.Selection.SlideRange(1).Shapes.AddLine(start_x, start_y, end_x, end_y)
+    Set line2 = ActiveWindow.Selection.SlideRange(1).Shapes.AddLine(start_x, end_y, end_x, start_y)
+
+    With line1.line
+        .Weight = 3
+        .ForeColor.RGB = RGB(255, 0, 0)
+    End With
+    With line2.line
+        .Weight = 3
+        .ForeColor.RGB = RGB(255, 0, 0)
+    End With
+
+    line1.Select
+    line2.Select msoFalse
+
+    ActiveWindow.Selection.ShapeRange.Group.select
+
+End Sub
+
+
+Sub CircleSymbol()
+
+    Dim symbol_size#, start_x#, start_y#, end_x#, end_y#
+    symbol_size = cm2pt(1)
+    start_x = ActiveWindow.Presentation.PageSetup.SlideWidth / 2 - symbol_size / 2
+    start_y = ActiveWindow.Presentation.PageSetup.SlideHeight / 2 - symbol_size / 2
+    end_x = ActiveWindow.Presentation.PageSetup.SlideWidth / 2 + symbol_size / 2
+    end_y = ActiveWindow.Presentation.PageSetup.SlideHeight / 2 + symbol_size / 2
+
+    Dim c As shape
+
+    With ActiveWindow.Selection.SlideRange(1).Shapes.AddShape(msoShapeOval, start_x, start_y, symbol_size, symbol_size)
+        .Select
+        .Fill.Visible = msoFalse
+        .line.ForeColor.RGB = RGB(0, 0, 255)
+        .line.Weight = 3
+    End With
+
+End Sub
+
