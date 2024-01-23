@@ -136,3 +136,16 @@ End Function
 Function pt2cm(pt As Double)
     pt2cm = pt * 0.0352777777777778
 End Function
+
+' get a specific shape by name from shapes arg. >>>>>>>>>>>>>>>>
+Function get_shape_by_name(shapes As Shapes, name As String) As Shape
+
+    Dim shp As shape
+
+    For Each shp In shapes
+        If shp.Name = name Then
+            set get_shape_by_name = shp
+        End If
+    Next shp
+
+End Function

@@ -4,12 +4,19 @@ Dim ShapeDistanceX As Double
 Dim ShapeDistanceY As Double
 Dim margin_horizontal As Double
 Dim margin_vertical As Double
+Dim total_page As Long
+Dim ribbon As IRibbonUI
 
-Sub InitCustomTab()
+
+
+Sub InitCustomTab(rib As IRibbonUI)
     ShapeDistanceX = ActivePresentation.PageSetup.SlideWidth * 0.05
     ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01
     margin_horizontal = 0
     margin_vertical = 0
+    total_page = GetNowTotalPage
+
+    Set ribbon = rib
 End Sub
 
 ' Add Nodes to square shape
@@ -1193,6 +1200,18 @@ Function pt2cm(pt As Double)
     pt2cm = pt * 0.0352777777777778
 End Function
 
+' get a specific shape by name from shapes arg. >>>>>>>>>>>>>>>>
+Function get_shape_by_name(shapes As Shapes, name As String) As Shape
+
+    Dim shp As shape
+
+    For Each shp In shapes
+        If shp.Name = name Then
+            set get_shape_by_name = shp
+        End If
+    Next shp
+
+End Function
 
 
 'margin_horizontal, margin_vertical are loaded at initialization
@@ -1267,6 +1286,81 @@ Sub PaintGradation()
     Next tgt_shp
 End Sub
 
+' setting total page. using value named "total_page" 
+
+Sub SetTotalSlidNumber(page As Long)
+    Dim shp As Shape
+
+    set shp = get_shape_by_name(ActivePresentation.SlideMaster.shapes, "page_index")
+
+    If shp Is Nothing Then
+        msgbox "Please set the name of the text box representing the page number to ""page_index""."
+        Exit Sub
+    End If
+
+    shp.TextFrame.TextRange.text = ""
+    shp.TextFrame.TextRange.InsertSlideNumber
+    shp.TextFrame.TextRange.InsertAfter ("/" & CStr(page))
+
+End Sub
+
+Dim edit_text As String
+Dim edit_id As String
+Sub SetPageEditBox(control As IRibbonControl, ByRef text)
+    edit_text = text
+    edit_id = control.Id
+    text = CStr(total_page)
+End Sub
+
+Sub SetTotalPageNum(control As IRibbonControl)
+
+    total_page = ActivePresentation.Slides.Count - 1
+    SetTotalSlidNumber total_page
+    edit_text = CStr(total_page)
+    ribbon.InvalidateControl(edit_id)
+End Sub
+
+Sub RefleshTotalPageNum(control As IRibbonControl, ByRef text)
+    ' if input not numerical value, undo.
+    if not isnumeric(text) Then
+        text = CStr(total_page)
+        ribbon.InvalidateControl(control.Id)
+        Exit Sub
+    End If
+
+    total_page = CLng(text)
+    text = CStr(total_page)
+
+    SetTotalSlidNumber total_page
+
+End Sub
+
+' getting total page. if page_num has already set, return set num.
+' It is needed that the textbox which shows the page-num is set its name as "page_index".
+Function GetNowTotalPage() As Long
+    Dim page_num&
+    Dim page_num_txtbox$
+    page_num_txtbox = "page_index"
+    Dim regex As Object
+    Set regex = CreateObject("VBScript.RegExp")
+    regex.Pattern = ".#./[\d]{1,}"
+
+    Dim shp As shape
+    Set shp = get_shape_by_name(ActivePresentation.SlideMaster.shapes, page_num_txtbox)
+
+    If shp Is Nothing Then GetNowTotalPage = ActivePresentation.Slides.Count - 1: Exit Function
+
+    If Not regex.test(shp.TextFrame.TextRange.text) Then GetNowTotalPage = ActivePresentation.Slides.Count - 1: Exit Function
+
+    Dim matches As Object
+    Set matches = regex.Execute(shp.TextFrame.TextRange.text)
+
+    regex.Pattern = "\d+(?=$)"
+    Set matches = regex.Execute(matches(0).Value)
+    page_num = matches(0).Value
+
+    GetNowTotalPage = page_num
+End Function
 
 ' •\‚Ì•‚ð•¶Žš‚É‡‚í‚¹‚é       >>>> > > > > >> > > > > > > >> > > > >> > > >> > > >> >
 Sub TableWidthAutoFit()
@@ -1352,10 +1446,8 @@ Sub test()
 End Sub
 
 
-sub test1()
-    Dim shp1 As shape
-    Set shp1 = ActiveWindow.Selection.ShapeRange(1)
-        
-end sub
-
+Sub test1()
+SetTotalPageNum
+Debug.Print GetNowTotalPage
+End Sub
 
