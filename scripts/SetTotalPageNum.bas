@@ -1,4 +1,5 @@
-' setting total page. using value named "total_page" 
+' setting total page. need to add a shape named "total_page" to Slidemaster
+' total_page, edit_text and edit_id are loaded at initialization
 
 Sub SetTotalSlidNumber(page As Long)
     Dim shp As Shape
@@ -16,8 +17,6 @@ Sub SetTotalSlidNumber(page As Long)
 
 End Sub
 
-Dim edit_text As String
-Dim edit_id As String
 Sub SetPageEditBox(control As IRibbonControl, ByRef text)
     edit_text = text
     edit_id = control.Id

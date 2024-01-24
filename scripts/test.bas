@@ -35,6 +35,4 @@ End Sub
 
 
 Sub test1()
-SetTotalPageNum
-Debug.Print GetNowTotalPage
 End Sub

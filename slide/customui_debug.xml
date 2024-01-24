@@ -133,26 +133,40 @@
           <gallery idMso="ShapeQuickStylesHome" showLabel="false"/>
           <gallery idMso="OutlineWeightGallery" showLabel="false"/>
 
+          <button id="AddCrossSymbol" label="add cross symbol" imageMso="Delete" onAction="CrossSymbol" showLabel="false" />
+          <button id="AddCircleSymbol" label="add circle symbol" imageMso="WorkflowComplete" onAction="CircleSymbol" showLabel="false" />
+
 
           <!-- align_setting -->
             <!-- <toggleButton idMso="ObjectsAlignRelativeToContainerSmart" showImage="false" label="slide"/> -->
             <!-- <toggleButton idMso="ObjectsAlignSelectedSmart"  showImage="false" label="shapes"/> -->
         </group>
 
-        <group id="margin" label="余白">
+        <group id="other_tools" label="other">
+          <!-- margin -->
           <editBox id="margin_horizontal" label="左右" sizeString="8.888" getText="GetMarginHorizontal" onChange="SetMarginHorizontal"/>
           <editBox id="margin_vertical" label="上下" sizeString="8.888" getText="GetMarginVertical" onChange="SetMarginVertical"/>
           <button id="apply_apply" label="apply margins" imageMso="HappyFace" onAction="ApplyMargin" showLabel="false" />
+
+          <!-- page -->
+          <editBox id="total_page" label="page" sizeString="100" getText="SetPageEditBox" onChange="RefleshTotalPageNum" />
+          <button id="set_total_page_num" imageMso="HappyFace" onAction="SetTotalPageNum" />
+
+          <menu id="color_palette" imageMso="HappyFace">
+            <button id="tmp1" imageMso="HappyFace" />
+            <button id="tmp2" imageMso="HappyFace" />
+            <button id="tmp3" imageMso="HappyFace" />
+          </menu>
         </group>
 
         <group idMso="GroupSize"/>
-        <group idMso="GroupViewShowHide"/>
+        <!-- <group idMso="GroupViewShowHide"/> -->
 
         <group id="other">
           <button id="test" label="test" imageMso="HeaderFooterFilePathInsert" size="large" onAction="test"  showLabel="false" />
           <button id="test1" label="test1" imageMso="HeaderFooterFilePathInsert" size="large" onAction="test1"  showLabel="false" />
         </group>
-      </tab>
+      </tab> 
     </tabs>
   </ribbon>
 </customUI>

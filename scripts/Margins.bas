@@ -1,7 +1,5 @@
-
-
+' margin setting of textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 'margin_horizontal, margin_vertical are loaded at initialization
-
 
 Sub GetMarginHorizontal(control As IRibbonControl, ByRef text)
    text = CStr(margin_horizontal)

@@ -6,6 +6,8 @@ Dim margin_horizontal As Double
 Dim margin_vertical As Double
 Dim total_page As Long
 Dim ribbon As IRibbonUI
+Dim edit_text As String
+Dim edit_id As String
 
 
 
@@ -1212,10 +1214,8 @@ Function get_shape_by_name(shapes As Shapes, name As String) As Shape
     Next shp
 
 End Function
-
-
+' margin setting of textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 'margin_horizontal, margin_vertical are loaded at initialization
-
 
 Sub GetMarginHorizontal(control As IRibbonControl, ByRef text)
    text = CStr(margin_horizontal)
@@ -1286,7 +1286,8 @@ Sub PaintGradation()
     Next tgt_shp
 End Sub
 
-' setting total page. using value named "total_page" 
+' setting total page. need to add a shape named "total_page" to Slidemaster
+' total_page, edit_text and edit_id are loaded at initialization
 
 Sub SetTotalSlidNumber(page As Long)
     Dim shp As Shape
@@ -1304,8 +1305,6 @@ Sub SetTotalSlidNumber(page As Long)
 
 End Sub
 
-Dim edit_text As String
-Dim edit_id As String
 Sub SetPageEditBox(control As IRibbonControl, ByRef text)
     edit_text = text
     edit_id = control.Id
@@ -1447,7 +1446,5 @@ End Sub
 
 
 Sub test1()
-SetTotalPageNum
-Debug.Print GetNowTotalPage
 End Sub
 

@@ -6,6 +6,8 @@ Dim margin_horizontal As Double
 Dim margin_vertical As Double
 Dim total_page As Long
 Dim ribbon As IRibbonUI
+Dim edit_text As String
+Dim edit_id As String
 
 
 
