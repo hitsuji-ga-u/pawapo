@@ -145,7 +145,10 @@ Function get_shape_by_name(shapes As Shapes, name As String) As Shape
     For Each shp In shapes
         If shp.Name = name Then
             set get_shape_by_name = shp
+            Exit Function
         End If
     Next shp
+
+    set get_shape_by_name = Nothing
 
 End Function
