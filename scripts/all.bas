@@ -57,7 +57,7 @@ Sub AddNodes()
         shpVerticsCoordinate(7) = shp.Left
         shpVerticsCoordinate(8) = shp.Top + shp.Height
 
-        ' ’†‰›‚Ì’¸“_‚ğŒvZ‚µAV‚µ‚¢’¸“_‚Æ‚µ‚Ä’Ç‰Á
+        ' ä¸­å¤®ã®é ‚ç‚¹ã‚’è¨ˆç®—ã—ã€æ–°ã—ã„é ‚ç‚¹ã¨ã—ã¦è¿½åŠ 
         For i = 1 To 4
             shp.Nodes.Insert i * 2 - 1 , msoSegmentLine, _
                 msoEditingAuto, _
@@ -132,11 +132,11 @@ Sub AlignCenterVertical()
 
     set shps = ActiveWindow.Selection.ShapeRange
 
-    ' 1‚Ì‚İ‘I‘ğ‚Ìê‡
+    ' 1ã®ã¿é¸æŠã®å ´åˆ
     If shps.Count = 1 Then
         shps.Align msoAlignMiddles, msoTrue
 
-    ' 2‚ÂˆÈã‘I‘ğ‚µ‚Ä‚¢‚éê‡
+    ' 2ã¤ä»¥ä¸Šé¸æŠã—ã¦ã„ã‚‹å ´åˆ
     Elseif shps.Count >= 2 Then
         Dim i&
 
@@ -147,9 +147,9 @@ Sub AlignCenterVertical()
 End sub
 
 Sub AlignCenterHorizontal()
-    ' 1‚Â‚ß‚É‘I‘ğ‚µ‚½}Œ`‚Ì’†‰›‚É‡‚í‚¹‚é@¶‰E’†‰›
+    ' 1ã¤ã‚ã«é¸æŠã—ãŸå›³å½¢ã®ä¸­å¤®ã«åˆã‚ã›ã‚‹ã€€å·¦å³ä¸­å¤®
 
-    ' }Œ`‚ğ‘I‘ğ‚µ‚Ä‚È‚¯‚ê‚ÎI‚í‚è
+    ' å›³å½¢ã‚’é¸æŠã—ã¦ãªã‘ã‚Œã°çµ‚ã‚ã‚Š
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
@@ -158,11 +158,11 @@ Sub AlignCenterHorizontal()
 
     set shps = ActiveWindow.Selection.ShapeRange
 
-    ' 1‚Ì‚İ‘I‘ğ‚Ìê‡
+    ' 1ã®ã¿é¸æŠã®å ´åˆ
     If shps.Count = 1 Then
         shps.Align msoAlignCenters, msoTrue
 
-    ' 2‚ÂˆÈã‘I‘ğ‚µ‚Ä‚¢‚éê‡
+    ' 2ã¤ä»¥ä¸Šé¸æŠã—ã¦ã„ã‚‹å ´åˆ
     Elseif shps.Count >= 2 Then
         Dim i&
 
@@ -283,7 +283,7 @@ End Sub
 
 
 
-' }Œ`‚Ì“h‚è‚Â‚Ô‚µFA˜gü‚ÌFAƒtƒHƒ“ƒg‚ÌF‚ğ•Ï‚¦‚é > > > >> > > > >> > > > >> > > >
+' å›³å½¢ã®å¡—ã‚Šã¤ã¶ã—è‰²ã€æ ç·šã®è‰²ã€ãƒ•ã‚©ãƒ³ãƒˆã®è‰²ã‚’å¤‰ãˆã‚‹ > > > >> > > > >> > > > >> > > >
 
 Sub ChangeTextColorLight1()
     ChangeTextColor msoThemeColorLight1
@@ -479,7 +479,7 @@ Sub ClipPath()
 End Sub
 
 
-' }Œ`ŠÔ‚Ì‹——£‚ğƒRƒs[Aƒy[ƒXƒg > > > > >> > > > >> > > >> > > >> > > >> > > >> > >> 
+' å›³å½¢é–“ã®è·é›¢ã‚’ã‚³ãƒ”ãƒ¼ã€ãƒšãƒ¼ã‚¹ãƒˆ > > > > >> > > > >> > > >> > > >> > > >> > > >> > >> 
 Sub CopyShapeDistances()
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
 
@@ -515,7 +515,7 @@ End Sub
 
 
 
-' }Œ`ŠÔ‚Ì‹——£ƒy[ƒXƒg Y•ûŒü > > > > >> > > > >> > 
+' å›³å½¢é–“ã®è·é›¢ãƒšãƒ¼ã‚¹ãƒˆ Yæ–¹å‘ > > > > >> > > > >> > 
 
 Sub PasteShpaeDistancesX()
 
@@ -548,9 +548,9 @@ Sub PasteShpaeDistancesY()
     Next i
 
 End Sub
-' }Œ`‚ÌˆÊ’uƒRƒs[ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' å›³å½¢ã®ä½ç½®ã‚³ãƒ”ãƒ¼ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub CopyShapesPos()
-    ' }Œ`‚ÌˆÊ’u‚ğŠi”[‚·‚é
+    ' å›³å½¢ã®ä½ç½®ã‚’æ ¼ç´ã™ã‚‹
 
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
@@ -560,7 +560,7 @@ Sub CopyShapesPos()
     Dim i As Long
 
     Set selectedShapes = ActiveWindow.Selection.ShapeRange
-    ReDim shapePositions(1 To selectedShapes.Count, 1 To 2) ' 2ŸŒ³”z—ñ (x, y)
+    ReDim shapePositions(1 To selectedShapes.Count, 1 To 2) ' 2æ¬¡å…ƒé…åˆ— (x, y)
 
     For i = 1 To selectedShapes.Count
         shapePositions(i, 1) = selectedShapes(i).left
@@ -569,14 +569,14 @@ Sub CopyShapesPos()
 End Sub
 
 Sub PasteShapesAbsolutely()
-    ' ‘I‘ğ‚µ‚½}Œ`‚ğƒRƒs[‚µ‚Ä‚ ‚éˆÊ’u‚Éâ‘Î“I‚É‡‚í‚¹‚é
+    ' é¸æŠã—ãŸå›³å½¢ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦ã‚ã‚‹ä½ç½®ã«çµ¶å¯¾çš„ã«åˆã‚ã›ã‚‹
 
-    ' ˆÊ’uƒRƒs[‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
+    ' ä½ç½®ã‚³ãƒ”ãƒ¼ã•ã‚Œã¦ãªã‘ã‚Œã°çµ‚äº†
     If isArrayEmpty(shapePositions) Then
         Exit Sub
     End If
 
-    ' }Œ`‘I‘ğ‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
+    ' å›³å½¢é¸æŠã•ã‚Œã¦ãªã‘ã‚Œã°çµ‚äº†
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
@@ -584,10 +584,10 @@ Sub PasteShapesAbsolutely()
     Dim i&
     Dim selectedShpsNum As Integer
 
-    ' ‘I‘ğ‚³‚ê‚½}Œ`‚Ì”‚ğæ“¾
+    ' é¸æŠã•ã‚ŒãŸå›³å½¢ã®æ•°ã‚’å–å¾—
     selectedShpsNum = ActiveWindow.Selection.ShapeRange.Count
 
-    ' min(}Œ`‚Ì‘I‘ğ”, ƒRƒs[‚µ‚Ä‚ ‚é}Œ`‚ÌˆÊ’u”)ŒÂ‚Ì}Œ`‚ğ’²®‚·‚éB
+    ' min(å›³å½¢ã®é¸æŠæ•°, ã‚³ãƒ”ãƒ¼ã—ã¦ã‚ã‚‹å›³å½¢ã®ä½ç½®æ•°)å€‹ã®å›³å½¢ã‚’èª¿æ•´ã™ã‚‹ã€‚
     For i = 1 To IIf(UBound(shapePositions) < selectedShpsNum, UBound(shapePositions), selectedShpsNum)
         With ActiveWindow.Selection.ShapeRange(i)
             .left = shapePositions(i, 1)
@@ -597,24 +597,24 @@ Sub PasteShapesAbsolutely()
 End Sub
 
 Sub PasteShapesRelatively()
-    ' ‘I‘ğ‚µ‚½}Œ`‚ğƒRƒs[‚µ‚Ä‚ ‚éˆÊ’u‚É‘Š‘Î“I‚É‡‚í‚¹‚é
+    ' é¸æŠã—ãŸå›³å½¢ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦ã‚ã‚‹ä½ç½®ã«ç›¸å¯¾çš„ã«åˆã‚ã›ã‚‹
 
-    ' ˆÊ’uƒRƒs[‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
+    ' ä½ç½®ã‚³ãƒ”ãƒ¼ã•ã‚Œã¦ãªã‘ã‚Œã°çµ‚äº†
     If isArrayEmpty(shapePositions) Then
         Exit Sub
     End If
 
-    ' }Œ`‘I‘ğ‚³‚ê‚Ä‚È‚¯‚ê‚ÎI—¹
+    ' å›³å½¢é¸æŠã•ã‚Œã¦ãªã‘ã‚Œã°çµ‚äº†
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
 
-    ' ˆÊ’uƒRƒs[”‚ª2ˆÈã‚È‚¯‚ê‚ÎI—¹
+    ' ä½ç½®ã‚³ãƒ”ãƒ¼æ•°ãŒ2ä»¥ä¸Šãªã‘ã‚Œã°çµ‚äº†
     If UBound(shapePositions) - LBound(shapePositions) + 1 < 2 Then
         Exit Sub
     End If
 
-    ' }Œ`“ñ‚ÂˆÈã‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎI—¹
+    ' å›³å½¢äºŒã¤ä»¥ä¸Šé¸æŠã•ã‚Œã¦ã„ãªã‘ã‚Œã°çµ‚äº†
     If ActiveWindow.Selection.ShapeRange.Count < 2 Then
         Exit Sub
     End If
@@ -622,10 +622,10 @@ Sub PasteShapesRelatively()
 
     Dim selectedShpsNum As Integer
 
-    ' ‘I‘ğ‚³‚ê‚½}Œ`‚Ì”‚ğæ“¾
+    ' é¸æŠã•ã‚ŒãŸå›³å½¢ã®æ•°ã‚’å–å¾—
     selectedShpsNum = ActiveWindow.Selection.ShapeRange.Count
 
-    ' min(}Œ`‚Ì‘I‘ğ”, ƒRƒs[‚µ‚Ä‚ ‚é}Œ`‚ÌˆÊ’u”)ŒÂ‚Ì}Œ`‚ğ’²®‚·‚éB
+    ' min(å›³å½¢ã®é¸æŠæ•°, ã‚³ãƒ”ãƒ¼ã—ã¦ã‚ã‚‹å›³å½¢ã®ä½ç½®æ•°)å€‹ã®å›³å½¢ã‚’èª¿æ•´ã™ã‚‹ã€‚
     For i = 2 To IIf(UBound(shapePositions) < selectedShpsNum, UBound(shapePositions), selectedShpsNum)
         With ActiveWindow.Selection
             .ShapeRange(i).left = .ShapeRange(1).left + shapePositions(i, 1) - shapePositions(1, 1)
@@ -650,12 +650,12 @@ Sub DeleteAndPasteShape()
 
 End Sub
 Sub DisableTextWrap()
-    ' }Œ`“à‚Å‰üs‚µ‚È‚¢‚Éƒ`ƒFƒbƒN‚µ‚½ƒeƒLƒXƒgƒ{ƒbƒNƒX‚ğ‘}“ü‚·‚é
-    ' ‚ ‚é‚¢‚ÍA‘I‘ğ‚µ‚½}Œ`‚Ì}Œ`“à‚Å‰üs‚ğ‚µ‚È‚¢‚Éƒ`ƒFƒbƒN‚ğ‚¢‚ê‚é
+    ' å›³å½¢å†…ã§æ”¹è¡Œã—ãªã„ã«ãƒã‚§ãƒƒã‚¯ã—ãŸãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‚’æŒ¿å…¥ã™ã‚‹
+    ' ã‚ã‚‹ã„ã¯ã€é¸æŠã—ãŸå›³å½¢ã®å›³å½¢å†…ã§æ”¹è¡Œã‚’ã—ãªã„ã«ãƒã‚§ãƒƒã‚¯ã‚’ã„ã‚Œã‚‹
 
     On Error GoTo ErrorHandler
 
-    ' ‰½‚à‘I‘ğ‚µ‚Ä‚È‚¢ê‡
+    ' ä½•ã‚‚é¸æŠã—ã¦ãªã„å ´åˆ
     If ActiveWindow.Selection.Type = ppSelectionNone Or ActiveWindow.Selection.Type = ppSelectionSlides Then
         Dim textbox As Shape
 
@@ -1066,7 +1066,7 @@ End Sub
 ' libs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ' insertion sort 
 Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
-    ' Double‚Ì”z—ñvars‚Ì¸‡‚ÅAindexes‚ğ•À‚×‘Ö‚¦‚éB
+    ' Doubleã®é…åˆ—varsã®æ˜‡é †ã§ã€indexesã‚’ä¸¦ã¹æ›¿ãˆã‚‹ã€‚
     Dim i&
     Dim j&
     Dim currentValue#
@@ -1076,7 +1076,7 @@ Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
         currentValue = vals(i)
         j = i - 1
         tmpIndex = indexes(i)
-        ' “KØ‚ÈˆÊ’u‚É—v‘f‚ğ‘}“ü‚·‚é
+        ' é©åˆ‡ãªä½ç½®ã«è¦ç´ ã‚’æŒ¿å…¥ã™ã‚‹
         Do While j >= LBound(vals)
             If vals(j) > currentValue Then
                 vals(j + 1) = vals(j)
@@ -1364,15 +1364,15 @@ Function GetNowTotalPage() As Long
     GetNowTotalPage = page_num
 End Function
 
-' •\‚Ì•‚ğ•¶š‚É‡‚í‚¹‚é       >>>> > > > > >> > > > > > > >> > > > >> > > >> > > >> >
+' è¡¨ã®å¹…ã‚’æ–‡å­—ã«åˆã‚ã›ã‚‹       >>>> > > > > >> > > > > > > >> > > > >> > > >> > > >> >
 Sub TableWidthAutoFit()
 
     If ActiveWindow.Selection.Type = ppSelectionNone Then Exit Sub
     If ActiveWindow.Selection.Type = ppSelectionSlides Then Exit Sub
     If not ActiveWindow.Selection.ShapeRange(1).Type = msoTable Then Exit Sub
     
-    ' ƒeƒLƒXƒgƒ{ƒbƒNƒX‚ğg‚Á‚Ä•¶šƒTƒCƒY‚ğ‚Í‚©‚éB
-    ' ƒeƒLƒXƒgAƒtƒHƒ“ƒgA•¶šƒTƒCƒYA‚ğ‡‚í‚¹‚éB
+    ' ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‚’ä½¿ã£ã¦æ–‡å­—ã‚µã‚¤ã‚ºã‚’ã¯ã‹ã‚‹ã€‚
+    ' ãƒ†ã‚­ã‚¹ãƒˆã€ãƒ•ã‚©ãƒ³ãƒˆã€æ–‡å­—ã‚µã‚¤ã‚ºã€ã‚’åˆã‚ã›ã‚‹ã€‚
     Dim i_col&, i_row&
 
     Dim table As table
@@ -1449,8 +1449,28 @@ End Sub
 
 
 Sub test1()
-End Sub
+    Dim lay As CustomLayout
+    Dim shp As shape
 
+    For Each lay In ActivePresentation.SlideMaster.CustomLayouts
+        If lay.name = "ã‚¿ã‚¤ãƒˆãƒ«ã®ã¿" Then
+            Debug.Print "lay: "; lay.name
+
+            For Each shp In lay.shapes
+                Debug.Print shp.name
+          Next shp
+
+        End If
+    Next lay
+
+
+    Dim title As shape
+    For Each lay In ActivePresentation.SlideMaster.CustomLayouts
+        Set title = get_shape_by_name(lay.shapes, "Placeholder 1")
+        If title Is Nothing Then Exit Sub
+    Next lay
+End Sub
+    
 ' tuggle title alignment >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub TuggleTitleAlignment()
     Dim s As slide
@@ -1462,10 +1482,9 @@ Sub TuggleTitleAlignment()
 
     For Each s In ActivePresentation.Slides
         Set title = get_shape_by_name(s.shapes, "Title 1")
-        Debug.Print "a"
+
         If title Is Nothing Then GoTo continue
 
-        Debug.Print dst_alignment
         If Not determined_flg Then
             If Not title.TextFrame.TextRange.ParagraphFormat.Alignment = ppAlignLeft Then
                 dst_alignment = ppAlignLeft
@@ -1474,9 +1493,21 @@ Sub TuggleTitleAlignment()
             End If
             determined_flg = True
         End If
-        Debug.Print dst_alignment
         title.TextFrame.TextRange.ParagraphFormat.Alignment = dst_alignment
+
 continue:
     Next s
+
+
+    Dim lay As CustomLayout
+    For Each lay In ActivePresentation.SlideMaster.CustomLayouts
+        If lay.name = "ã‚¿ã‚¤ãƒˆãƒ«ã®ã¿" Then
+            Set title = get_shape_by_name(lay.shapes, "ã‚¿ã‚¤ãƒˆãƒ« ãƒ—ãƒ¬ãƒ¼ã‚¹ãƒ›ãƒ«ãƒ€ãƒ¼ 1")
+            If Not title Is Nothing Then
+                title.TextFrame.TextRange.ParagraphFormat.Alignment = dst_alignment
+            End If 
+        End If
+    next lay
+
 End Sub
 

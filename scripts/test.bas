@@ -35,4 +35,25 @@ End Sub
 
 
 Sub test1()
+    Dim lay As CustomLayout
+    Dim shp As shape
+
+    For Each lay In ActivePresentation.SlideMaster.CustomLayouts
+        If lay.name = "タイトルのみ" Then
+            Debug.Print "lay: "; lay.name
+
+            For Each shp In lay.shapes
+                Debug.Print shp.name
+          Next shp
+
+        End If
+    Next lay
+
+
+    Dim title As shape
+    For Each lay In ActivePresentation.SlideMaster.CustomLayouts
+        Set title = get_shape_by_name(lay.shapes, "Placeholder 1")
+        If title Is Nothing Then Exit Sub
+    Next lay
 End Sub
+    

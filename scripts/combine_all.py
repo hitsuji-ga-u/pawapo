@@ -13,10 +13,10 @@ def main():
     script_files = sorted([f for f in cd.iterdir() if re.match(target_pattern, f.name)])
 
     head_text = ''
-    with open('init.bas', 'r') as f:
+    with open('init.bas', 'r', encoding='utf-8') as f:
         head_text = f.read()
 
-    with open(combined_bas.name, 'a') as f:
+    with open(combined_bas.name, 'a', encoding='utf-8') as f:
         f.write(head_text)
         for file in script_files:
             print(file.name)

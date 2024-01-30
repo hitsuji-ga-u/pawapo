@@ -9,10 +9,9 @@ Sub TuggleTitleAlignment()
 
     For Each s In ActivePresentation.Slides
         Set title = get_shape_by_name(s.shapes, "Title 1")
-        Debug.Print "a"
+
         If title Is Nothing Then GoTo continue
 
-        Debug.Print dst_alignment
         If Not determined_flg Then
             If Not title.TextFrame.TextRange.ParagraphFormat.Alignment = ppAlignLeft Then
                 dst_alignment = ppAlignLeft
@@ -21,8 +20,20 @@ Sub TuggleTitleAlignment()
             End If
             determined_flg = True
         End If
-        Debug.Print dst_alignment
         title.TextFrame.TextRange.ParagraphFormat.Alignment = dst_alignment
+
 continue:
     Next s
+
+
+    Dim lay As CustomLayout
+    For Each lay In ActivePresentation.SlideMaster.CustomLayouts
+        If lay.name = "タイトルのみ" Then
+            Set title = get_shape_by_name(lay.shapes, "タイトル プレースホルダー 1")
+            If Not title Is Nothing Then
+                title.TextFrame.TextRange.ParagraphFormat.Alignment = dst_alignment
+            End If 
+        End If
+    next lay
+
 End Sub
