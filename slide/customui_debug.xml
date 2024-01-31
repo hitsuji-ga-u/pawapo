@@ -150,7 +150,8 @@
 
           <!-- page -->
           <editBox id="total_page" label="page" sizeString="100" getText="SetPageEditBox" onChange="RefleshTotalPageNum" />
-          <button id="set_total_page_num" imageMso="HappyFace" onAction="SetTotalPageNum" />
+          <button id="set_total_page_num" imageMso="GroupPlaceholdersNotesMaster" label="write total page num" onAction="SetTotalPageNum" showLabel="false" />
+          <button id="add_title_index" imageMso="ShadowOnOrOffClassic" label="add title index like (*/*)" onAction="TitleIndex" showLabel="false" />
 
           <menu id="color_palette" imageMso="HappyFace">
             <button id="tmp1" imageMso="HappyFace" />
