@@ -31,12 +31,19 @@ Sub TitleIndex()
                     End If
                 Else
                 ' 同じタイトルの終了
-                    If title_txt <> title_txt_pre Or sld.SlideIndex = ActivePresentation.Slides.Count Then
+                    If title_txt <> title_txt_pre Then
                         For i = start_sld To sld.SlideIndex - 1
                             get_shape_by_name(ActivePresentation.Slides(i).shapes, "Title 1").TextFrame.TextRange.InsertAfter (" (" & CStr(i - start_sld + 1) & "/" & CStr(sld.SlideIndex - start_sld) & ")")
                         Next
                         bl_multiple = False
                     End If
+                End If
+
+                If sld.SlideIndex = ActivePresentation.Slides.Count Then
+                    For i = start_sld To ActivePresentation.Slides.Count
+                        get_shape_by_name(ActivePresentation.Slides(i).shapes, "Title 1").TextFrame.TextRange.InsertAfter (" (" & CStr(i - start_sld + 1) & "/" & CStr(sld.SlideIndex - start_sld + 1) & ")")
+                    Next
+                    bl_multiple = False
                 End If
             Else
             ' タイトルが空白はタイトル終了と同値
