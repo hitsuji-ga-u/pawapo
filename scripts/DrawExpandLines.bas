@@ -70,7 +70,7 @@ SUb DrawExpandLines()
     shp2.Fill.Visible = msoFalse
     shp1.line.Weight = 2.25
     shp2.line.Weight = 2.25
-    with shp2.Shadow
+    with shp1.Shadow
         .Visible = msoTrue
         .Style = msoShadowStyleOuterShadow
         .Blur = 4
