@@ -16,7 +16,10 @@ Sub InitCustomTab(rib As IRibbonUI)
     ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01
     margin_horizontal = 0
     margin_vertical = 0
+
+    ' ページ設定 初期化
     total_page = GetNowTotalPage
+    edit_id = "total_page"
 
     Set ribbon = rib
 End Sub

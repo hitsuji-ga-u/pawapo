@@ -19,7 +19,6 @@ End Sub
 
 Sub SetPageEditBox(control As IRibbonControl, ByRef text)
     edit_text = text
-    edit_id = control.Id
     text = CStr(total_page)
 End Sub
 
