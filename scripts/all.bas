@@ -1514,11 +1514,13 @@ Sub TitleIndex()
                     End If
                 End If
 
-                If sld.SlideIndex = ActivePresentation.Slides.Count Then
-                    For i = start_sld To ActivePresentation.Slides.Count
-                        get_shape_by_name(ActivePresentation.Slides(i).shapes, "Title 1").TextFrame.TextRange.InsertAfter (" (" & CStr(i - start_sld + 1) & "/" & CStr(sld.SlideIndex - start_sld + 1) & ")")
-                    Next
-                    bl_multiple = False
+               If sld.SlideIndex = ActivePresentation.Slides.Count Then
+                    If bl_multiple Then
+                        For i = start_sld To ActivePresentation.Slides.Count
+                            get_shape_by_name(ActivePresentation.Slides(i).shapes, "Title 1").TextFrame.TextRange.InsertAfter (" (" & CStr(i - start_sld + 1) & "/" & CStr(sld.SlideIndex - start_sld + 1) & ")")
+                        Next
+                        bl_multiple = False
+                    End If
                 End If
             Else
             ' タイトルが空白はタイトル終了と同値
