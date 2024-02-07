@@ -7,7 +7,6 @@ Dim margin_vertical As Double
 Dim total_page As Long
 Dim ribbon As IRibbonUI
 Dim edit_text As String
-Dim edit_id As String
 
 
 
@@ -19,7 +18,6 @@ Sub InitCustomTab(rib As IRibbonUI)
 
     ' ページ設定 初期化
     total_page = GetNowTotalPage
-    edit_id = "total_page"
 
     Set ribbon = rib
 End Sub
@@ -1293,7 +1291,7 @@ Sub PaintGradation()
 End Sub
 
 ' setting total page. need to add a shape named "total_page" to Slidemaster
-' total_page, edit_text and edit_id are loaded at initialization
+' total_page and edit_text are loaded at initialization
 
 Sub SetTotalSlidNumber(page As Long)
     Dim shp As Shape
@@ -1321,7 +1319,7 @@ Sub SetTotalPageNum(control As IRibbonControl)
     total_page = ActivePresentation.Slides.Count - 1
     SetTotalSlidNumber total_page
     edit_text = CStr(total_page)
-    ribbon.InvalidateControl(edit_id)
+    ribbon.InvalidateControl("total_page")
 End Sub
 
 Sub RefleshTotalPageNum(control As IRibbonControl, ByRef text)

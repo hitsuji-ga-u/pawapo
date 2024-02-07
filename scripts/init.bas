@@ -7,7 +7,6 @@ Dim margin_vertical As Double
 Dim total_page As Long
 Dim ribbon As IRibbonUI
 Dim edit_text As String
-Dim edit_id As String
 
 
 
@@ -19,7 +18,6 @@ Sub InitCustomTab(rib As IRibbonUI)
 
     ' ページ設定 初期化
     total_page = GetNowTotalPage
-    edit_id = "total_page"
 
     Set ribbon = rib
 End Sub
