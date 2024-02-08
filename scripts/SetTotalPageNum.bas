@@ -34,7 +34,7 @@ Sub RefleshTotalPageNum(control As IRibbonControl, ByRef text)
     ' if input not numerical value, undo.
     if not isnumeric(text) Then
         text = CStr(total_page)
-        ribbon.InvalidateControl(control.Id)
+        ribbon.InvalidateControl("total_page")
         Exit Sub
     End If
 

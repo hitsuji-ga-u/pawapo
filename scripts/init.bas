@@ -13,6 +13,7 @@ Dim edit_text As String
 Sub InitCustomTab(rib As IRibbonUI)
     ShapeDistanceX = ActivePresentation.PageSetup.SlideWidth * 0.05
     ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01
+
     margin_horizontal = 0
     margin_vertical = 0
 
