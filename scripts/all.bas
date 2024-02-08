@@ -719,6 +719,7 @@ SUb DrawExpandLines()
     end if
     if shp2.type = msoPicture then
         Set shp2 = activewindow.view.slide.Shapes.AddShape(msoShapeRectangle, shp2.left, shp2.Top, shp2.Width, shp2.Height)
+        shp2.Line.ForeColor.RGB = shp1.Line.ForeColor.RGB
     end if
     shp1.select
     shp2.select msoFalse
@@ -760,9 +761,7 @@ SUb DrawExpandLines()
 
     ' set format
     shp1.Fill.Visible = msoFalse
-    shp2.Fill.Visible = msoFalse
     shp1.line.Weight = 2.25
-    shp2.line.Weight = 2.25
     with shp1.Shadow
         .Visible = msoTrue
         .Style = msoShadowStyleOuterShadow
@@ -771,6 +770,10 @@ SUb DrawExpandLines()
         .OffsetX = 2.121319152764454 ' x-offset
         .OffsetY = 2.121319152764454 ' y-offset
     end with
+
+    shp2.Fill.Visible = msoFalse
+    shp2.line.Weight = 2.25
+    shp2.Shadow.Visible = msoFalse
 
     ' add nodes
     AddNodes
