@@ -1,6 +1,6 @@
 ' Align Center >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 Sub AlignCenterVertical()
-    ' vertically align the centers of selected shapes with the first shape.
+    ' vertically align the centers of selected shapes with the last shape.
 
     ' no selecting
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
@@ -11,24 +11,24 @@ Sub AlignCenterVertical()
 
     set shps = ActiveWindow.Selection.ShapeRange
 
-    ' 1のみ選択の場合
+    ' if selected only 1 shape, align the center of the shape to the center of the slide
     If shps.Count = 1 Then
         shps.Align msoAlignMiddles, msoTrue
 
-    ' 2つ以上選択している場合
+    ' if selected more than 1 shape, align the centers of the shapes to the center of the last shape
     Elseif shps.Count >= 2 Then
         Dim i&
 
-        for i = 2 To shps.Count
-            shps(i).Top = shps(1).Top + shps(1).Height/2 - shps(i).Height / 2
+        for i = 1 To shps.Count - 1
+            shps(i).Top = shps(shps.Count).Top + shps(shps.Count).Height/2 - shps(i).Height / 2
         next i
     end If
 End sub
 
 Sub AlignCenterHorizontal()
-    ' 1つめに選択した図形の中央に合わせる　左右中央
+    ' horizontally align the centers of selected shapes with the last shape.
 
-    ' 図形を選択してなければ終わり
+    ' no selecting
     If Not ActiveWindow.Selection.Type = ppSelectionShapes Then
         Exit Sub
     End If
@@ -37,16 +37,16 @@ Sub AlignCenterHorizontal()
 
     set shps = ActiveWindow.Selection.ShapeRange
 
-    ' 1のみ選択の場合
+    ' if selected only 1 shape, align the center of the shape to the center of the slide
     If shps.Count = 1 Then
         shps.Align msoAlignCenters, msoTrue
 
-    ' 2つ以上選択している場合
+    ' if selected more than 1 shape, align the centers of the shapes to the center of the last shape
     Elseif shps.Count >= 2 Then
         Dim i&
 
-        for i = 2 To shps.Count
-            shps(i).Left = shps(1).Left + shps(1).Width/2 - shps(i).Width / 2
+        for i = 1 To shps.Count - 1
+            shps(i).Left = shps(shps.Count).Left + shps(shps.Count).Width/2 - shps(i).Width / 2
         next i
     end If
 End sub
