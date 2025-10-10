@@ -4,6 +4,8 @@ Dim ShapeDistanceX As Double
 Dim ShapeDistanceY As Double
 Dim margin_horizontal As Double
 Dim margin_vertical As Double
+Dim interval_horizontal As Double
+Dim interval_vertical As Double
 Dim total_page As Long
 Dim ribbon As IRibbonUI
 Dim edit_text As String
@@ -16,6 +18,9 @@ Sub InitCustomTab(rib As IRibbonUI)
 
     margin_horizontal = 0
     margin_vertical = 0
+
+    interval_horizontal = 0
+    interval_vertical = 0
 
     ' ページ設定 初期化
     total_page = GetNowTotalPage
@@ -207,78 +212,6 @@ Sub ObjectsAlignBottomRight()
     If not activewindow.selection.type = ppSelectionShapes then exit sub
     CommandBars.ExecuteMso "ObjectsAlignRightSmart"
     CommandBars.ExecuteMso "ObjectsAlignBottomSmart"
-End Sub
-
-
-' align shapes with no gaps between each other  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-Sub AlignShapesHorizontalStick()
-    '  horizontaly align shapes with no gaps between each other
-
-    ' only when selecting more than 1 shape
-    If ActiveWindow.Selection.Type = ppSelectionShapes Then
-        Dim numShapes%
-
-            numShapes = ActiveWindow.Selection.ShapeRange.Count
-
-        If numShapes >= 2 Then
-            Dim shp1, shp2 As Shape
-            Dim i%
-            Dim lefts() As Double
-            Dim indexes() As Integer
-            ReDim lefts(1 To numShapes)
-            ReDim indexes(1 To numShapes)
-
-            For i = 1 To numShapes
-                lefts(i) = ActiveWindow.Selection.ShapeRange(i).left
-                indexes(i) = i
-            Next i
-
-            InsertionSortIndex lefts, indexes
-
-            For i = 1 To numShapes - 1
-
-                Set shp1 = ActiveWindow.Selection.ShapeRange(indexes(i))
-                Set shp2 = ActiveWindow.Selection.ShapeRange(indexes(i + 1))
-
-                shp2.left = shp1.left + shp1.Width
-            Next i
-
-        End If
-    End If
-End Sub
-
-Sub AlignShapesVerticalStick()
-    ' verticaly align shapes with no gaps between each other
- 
-    ' only when selecting more than 1 shape
-    If ActiveWindow.Selection.Type = ppSelectionShapes Then
-        Dim numShapes%
-
-            numShapes = ActiveWindow.Selection.ShapeRange.Count
-
-        If numShapes >= 2 Then
-            Dim shp1, shp2 As Shape
-            Dim i%
-            Dim tops() As Double
-            Dim indexes() As Integer
-            ReDim tops(1 To numShapes)
-            ReDim indexes(1 To numShapes)
-                        For i = 1 To numShapes
-                tops(i) = ActiveWindow.Selection.ShapeRange(i).Top
-                indexes(i) = i
-            Next i
-
-            InsertionSortIndex tops, indexes
-
-            For i = 1 To numShapes - 1
-
-                Set shp1 = ActiveWindow.Selection.ShapeRange(indexes(i))
-                Set shp2 = ActiveWindow.Selection.ShapeRange(indexes(i + 1))
-
-                shp2.Top = shp1.Top + shp1.Height
-            Next i
-        End If
-    End If
 End Sub
 
 
@@ -1140,33 +1073,74 @@ Sub AddTextbox()
     textbox.textframe.TextRange.Font.Size = 16
 End Sub
 ' libs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-' insertion sort 
-Sub InsertionSortIndex(vals() As Double, indexes() As Integer)
-    ' Doubleの配列varsの昇順で、indexesを並べ替える。
-    Dim i&
-    Dim j&
-    Dim currentValue#
-    Dim tmpIndex%
+' quick sort
+' arrとして渡した配列を昇順にしたときのidxを受取る。
+' [2 3 1] -> [3 1 2]を返す。
+' 受ける配列はLong型にすること。
+Function GetSortedIndexes(arr() As Double) As Long()
+    Dim idx() As Long
+    Dim n As Long, i As Long
+    
+    n = UBound(arr) - LBound(arr) + 1
+    ReDim idx(LBound(arr) To UBound(arr))
+    
+    ' 元のインデックスを初期化
+    For i = LBound(arr) To UBound(arr)
+        idx(i) = i
+    Next i
+    
+    ' ソート実行
+    QuickSortCore arr, idx, LBound(arr), UBound(arr)
+    
+    GetSortedIndexes = idx
+End Function
 
-     For i = LBound(vals) + 1 To UBound(vals)
-        currentValue = vals(i)
-        j = i - 1
-        tmpIndex = indexes(i)
-        ' 適切な位置に要素を挿入する
-        Do While j >= LBound(vals)
-            If vals(j) > currentValue Then
-                vals(j + 1) = vals(j)
-                indexes(j + 1) = indexes(j)
-
-            Else
-                Exit Do
-            End If
+Private Sub QuickSortCore(arr() As Double, idx() As Long, ByVal first As Long, ByVal last As Long)
+    Dim i As Long, j As Long
+    Dim pivot As Double
+    Dim tmpD As Double, tmpI As Long
+    
+    i = first
+    j = last
+    pivot = (arr(first) + arr(last)) / 2   ' ピボットを両端の平均にする
+    
+    Do While i <= j
+        Do While arr(i) < pivot
+            i = i + 1
+        Loop
+        Do While arr(j) > pivot
             j = j - 1
         Loop
-        vals(j + 1) = currentValue
-        indexes(j + 1) = tmpIndex
-    Next i
+        If i <= j Then
+            ' 値の交換
+            tmpD = arr(i)
+            arr(i) = arr(j)
+            arr(j) = tmpD
+            ' インデックスの交換
+            tmpI = idx(i)
+            idx(i) = idx(j)
+            idx(j) = tmpI
+            i = i + 1
+            j = j - 1
+        End If
+    Loop
+    
+    If first < j Then QuickSortCore arr, idx, first, j
+    If i < last Then QuickSortCore arr, idx, i, last
 End Sub
+
+' find the index of the value in the array
+Function FindIndex(arr() as Long, value) As Long
+    Dim i As Long
+    For i = LBound(arr) To UBound(arr)
+        If arr(i) = value Then
+            FindIndex = i
+            Exit Function
+        End If
+    Next i
+
+    FindIndex = -1
+End Function
 
 
 Function isArrayEmpty(arr_var As Variant)
@@ -1185,38 +1159,53 @@ End Function
 
 
 Function GetShapeConers(shp As shape) As Variant
-    ' example:
-    ' Dim vertices() as Long
-    ' vertices = GetShapeConers(shp)
-    ' For i = 0 To 3
-    '     j = (i + 1) Mod 4
-    '     shp1a(0) = vertices(i, 0)
-    '     shp1a(1) = vertices(i, 1)
-    '     shp1b(0) = vertices(j, 0)
-    '     shp1b(1) = vertices(j, 1)
+    ' 図形の4つの頂点座標を取得する
+    ' ((left,       top),
+    '  (left+width, top),
+    '  (left+width, top+height),
+    '  (left,       top+height))
+    
+    ' Args:
+    '   shp (Shape): 頂点座標を取得する図形オブジェクト
+    '
+    ' Returns:
+    '   Variant: 4頂点の座標を格納した2次元配列 (4x2)
+    '           vertices(i,0): i番目の頂点のx座標
+    '           vertices(i,1): i番目の頂点のy座標
+    '
+    ' Example:
+    '   Dim vertices() As Long
+    '   vertices = GetShapeConers(shp)
+    '   For i = 0 To 3
+    '       j = (i + 1) Mod 4
+    '       shp1a(0) = vertices(i, 0) ' i番目の頂点のx座標
+    '       shp1a(1) = vertices(i, 1) ' i番目の頂点のy座標
+    '       shp1b(0) = vertices(j, 0) ' 次の頂点のx座標 
+    '       shp1b(1) = vertices(j, 1) ' 次の頂点のy座標
+
 
     Dim vertices_0(3, 1) As Double
     Dim vertices(3, 1) As Double
-    Dim Cx#, Cy#, s#, c#
+    Dim center_x#, center_y#, s#, c#
     Dim i%
 
-    Cx = CDbl(shp.left) + CDbl(shp.Width) / 2
-    Cy = CDbl(shp.Top) + CDbl(shp.Height) / 2
+    center_x = CDbl(shp.left) + CDbl(shp.Width) / 2
+    center_y = CDbl(shp.Top) + CDbl(shp.Height) / 2
     s = Sin(CDbl(shp.Rotation) * 3.14159265358979 / 180)
     c = Cos(CDbl(shp.Rotation) * 3.14159265358979 / 180)
 
-    vertices_0(0, 0) = shp.left - Cx
-    vertices_0(0, 1) = shp.Top - Cy
-    vertices_0(1, 0) = shp.left + shp.Width - Cx
-    vertices_0(1, 1) = shp.Top - Cy
-    vertices_0(2, 0) = shp.left + shp.Width - Cx
-    vertices_0(2, 1) = shp.Top + shp.Height - Cy
-    vertices_0(3, 0) = shp.left - Cx
-    vertices_0(3, 1) = shp.Top + shp.Height - Cy
+    vertices_0(0, 0) = shp.left - center_x
+    vertices_0(0, 1) = shp.Top - center_y
+    vertices_0(1, 0) = shp.left + shp.Width - center_x
+    vertices_0(1, 1) = shp.Top - center_y
+    vertices_0(2, 0) = shp.left + shp.Width - center_x
+    vertices_0(2, 1) = shp.Top + shp.Height - center_y
+    vertices_0(3, 0) = shp.left - center_x
+    vertices_0(3, 1) = shp.Top + shp.Height - center_y
 
     For i = 0 To 3
-        vertices(i, 0) = vertices_0(i, 0) * c - vertices_0(i, 1) * s + Cx
-        vertices(i, 1) = (vertices_0(i, 0) * s + vertices_0(i, 1) * c) + Cy
+        vertices(i, 0) = vertices_0(i, 0) * c - vertices_0(i, 1) * s + center_x
+        vertices(i, 1) = (vertices_0(i, 0) * s + vertices_0(i, 1) * c) + center_y
     Next
 
     GetShapeConers = vertices
@@ -1293,6 +1282,34 @@ Function get_shape_by_name(shapes As Shapes, name As String) As Shape
     set get_shape_by_name = Nothing
 
 End Function
+
+Function min(ParamArray arglist()) As Double
+    Dim i As Integer
+    Dim min_val As Double
+    
+    min_val = arglist(LBound(arglist))
+    For i = LBound(arglist) + 1 To UBound(arglist)
+        If arglist(i) < min_val Then
+            min_val = arglist(i)
+        End If
+    Next i
+
+    min = min_val
+End Function
+
+Function max(ParamArray arglist()) As Double
+    Dim i As Integer
+    Dim max_val As Double
+    
+    max_val = arglist(LBound(arglist))
+    For i = LBound(arglist) + 1 To UBound(arglist)
+        If arglist(i) > max_val Then
+            max_val = arglist(i)
+        End If
+    Next i
+    max = max_val
+End Function
+
 ' margin setting of textbox >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 'margin_horizontal, margin_vertical are loaded at initialization
 
@@ -1392,6 +1409,194 @@ Sub PaintGradation()
         tgt_shp.Fill.GradientStops(1).Transparency = 1
         tgt_shp.Fill.GradientStops(2).Position = 0.9
     Next tgt_shp
+End Sub
+
+Sub GetIntervalHorizontal(control As IRibbonControl, ByRef text)
+    text = CStr(interval_horizontal)
+End Sub
+
+Sub GetIntervalVertical(control As IRibbonControl, ByRef text)
+    text = CStr(interval_vertical)
+End Sub
+
+Sub SetIntervalHorizontal(control As IRibbonControl, ByRef text As String)
+    if not isnumeric(text) Then
+        text = CStr(interval_horizontal)
+        ribbon.InvalidateControl("interval_horizontal")
+        
+        Exit Sub
+    End If
+
+    interval_horizontal = cm2pt(CDbl(text))
+End Sub
+
+Sub SetIntervalVertical(control As IRibbonControl, ByRef text As String)
+    if not isnumeric(text) Then
+        text = CStr(interval_vertical)
+        ribbon.InvalidateControl("interval_vertical")
+        Exit Sub
+    End If
+
+    interval_vertical = cm2pt(CDbl(text))
+End Sub
+
+' align shapes with no gaps between each other  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Sub SpacingShapesHorizontal()
+    '  horizontaly align shapes with no gaps between each other
+    Application.ScreenUpdating = False
+    ' only when selecting more than 1 shape
+    If ActiveWindow.Selection.Type <> ppSelectionShapes Then
+        Exit Sub
+    End If
+
+    Dim numShapes%
+
+    numShapes = ActiveWindow.Selection.ShapeRange.Count
+    If numShapes < 2 Then
+        Exit Sub
+    End If
+
+    ' 回転後の図形の位置を取得
+    Dim i As Integer
+    Dim vertices() As Double
+    Dim shps_left() As Double
+    ReDim shps_left(1 To numShapes)
+
+    For i = 1 To numShapes
+        vertices = GetShapeConers(ActiveWindow.Selection.ShapeRange(i))
+        shps_left(i) = min(vertices(0, 0), vertices(1, 0), vertices(2, 0), vertices(3, 0))
+    Next i
+
+    ' shps_leftの値で図形を並び替え]
+    Dim indexes_order() As Long
+    Dim shps_sorted() As Shape
+    ReDim shps_sorted(1 To numShapes)
+
+    indexes_order = GetSortedIndexes(shps_left)
+    For i = 1 To numShapes
+        Set shps_sorted(i) = ActiveWindow.Selection.ShapeRange(indexes_order(i))
+    Next i
+
+    ' 基準図形を取得
+    Dim idx_base As Integer
+    Dim shp_base As Shape
+
+    idx_base = FindIndex(indexes_order, numShapes)
+    Set shp_base = shps_sorted(idx_base)
+
+    ' 基準図形の左側の図形を並べる
+    Dim shp As Shape
+    Dim shp_prev As Shape
+    dim diff as double
+    dim vertices_prev() as double
+
+    if idx_base > 1 Then
+        Set shp_prev = shp_base
+        For i = idx_base-1 To 1 Step -1
+            Set shp = shps_sorted(i)
+            vertices = GetShapeConers(shp)
+            vertices_prev = GetShapeConers(shp_prev)
+            diff = min(vertices_prev(0, 0), vertices_prev(1, 0), vertices_prev(2, 0), vertices_prev(3, 0)) _
+                    - max(vertices(0, 0), vertices(1, 0), vertices(2, 0), vertices(3, 0)) - interval_horizontal
+            shp.left = shp.left  + diff
+            Set shp_prev = shp
+        Next i
+    End If
+
+    ' 基準図形の右側の図形を並べる
+    if idx_base < numShapes Then
+        Set shp_prev = shp_base
+
+        For i = idx_base+1 To numShapes
+            Set shp = shps_sorted(i)
+            vertices = GetShapeConers(shp)
+            vertices_prev = GetShapeConers(shp_prev)
+            diff = max(vertices_prev(0, 0), vertices_prev(1, 0), vertices_prev(2, 0), vertices_prev(3, 0)) _
+                    - min(vertices(0, 0), vertices(1, 0), vertices(2, 0), vertices(3, 0)) + interval_horizontal
+            shp.left = shp.left + diff
+            Set shp_prev = shp
+        Next i
+    End If
+    Application.ScreenUpdating = True
+End Sub
+
+Sub SpacingShapesVertical()
+    Application.ScreenUpdating = False
+    '  horizontaly align shapes with no gaps between each other
+
+    ' only when selecting more than 1 shape
+    If ActiveWindow.Selection.Type <> ppSelectionShapes Then
+        Exit Sub
+    End If
+
+    Dim numShapes%
+
+    numShapes = ActiveWindow.Selection.ShapeRange.Count
+    If numShapes < 2 Then
+        Exit Sub
+    End If
+
+    ' 回転後の図形の位置を取得
+    Dim i As Integer
+    Dim vertices() As Double
+    Dim shps_top() As Double
+    ReDim shps_top(1 To numShapes)
+
+    For i = 1 To numShapes
+        vertices = GetShapeConers(ActiveWindow.Selection.ShapeRange(i))
+        shps_top(i) = min(vertices(0, 1), vertices(1, 1), vertices(2, 1), vertices(3, 1))
+    Next i
+
+    ' shps_leftの値で図形を並び替え]
+    Dim indexes_order() As Long
+    Dim shps_sorted() As Shape
+    ReDim shps_sorted(1 To numShapes)
+
+    indexes_order = GetSortedIndexes(shps_top)
+    For i = 1 To numShapes
+        Set shps_sorted(i) = ActiveWindow.Selection.ShapeRange(indexes_order(i))
+    Next i
+
+    ' 基準図形を取得
+    Dim idx_base As Integer
+    Dim shp_base As Shape
+
+    idx_base = FindIndex(indexes_order, numShapes)
+    Set shp_base = shps_sorted(idx_base)
+
+    ' 基準図形の上側の図形を並べる
+    Dim shp As Shape
+    Dim shp_prev As Shape
+    dim diff as double
+    dim vertices_prev() as double
+
+    if idx_base > 1 Then
+        Set shp_prev = shp_base
+        For i = idx_base-1 To 1 Step -1
+            Set shp = shps_sorted(i)
+            vertices = GetShapeConers(shp)
+            vertices_prev = GetShapeConers(shp_prev)
+            diff = min(vertices_prev(0, 1), vertices_prev(1, 1), vertices_prev(2, 1), vertices_prev(3, 1)) _
+                    - max(vertices(0, 1), vertices(1, 1), vertices(2, 1), vertices(3, 1)) - interval_vertical
+            shp.top = shp.top  + diff
+            Set shp_prev = shp
+        Next i
+    End If
+
+    ' 基準図形の下側の図形を並べる
+    if idx_base < numShapes Then
+        Set shp_prev = shp_base
+
+        For i = idx_base+1 To numShapes
+            Set shp = shps_sorted(i)
+            vertices = GetShapeConers(shp)
+            vertices_prev = GetShapeConers(shp_prev)
+            diff = max(vertices_prev(0, 1), vertices_prev(1, 1), vertices_prev(2, 1), vertices_prev(3, 1)) _
+                    - min(vertices(0, 1), vertices(1, 1), vertices(2, 1), vertices(3, 1)) + interval_vertical
+            shp.top = shp.top + diff
+            Set shp_prev = shp
+        Next i
+    End If
 End Sub
 
 
