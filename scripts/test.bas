@@ -30,7 +30,6 @@ Sub test()
     shp1.select
     shp2.select msoFalse
 
-
 End Sub
 
 
