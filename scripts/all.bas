@@ -464,39 +464,6 @@ Sub ClipPath()
 End Sub
 
 
-' 図形間の距離をコピー、ペースト > > > > >> > > > >> > > >> > > >> > > >> > > >> > >> 
-Sub CopyShapeDistances()
-    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
-
-    If ActiveWindow.Selection.ShapeRange.Count < 2 Then Exit Sub
-    
-    Dim shp1 As Shape, shp2 As Shape
-    
-    With ActiveWindow.Selection
-        If .ShapeRange(1).Top < .ShapeRange(2).Top Then
-            Set shp1 = .ShapeRange(1)
-            Set shp2 = .ShapeRange(2)
-        Else
-            Set shp1 = .ShapeRange(2)
-            Set shp2 = .ShapeRange(1)
-        End If
-    End With
-
-    ShapeDistanceY = shp2.Top - shp1.Top - shp1.Height
-
-
-    With ActiveWindow.Selection
-        If .ShapeRange(1).left < .ShapeRange(2).left Then
-            Set shp1 = .ShapeRange(1)
-            Set shp2 = .ShapeRange(2)
-        Else
-            Set shp1 = .ShapeRange(2)
-            Set shp2 = .ShapeRange(1)
-        End If
-    End With
-    
-    ShapeDistanceX = shp2.left - shp1.left - shp1.Width
-End Sub
 
 
 
@@ -1464,11 +1431,11 @@ Sub PaintGradation()
 End Sub
 
 Sub GetIntervalHorizontal(control As IRibbonControl, ByRef text)
-    text = CStr(interval_horizontal)
+    text = CStr(pt2cm(interval_horizontal))
 End Sub
 
 Sub GetIntervalVertical(control As IRibbonControl, ByRef text)
-    text = CStr(interval_vertical)
+    text = CStr(pt2cm(interval_vertical))
 End Sub
 
 Sub SetIntervalHorizontal(control As IRibbonControl, ByRef text As String)
@@ -1649,6 +1616,45 @@ Sub SpacingShapesVertical()
     End If
 End Sub
 
+' copy distance between shapes. >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' 図形間の距離をコピー、ペースト >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Sub CopyShapeDistances()
+    If Not ActiveWindow.Selection.Type = ppSelectionShapes Then Exit Sub
+
+    If ActiveWindow.Selection.ShapeRange.Count < 2 Then Exit Sub
+    
+    Dim shp1 As Shape, shp2 As Shape
+    
+    With ActiveWindow.Selection
+        If .ShapeRange(1).Top < .ShapeRange(2).Top Then
+            Set shp1 = .ShapeRange(1)
+            Set shp2 = .ShapeRange(2)
+        Else
+            Set shp1 = .ShapeRange(2)
+            Set shp2 = .ShapeRange(1)
+        End If
+    End With
+
+    ' ShapeDistanceY = shp2.Top - shp1.Top - shp1.Height
+    interval_vertical = shp2.Top - shp1.Top - shp1.Height
+    ribbon.InvalidateControl("interval_vertical")
+
+    With ActiveWindow.Selection
+        If .ShapeRange(1).left < .ShapeRange(2).left Then
+            Set shp1 = .ShapeRange(1)
+            Set shp2 = .ShapeRange(2)
+        Else
+            Set shp1 = .ShapeRange(2)
+            Set shp2 = .ShapeRange(1)
+        End If
+    End With
+    
+    ' ShapeDistanceX = shp2.left - shp1.left - shp1.Width
+    interval_horizontal = shp2.left - shp1.left - shp1.Width
+    ribbon.InvalidateControl("interval_horizontal")
+End Sub
+
+
 
 ' 表の幅を文字に合わせる       >>>> > > > > >> > > > > > > >> > > > >> > > >> > > >> >
 Sub TableWidthAutoFit()
@@ -1730,14 +1736,6 @@ Sub test()
     shp1.select
     shp2.select msoFalse
 
-    Application.ScreenUpdating = False
-    Application.EnableEvents = False
-    
-
-    ' 設定を戻す
-    Application.EnableEvents = True
-    Application.ScreenUpdating = True
-End Sub
 End Sub
 
 
