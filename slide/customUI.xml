@@ -4,10 +4,11 @@
       <!-- <tab id="customTab" keytip="x" label="tools" insertBeforeMso="TabHome"> -->
       <tab id="customTab" keytip="x" label="tools">
 
-        <group id="customtools">
+        <!-- グループ1: 挿入 -->
+        <group id="insert_shapes" label="挿入">
           <!-- insert_shapes -->
           <!-- <toggleButton idMso="TextBoxInsertHorizontal" keytip="CC"  showLabel="false" /> -->
-          <button id="wrap_off" keytip="CC" label="insert nowrap tCextbox" imageMso="TextBoxInsert" onAction="InsertNoWrapTextBox"  showLabel="false" />
+          <button id="wrap_off" keytip="CC" label="insert nowrap textbox" imageMso="TextBoxInsert" onAction="InsertNoWrapTextBox"  showLabel="false" />
           <toggleButton idMso="ShapeRectangle" keytip="CXX"  showLabel="false" />
           <toggleButton idMso="ShapeRoundedRectangle" keytip="CXZ"  showLabel="false" />
           <toggleButton idMso="ShapeOval" keytip="CXS"  showLabel="false" />
@@ -16,17 +17,11 @@
           <toggleButton idMso="ShapeStraightConnectorArrow" keytip="CZX"  showLabel="false" />
           <toggleButton idMso="ShapeStraightConnector" keytip="CZZ"  showLabel="false" />
           <button idMso="SymbolInsert" keytip="CZC"  showLabel="false" />
+        </group>
 
-          <!-- align -->
-          <button id="AlignCenterVertical"   keytip="DSA" imageMso="ObjectsAlignMiddleVerticalSmart" onAction="AlignCenterVertical"  showLabel="false" />
-          <button id="AlignCenterHorizontal" keytip="DSZ" imageMso="ObjectsAlignCenterHorizontalSmart" onAction="AlignCenterHorizontal"  showLabel="false" />
-          <button id="AlignCenter"           keytip="DSS" image="ObjectsAlignCenter" onAction="AlignCenter"  showLabel="false" />
-
-          <editBox id="interval_horizontal"       label="LR間" sizeString="8.88" getText="GetIntervalHorizontal" onChange="SetIntervalHorizontal"/>
-          <editBox id="interval_vertical"         label="TB間" sizeString="8.88" getText="GetIntervalVertical"   onChange="SetIntervalVertical"/>
-          <button  id="CopyShapeDistances" keytip="DDE" label="copy distance of shapes" imageMso="PasteAlternative" onAction="CopyShapeDistances"  showLabel="false" />
-          <button  id="SpacingShapesHorizontal"  keytip="DSW" imageMso="ObjectsAlignDistributeHorizontallyRemove" onAction="SpacingShapesHorizontal" showLabel="false" />
-          <button  id="SpacingShapesVertical"    keytip="DSE" imageMso="ObjectsAlignDistributeVerticallyRemove" onAction="SpacingShapesVertical"  showLabel="false" />
+        <!-- グループ2: 配置・整列 -->
+        <group id="align_shapes" label="配置・整列">
+          <button id="MoveToAnchor" keytip="DSF" label="move to anchor" imageMso="ControlMarginsGallery" onAction="MoveToAnchor"  showLabel="false" />
 
           <button idMso="ObjectsAlignLeftSmart" keytip="DAA"  showLabel="false" />
           <button idMso="ObjectsAlignTopSmart" keytip="DAS"  showLabel="false" />
@@ -38,84 +33,56 @@
           <button id="ObjectsAlignBLSmart" keytip="DAZ" image="SmartArtSmallerShapeBottomLeft" onAction="ObjectsAlignBottomLeft"  showLabel="false" />
           <button id="ObjectsAlignBRSmart" keytip="DAX" image="SmartArtSmallerShapeBottomRight" onAction="ObjectsAlignBottomRight"  showLabel="false" />
 
-          <button idMso="AlignDistributeHorizontally" keytip="DSD" showLabel="false" />
-          <button idMso="AlignDistributeVertically" keytip="DSX" showLabel="false" />
-          <button id="MoveToAnchor" keytip="DSF" label="move to anchor" imageMso="ControlMarginsGallery" onAction="MoveToAnchor"  showLabel="false" />
+          <button id="AlignCenterVertical"   keytip="DSA" imageMso="ObjectsAlignMiddleVerticalSmart" onAction="AlignCenterVertical"  showLabel="false" />
+          <button id="AlignCenterHorizontal" keytip="DSZ" imageMso="ObjectsAlignCenterHorizontalSmart" onAction="AlignCenterHorizontal"  showLabel="false" />
+          <button id="AlignCenter"           keytip="DSS" image="ObjectsAlignCenter" onAction="AlignCenter"  showLabel="false" />
 
-          <!-- align_setting -->
-          <!-- 
-          <toggleButton idMso="ObjectsAlignRelativeToContainerSmart" showImage="false" label="slide"/>
-          <toggleButton idMso="ObjectsAlignSelectedSmart"  showImage="false" label="shapes"/>
-          -->
-
-          <!-- position tools-->
-          <button idMso="ObjectBringToFront" keytip="ZXX"  showLabel="false" />
-          <button idMso="ObjectSendToBack" keytip="ZXZ"  showLabel="false" />
-          <button idMso="ObjectFlipHorizontal" keytip="ZXC"  showLabel="false" />
-          <button idMso="ObjectFlipVertical" keytip="ZXD"  showLabel="false" />
-          <button id="CopyShapesPos" keytip="DDR" label="copy pos of shapes" imageMso="PasteAlternative" onAction="CopyShapesPos"  showLabel="false" />
-          <button id="PasteShapesAbsolutely" keytip="DDC" label="paste pos absolutely" imageMso="SlidesPerPage4Slides" onAction="PasteShapesAbsolutely"  showLabel="false" />
-          <button id="PasteShapesRelatively" keytip="DDF" label="paste pos relatively" imageMso="CreateDiagram" onAction="PasteShapesRelatively"  showLabel="false" />
+          <editBox id="interval_horizontal"       label="LR間" sizeString="8.88" getText="GetIntervalHorizontal" onChange="SetIntervalHorizontal"/>
+          <editBox id="interval_vertical"         label="TB間" sizeString="8.88" getText="GetIntervalVertical"   onChange="SetIntervalVertical"/>
+          <button  id="CopyShapeDistances" keytip="DDE" label="copy distance of shapes" imageMso="PasteAlternative" onAction="CopyShapeDistances"  showLabel="false" />
+          <button  id="SpacingShapesHorizontal"  keytip="DSW" imageMso="ObjectsAlignDistributeHorizontallyRemove" onAction="SpacingShapesHorizontal" showLabel="false" />
+          <button  id="SpacingShapesVertical"    keytip="DSE" imageMso="ObjectsAlignDistributeVerticallyRemove" onAction="SpacingShapesVertical"  showLabel="false" />
           <!--
           <button id="PasteShpaeDistancesX" keytip="DDS" label="paste x distance" imageMso="SlidesPerPage4Slides" onAction="PasteShpaeDistancesX"  showLabel="false" />
           <button id="PasteShpaeDistancesY" keytip="DDX" label="paste y distance" imageMso="CreateDiagram" onAction="PasteShpaeDistancesY"  showLabel="false" />
           -->
 
-          <!-- styles -->
-          <!--
-          <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style 1.5 pt." image="RightArrow15" onAction="FrequentlyArrowStyle15"  showLabel="false" />
-          <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style 3 pt." image="RightArrow30" onAction="FrequentlyArrowStyle30"  showLabel="false" />
-          <button id="FrequentlyArrowStyleBoth" keytip="CVX" label="frequently allow style both" image="RightArrow30" onAction="FrequentlyArrowStyleBoth"  showLabel="false" />
+          <button idMso="AlignDistributeHorizontally" keytip="DSD" showLabel="false" />
+          <button idMso="ObjectBringToFront" keytip="ZXX"  showLabel="false" />
+          <button idMso="ObjectSendToBack" keytip="ZXZ"  showLabel="false" />
+          <button idMso="AlignDistributeVertically" keytip="DSX" showLabel="false" />
 
-          <button id="FrequentlyShadeOn" keytip="CVF" label="frequently shade style 3 pt." imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
-          <button id="FrequentlyShadeOff" keytip="CVD" label="frequently shade style none" image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
-          <button id="FrequentlyLineStyleON" keytip="CVG" label="frequently line style" image="GroupShadowEffectsOff" onAction="FrequentlyLineStyleON" showLabel="false" />
-
-          <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
-          <button id="DrowExpension" keytip="CVZ" label="draw expansion" image="DrawExpansionLines" onAction="DrawExpandLines"  showLabel="false" />
+          <button id="CopyShapesPos" keytip="DDR" label="copy pos of shapes" imageMso="PasteAlternative" onAction="CopyShapesPos"  showLabel="false" />
+          <button id="PasteShapesAbsolutely" keytip="DDC" label="paste pos absolutely" imageMso="SlidesPerPage4Slides" onAction="PasteShapesAbsolutely"  showLabel="false" />
+          <button id="PasteShapesRelatively" keytip="DDF" label="paste pos relatively" imageMso="CreateDiagram" onAction="PasteShapesRelatively"  showLabel="false" />
+          <!-- 
+          <toggleButton idMso="ObjectsAlignRelativeToContainerSmart" showImage="false" label="slide"/>
+          <toggleButton idMso="ObjectsAlignSelectedSmart"  showImage="false" label="shapes"/>
           -->
 
+          <button idMso="ObjectFlipHorizontal" keytip="ZXC"  showLabel="false" />
+          <button idMso="ObjectFlipVertical" keytip="ZXD"  showLabel="false" />
+        </group>
+
+        <!-- グループ3: サイズ・調整 -->
+        <group id="adjust_shape_size" label="サイズ・調整">
           <!-- adjust shape -->
           <button id="AdjustShapesSize" keytip="DDD" label="adjust sizes" image="SizeToWidestAndTallest" onAction="AdjustShapesSize"  showLabel="false" />
           <button id="AdjustShapesWidth" keytip="DDA" label="adjust widths" imageMso="SizeToWidest" onAction="AdjustShapesWidth"  showLabel="false" />
           <button id="AdjustShapesHeight" keytip="DDZ" label="adjust heights" imageMso="SizeToTallest" onAction="AdjustShapesHeight"  showLabel="false" />
+
           <!--
           <toggleButton idMso="ObjectEditPoints" keytip="ZDD"  showLabel="false" />
           <toggleButton idMso="PictureCrop" keytip="ZDS"  showLabel="false" />
           -->
 
-          <!-- panes -->
-          <!--
-          <button idMso="ObjectFormatDialog" keytip="XDD"  showLabel="false" />  
-          <button idMso="TextFillMoreTextures" keytip="XDC"  showLabel="false" />
-          <toggleButton idMso="SelectionPane" keytip="XDS"  showLabel="false" />
-          -->
-
-          <!-- tools -->
           <button id="TableWidthAutoFit" keytip="CVB" label="auto fit table width" imageMso="SpeakByRows" onAction="TableWidthAutoFit"  showLabel="false" />
-          <button id="DeleteAndPasteShape" keytip="V"  label="delete and paste" imageMso="Paste" onAction="DeleteAndPasteShape" showLabel="false" />
           <button id="AddShapeNodes" keytip="CVS" label="add nodes" image="AddNodesPoints" onAction="AddNodes"   showLabel="false" />
-          <!--
-          <button id="AddCrossSymbol" label="add cross symbol" imageMso="Delete" onAction="CrossSymbol" showLabel="false" />
-          <button id="AddCircleSymbol" label="add circle symbol" imageMso="WorkflowComplete" onAction="CircleSymbol" showLabel="false" />
-          <button id="clip_path" keytip="XDA" label="clip path" imageMso="HeaderFooterFilePathInsert" onAction="ClipPath"  showLabel="false" />
-          -->
+          <button id="DeleteAndPasteShape" keytip="V"  label="delete and paste" imageMso="Paste" onAction="DeleteAndPasteShape" showLabel="false" />
+        </group>
 
-          <!-- LineColors -->
-          <!--
-            <button id="ChangeLineColorDark1" keytip="FDA" label="change line color to Dark1" image="ShapeLineColorDark1" onAction="ChangeLineColorDark1"  showLabel="false" />
-            <button id="ChangeLineColorLight1" keytip="FDS" label="change line color to Light1" image="ShapeLineColorLight1" onAction="ChangeLineColorLight1"  showLabel="false" />
-            <button id="ChangeLineColorDark2" keytip="FDD" label="change line color to Dark2" image="ShapeLineColorDark2" onAction="ChangeLineColorDark2"  showLabel="false" />
-
-            <button id="ChangeLineColorAccent2" keytip="FDF" label="change line color to Accent2" image="ShapeLineColorAccent2" onAction="ChangeLineColorAccent2"  showLabel="false" />
-            <button id="ChangeLineColorAccent3" keytip="FDZ" label="change line color to Accent3" image="ShapeLineColorAccent3" onAction="ChangeLineColorAccent3"  showLabel="false" />
-            <button id="ChangeLineColorAccent4" keytip="FDX" label="change line color to Accent4" image="ShapeLineColorAccent4" onAction="ChangeLineColorAccent4"  showLabel="false" />
-
-          <button id="ChangeLineColorAccent5" keytip="FDC" label="change line color to Accent5" image="ShapeLineColorAccent5" onAction="ChangeLineColorAccent5"  showLabel="false" />
-          <button id="ChangeLineColorAccent6" keytip="FDV" label="change line color to Accent6" image="ShapeLineColorAccent6" onAction="ChangeLineColorAccent6"  showLabel="false" />
-          <button id="ChangeLineColorRed" keytip="FDR" label="change line color to Red" image="ShapeLineColorRed" onAction="ChangeLineColorRed"  showLabel="false" />
-          -->
-
+        <!-- グループ4: 書式・余白 -->
+        <group id="format_shape" label="書式・余白">
           <button id="ChangeLineColorNone" keytip="FDG" label="change line color to None" image="ShapeLineColorNone" onAction="ChangeLineColorNone"  showLabel="false" />
 
           <!-- change color of forecolor -->
@@ -154,14 +121,14 @@
           <gallery idMso="OutlineWeightGallery" showLabel="false"/>
           -->
 
-        </group>
-
-        <group id="other_tools" label="other">
           <!-- margin -->
           <editBox id="margin_horizontal" label="左右" sizeString="8.888" getText="GetMarginHorizontal" onChange="SetMarginHorizontal"/>
           <editBox id="margin_vertical" label="上下" sizeString="8.888" getText="GetMarginVertical" onChange="SetMarginVertical"/>
           <button id="apply_apply" label="apply margins" imageMso="HappyFace" onAction="ApplyMargin" showLabel="false" />
+        </group>
 
+        <!-- グループ5: ページ設定 -->
+        <group id="page_setting" label="ページ設定">
           <!-- page -->
           <editBox id="total_page" label="page" sizeString="100" getText="SetPageEditBox" onChange="RefleshTotalPageNum" />
           <button id="set_total_page_num" imageMso="GroupPlaceholdersNotesMaster" label="write total page num" onAction="SetTotalPageNum" showLabel="false" />
@@ -175,6 +142,7 @@
           </menu>
         </group>
 
+        <!-- グループ6: 標準 -->
         <group idMso="GroupSize"/>
         <!-- <group idMso="GroupViewShowHide"/> -->
         <!--
@@ -183,6 +151,48 @@
           <button id="test1" label="test1" imageMso="HeaderFooterFilePathInsert" size="large" onAction="test1"  showLabel="false" />
         </group>
         -->
+
+        <!-- styles -->
+        <!--
+        <button id="FrequentlyArrow15" keytip="CVC" label="frequently allow style 1.5 pt." image="RightArrow15" onAction="FrequentlyArrowStyle15"  showLabel="false" />
+        <button id="FrequentlyArrow30" keytip="CVV" label="frequently allow style 3 pt." image="RightArrow30" onAction="FrequentlyArrowStyle30"  showLabel="false" />
+        <button id="FrequentlyArrowStyleBoth" keytip="CVX" label="frequently allow style both" image="RightArrow30" onAction="FrequentlyArrowStyleBoth"  showLabel="false" />
+
+        <button id="FrequentlyShadeOn" keytip="CVF" label="frequently shade style 3 pt." imageMso="GroupShadowEffects" onAction="FrequentlyShadowStyleOn" showLabel="false" />
+        <button id="FrequentlyShadeOff" keytip="CVD" label="frequently shade style none" image="GroupShadowEffectsOff" onAction="FrequentlyShadowStyleOff" showLabel="false" />
+        <button id="FrequentlyLineStyleON" keytip="CVG" label="frequently line style" image="GroupShadowEffectsOff" onAction="FrequentlyLineStyleON" showLabel="false" />
+
+        <button id="PaintGradation" keytip="CVA" label="paint gradation" image="Gradient" onAction="PaintGradation"  showLabel="false" />
+        <button id="DrowExpension" keytip="CVZ" label="draw expansion" image="DrawExpansionLines" onAction="DrawExpandLines"  showLabel="false" />
+        -->
+
+        <!-- panes -->
+        <!--
+        <button idMso="ObjectFormatDialog" keytip="XDD"  showLabel="false" />  
+        <button idMso="TextFillMoreTextures" keytip="XDC"  showLabel="false" />
+        <toggleButton idMso="SelectionPane" keytip="XDS"  showLabel="false" />
+        -->
+        <!--
+        <button id="AddCrossSymbol" label="add cross symbol" imageMso="Delete" onAction="CrossSymbol" showLabel="false" />
+        <button id="AddCircleSymbol" label="add circle symbol" imageMso="WorkflowComplete" onAction="CircleSymbol" showLabel="false" />
+        <button id="clip_path" keytip="XDA" label="clip path" imageMso="HeaderFooterFilePathInsert" onAction="ClipPath"  showLabel="false" />
+        -->
+
+        <!-- LineColors -->
+        <!--
+        <button id="ChangeLineColorDark1" keytip="FDA" label="change line color to Dark1" image="ShapeLineColorDark1" onAction="ChangeLineColorDark1"  showLabel="false" />
+        <button id="ChangeLineColorLight1" keytip="FDS" label="change line color to Light1" image="ShapeLineColorLight1" onAction="ChangeLineColorLight1"  showLabel="false" />
+        <button id="ChangeLineColorDark2" keytip="FDD" label="change line color to Dark2" image="ShapeLineColorDark2" onAction="ChangeLineColorDark2"  showLabel="false" />
+
+        <button id="ChangeLineColorAccent2" keytip="FDF" label="change line color to Accent2" image="ShapeLineColorAccent2" onAction="ChangeLineColorAccent2"  showLabel="false" />
+        <button id="ChangeLineColorAccent3" keytip="FDZ" label="change line color to Accent3" image="ShapeLineColorAccent3" onAction="ChangeLineColorAccent3"  showLabel="false" />
+        <button id="ChangeLineColorAccent4" keytip="FDX" label="change line color to Accent4" image="ShapeLineColorAccent4" onAction="ChangeLineColorAccent4"  showLabel="false" />
+
+        <button id="ChangeLineColorAccent5" keytip="FDC" label="change line color to Accent5" image="ShapeLineColorAccent5" onAction="ChangeLineColorAccent5"  showLabel="false" />
+        <button id="ChangeLineColorAccent6" keytip="FDV" label="change line color to Accent6" image="ShapeLineColorAccent6" onAction="ChangeLineColorAccent6"  showLabel="false" />
+        <button id="ChangeLineColorRed" keytip="FDR" label="change line color to Red" image="ShapeLineColorRed" onAction="ChangeLineColorRed"  showLabel="false" />
+        -->
+
         </tab> 
     </tabs>
   </ribbon>
