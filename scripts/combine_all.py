@@ -20,8 +20,24 @@ def main():
     'Dim ShapeDistanceY As Double\n' \
     '\n' \
     'Sub InitCustomTab()\n' \
-    '    ShapeDistanceX = ActivePresentation.PageSetup.SlideWidth * 0.05\n' \
-    '    ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01\n' \
+    '    \' Ribbon onLoad can fire before any presentation exists (add-in / new PPT instance).\n' \
+    '    \' Do not access ActivePresentation unconditionally or error 80048240 appears.\n' \
+    '    Dim slideWidth As Double\n' \
+    '    Dim slideHeight As Double\n' \
+    '\n' \
+    '    \' Fallback: standard widescreen (13.333" x 7.5" in points)\n' \
+    '    slideWidth = 960#\n' \
+    '    slideHeight = 540#\n' \
+    '\n' \
+    '    On Error Resume Next\n' \
+    '    If Application.Presentations.Count > 0 Then\n' \
+    '        slideWidth = ActivePresentation.PageSetup.SlideWidth\n' \
+    '        slideHeight = ActivePresentation.PageSetup.SlideHeight\n' \
+    '    End If\n' \
+    '    On Error GoTo 0\n' \
+    '\n' \
+    '    ShapeDistanceX = slideWidth * 0.05\n' \
+    '    ShapeDistanceY = slideHeight * 0.01\n' \
     'End Sub\n' \
     
     print(head_text)
