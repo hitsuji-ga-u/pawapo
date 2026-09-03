@@ -5,8 +5,24 @@ Dim ShapeDistanceX As Double
 Dim ShapeDistanceY As Double
 
 Sub InitCustomTab()
-    ShapeDistanceX = ActivePresentation.PageSetup.SlideWidth * 0.05
-    ShapeDistanceY = ActivePresentation.PageSetup.SlideHeight * 0.01
+    ' Ribbon onLoad can fire before any presentation exists (add-in / new PPT instance).
+    ' Do not access ActivePresentation unconditionally or error 80048240 appears.
+    Dim slideWidth As Double
+    Dim slideHeight As Double
+
+    ' Fallback: standard widescreen (13.333" x 7.5" in points)
+    slideWidth = 960#
+    slideHeight = 540#
+
+    On Error Resume Next
+    If Application.Presentations.Count > 0 Then
+        slideWidth = ActivePresentation.PageSetup.SlideWidth
+        slideHeight = ActivePresentation.PageSetup.SlideHeight
+    End If
+    On Error GoTo 0
+
+    ShapeDistanceX = slideWidth * 0.05
+    ShapeDistanceY = slideHeight * 0.01
 End Sub
 
 ' Add Nodes to square shape
